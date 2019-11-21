@@ -1,0 +1,47 @@
+#dssd-form-saved-notice {
+  transition: right 0.4s;
+  position: fixed;
+  width: 100%;
+  max-width: 300px;
+  top: 50px;
+  right: -310px;
+  z-index: 10; }
+  #dssd-form-saved-notice.active {
+    right: 0px; }
+
+#dssd-form-main {
+  position: relative; }
+  #dssd-form-main #dssd-form-loading-panel {
+    transition: visibility 0.4s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 9;
+    visibility: hidden; }
+    #dssd-form-main #dssd-form-loading-panel.active {
+      visibility: visible; }
+
+.dssd-sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 8; }
+
+.wp-picker-container input {
+  height: 30px !important;
+  line-height: 28px !important;
+  background-color: #f9f9f9 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important; }
+.wp-picker-container > .wp-color-result.button {
+  height: 30px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important; }
+  .wp-picker-container > .wp-color-result.button > .wp-color-result-text,
+  .wp-picker-container > .wp-color-result.button > .color-alpha {
+    height: 28px !important;
+    line-height: 28px !important; }
+
+/*# sourceMappingURL=style.css.map */

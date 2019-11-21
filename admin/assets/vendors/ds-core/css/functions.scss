@@ -1,0 +1,31 @@
+@mixin ds-font( $color: $ds-grey-dark, $size: $ds-font-size, $line-height: $ds-line-height, $weight: 300 ) {
+	line-height: $line-height;
+	font-weight: $weight;
+	  font-size: $size;
+	      color: $color;
+}
+
+@mixin ds-dimensions( $width, $height ) {
+	height: $height;
+	 width: $width;
+}
+
+@mixin ds-border-radius( $radius ) {
+	-webkit-border-radius: $radius;
+	   -moz-border-radius: $radius;
+	        border-radius: $radius;
+}
+
+@mixin ds-transform( $transformation ) {
+	-webkit-transform: $transformation;
+	   -moz-transform: $transformation;
+	    -ms-transform: $transformation;
+	     -o-transform: $transformation;
+	        transform: $transformation;
+}
+
+@mixin ds-box-shadow( $box-shadow ) {
+	-webkit-box-shadow: $box-shadow;
+	   -moz-box-shadow: $box-shadow;
+	        box-shadow: $box-shadow;
+}

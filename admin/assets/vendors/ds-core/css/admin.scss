@@ -1,0 +1,21 @@
+.ds-admin-wrapper {
+	h1, h2, h3,
+	p {
+		color: $ds-grey-dark;
+	}
+
+	// WP Nav tabs.
+	.nav-tab-wrapper {
+		> a {
+			text-decoration: none;
+		}
+
+		.tab-content {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+}

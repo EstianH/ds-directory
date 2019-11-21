@@ -1,0 +1,565 @@
+.ds-container {
+	padding-left: 7.5px;
+	padding-right: 7.5px;
+}
+
+.ds-row {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-left: -7.5px;
+	margin-right: -7.5px;
+
+	* {
+		box-sizing: border-box;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.ds-col {
+		-ms-flex-preferred-size: 0;
+		flex-basis: 0;
+		-webkit-box-flex: 1;
+		-ms-flex-positive: 1;
+		flex-grow: 1;
+		max-width: 100%;
+		padding-left: 7.5px;
+		padding-right: 7.5px;
+	}
+
+	.ds-col-1,
+	.ds-col-2,
+	.ds-col-3,
+	.ds-col-4,
+	.ds-col-5,
+	.ds-col-6,
+	.ds-col-7,
+	.ds-col-8,
+	.ds-col-9,
+	.ds-col-10,
+	.ds-col-11,
+	.ds-col-12 {
+		-webkit-box-flex: 0;
+		padding-left: 7.5px;
+		padding-right: 7.5px;
+	}
+
+	.ds-col-1 {
+		-ms-flex:  0 0 8.333333%;
+		flex:      0 0 8.333333%;
+		max-width: 8.333333%;
+	}
+
+	.ds-col-2 {
+		-ms-flex:  0 0 16.666667%;
+		flex:      0 0 16.666667%;
+		max-width: 16.666667%;
+	}
+
+	.ds-col-3 {
+		-ms-flex:  0 0 25%;
+		flex:      0 0 25%;
+		max-width: 25%;
+	}
+
+	.ds-col-4 {
+		-ms-flex:  0 0 33.333333%;
+		flex:      0 0 33.333333%;
+		max-width: 33.333333%;
+	}
+
+	.ds-col-5 {
+		-ms-flex:  0 0 41.666667%;
+		flex:      0 0 41.666667%;
+		max-width: 41.666667%;
+	}
+
+	.ds-col-6 {
+		-ms-flex:  0 0 50%;
+		flex:      0 0 50%;
+		max-width: 50%;
+	}
+
+	.ds-col-7 {
+		-ms-flex:  0 0 58.333333%;
+		flex:      0 0 58.333333%;
+		max-width: 58.333333%;
+	}
+
+	.ds-col-8 {
+		-ms-flex:  0 0 66.666667%;
+		flex:      0 0 66.666667%;
+		max-width: 66.666667%;
+	}
+
+	.ds-col-9 {
+		-ms-flex:  0 0 75%;
+		flex:      0 0 75%;
+		max-width: 75%;
+	}
+
+	.ds-col-10 {
+		-ms-flex:  0 0 83.333333%;
+		flex:      0 0 83.333333%;
+		max-width: 83.333333%;
+	}
+
+	.ds-col-11 {
+		-ms-flex:  0 0 91.666667%;
+		flex:      0 0 91.666667%;
+		max-width: 91.666667%;
+	}
+
+	.ds-col-12 {
+		-ms-flex:  0 0 100%;
+		flex:      0 0 100%;
+		max-width: 100%;
+	}
+
+	.ds-block {
+		box-shadow: 0 1px 1px rgba( 0, 0, 0, .04 );
+		background: $white;
+		@include ds-dimensions( 100%, 100% );
+
+		> .ds-block-title {
+			background: $ds-grey-light;
+			display: block;
+			padding: 15px 25px;
+
+			> h2 {
+				color: $ds-grey-dark;
+				line-height: 1.1em;
+				margin: 0;
+				font-size: 18px;
+			}
+		}
+
+		> .ds-block-body {
+			padding: 25px;
+		}
+	}
+}
+
+
+/*
+██████  ███████        ██████  ██       ██████  ██████   █████  ██       ██     ██ ██ ██████  ████████ ██   ██       ███████ ███    ███
+██   ██ ██            ██       ██      ██    ██ ██   ██ ██   ██ ██       ██     ██ ██ ██   ██    ██    ██   ██       ██      ████  ████
+██   ██ ███████ █████ ██   ███ ██      ██    ██ ██████  ███████ ██ █████ ██  █  ██ ██ ██   ██    ██    ███████ █████ ███████ ██ ████ ██
+██   ██      ██       ██    ██ ██      ██    ██ ██   ██ ██   ██ ██       ██ ███ ██ ██ ██   ██    ██    ██   ██            ██ ██  ██  ██
+██████  ███████        ██████  ███████  ██████  ██████  ██   ██ ███████   ███ ███  ██ ██████     ██    ██   ██       ███████ ██      ██
+*/
+@media ( min-width: $ds-global-width-sm ) {
+	.ds-row {
+		.ds-col-sm-1 {
+			-ms-flex:  0 0 8.333333%;
+			flex:      0 0 8.333333%;
+			max-width: 8.333333%;
+		}
+
+		.ds-col-sm-2 {
+			-ms-flex:  0 0 16.666667%;
+			flex:      0 0 16.666667%;
+			max-width: 16.666667%;
+		}
+
+		.ds-col-sm-3 {
+			-ms-flex:  0 0 25%;
+			flex:      0 0 25%;
+			max-width: 25%;
+		}
+
+		.ds-col-sm-4 {
+			-ms-flex:  0 0 33.333333%;
+			flex:      0 0 33.333333%;
+			max-width: 33.333333%;
+		}
+
+		.ds-col-sm-5 {
+			-ms-flex:  0 0 41.666667%;
+			flex:      0 0 41.666667%;
+			max-width: 41.666667%;
+		}
+
+		.ds-col-sm-6 {
+			-ms-flex:  0 0 50%;
+			flex:      0 0 50%;
+			max-width: 50%;
+		}
+
+		.ds-col-sm-7 {
+			-ms-flex:  0 0 58.333333%;
+			flex:      0 0 58.333333%;
+			max-width: 58.333333%;
+		}
+
+		.ds-col-sm-8 {
+			-ms-flex:  0 0 66.666667%;
+			flex:      0 0 66.666667%;
+			max-width: 66.666667%;
+		}
+
+		.ds-col-sm-9 {
+			-ms-flex:  0 0 75%;
+			flex:      0 0 75%;
+			max-width: 75%;
+		}
+
+		.ds-col-sm-10 {
+			-ms-flex:  0 0 83.333333%;
+			flex:      0 0 83.333333%;
+			max-width: 83.333333%;
+		}
+
+		.ds-col-sm-11 {
+			-ms-flex:  0 0 91.666667%;
+			flex:      0 0 91.666667%;
+			max-width: 91.666667%;
+		}
+
+		.ds-col-sm-12 {
+			-ms-flex:  0 0 100%;
+			flex:      0 0 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+
+/*
+██████  ███████        ██████  ██       ██████  ██████   █████  ██       ██     ██ ██ ██████  ████████ ██   ██       ███    ███ ██████
+██   ██ ██            ██       ██      ██    ██ ██   ██ ██   ██ ██       ██     ██ ██ ██   ██    ██    ██   ██       ████  ████ ██   ██
+██   ██ ███████ █████ ██   ███ ██      ██    ██ ██████  ███████ ██ █████ ██  █  ██ ██ ██   ██    ██    ███████ █████ ██ ████ ██ ██   ██
+██   ██      ██       ██    ██ ██      ██    ██ ██   ██ ██   ██ ██       ██ ███ ██ ██ ██   ██    ██    ██   ██       ██  ██  ██ ██   ██
+██████  ███████        ██████  ███████  ██████  ██████  ██   ██ ███████   ███ ███  ██ ██████     ██    ██   ██       ██      ██ ██████
+*/
+@media ( min-width: $ds-global-width-md ) {
+	.ds-row {
+		.ds-col-md-1 {
+			-ms-flex:  0 0 8.333333%;
+			flex:      0 0 8.333333%;
+			max-width: 8.333333%;
+		}
+
+		.ds-col-md-2 {
+			-ms-flex:  0 0 16.666667%;
+			flex:      0 0 16.666667%;
+			max-width: 16.666667%;
+		}
+
+		.ds-col-md-3 {
+			-ms-flex:  0 0 25%;
+			flex:      0 0 25%;
+			max-width: 25%;
+		}
+
+		.ds-col-md-4 {
+			-ms-flex:  0 0 33.333333%;
+			flex:      0 0 33.333333%;
+			max-width: 33.333333%;
+		}
+
+		.ds-col-md-5 {
+			-ms-flex:  0 0 41.666667%;
+			flex:      0 0 41.666667%;
+			max-width: 41.666667%;
+		}
+
+		.ds-col-md-6 {
+			-ms-flex:  0 0 50%;
+			flex:      0 0 50%;
+			max-width: 50%;
+		}
+
+		.ds-col-md-7 {
+			-ms-flex:  0 0 58.333333%;
+			flex:      0 0 58.333333%;
+			max-width: 58.333333%;
+		}
+
+		.ds-col-md-8 {
+			-ms-flex:  0 0 66.666667%;
+			flex:      0 0 66.666667%;
+			max-width: 66.666667%;
+		}
+
+		.ds-col-md-9 {
+			-ms-flex:  0 0 75%;
+			flex:      0 0 75%;
+			max-width: 75%;
+		}
+
+		.ds-col-md-10 {
+			-ms-flex:  0 0 83.333333%;
+			flex:      0 0 83.333333%;
+			max-width: 83.333333%;
+		}
+
+		.ds-col-md-11 {
+			-ms-flex:  0 0 91.666667%;
+			flex:      0 0 91.666667%;
+			max-width: 91.666667%;
+		}
+
+		.ds-col-md-12 {
+			-ms-flex:  0 0 100%;
+			flex:      0 0 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+
+/*
+██████  ███████        ██████  ██       ██████  ██████   █████  ██       ██     ██ ██ ██████  ████████ ██   ██       ██       ██████
+██   ██ ██            ██       ██      ██    ██ ██   ██ ██   ██ ██       ██     ██ ██ ██   ██    ██    ██   ██       ██      ██
+██   ██ ███████ █████ ██   ███ ██      ██    ██ ██████  ███████ ██ █████ ██  █  ██ ██ ██   ██    ██    ███████ █████ ██      ██   ███
+██   ██      ██       ██    ██ ██      ██    ██ ██   ██ ██   ██ ██       ██ ███ ██ ██ ██   ██    ██    ██   ██       ██      ██    ██
+██████  ███████        ██████  ███████  ██████  ██████  ██   ██ ███████   ███ ███  ██ ██████     ██    ██   ██       ███████  ██████
+*/
+@media ( min-width: $ds-global-width-lg ) {
+	.ds-row {
+		.ds-col-lg-1 {
+			-ms-flex:  0 0 8.333333%;
+			flex:      0 0 8.333333%;
+			max-width: 8.333333%;
+		}
+
+		.ds-col-lg-2 {
+			-ms-flex:  0 0 16.666667%;
+			flex:      0 0 16.666667%;
+			max-width: 16.666667%;
+		}
+
+		.ds-col-lg-3 {
+			-ms-flex:  0 0 25%;
+			flex:      0 0 25%;
+			max-width: 25%;
+		}
+
+		.ds-col-lg-4 {
+			-ms-flex:  0 0 33.333333%;
+			flex:      0 0 33.333333%;
+			max-width: 33.333333%;
+		}
+
+		.ds-col-lg-5 {
+			-ms-flex:  0 0 41.666667%;
+			flex:      0 0 41.666667%;
+			max-width: 41.666667%;
+		}
+
+		.ds-col-lg-6 {
+			-ms-flex:  0 0 50%;
+			flex:      0 0 50%;
+			max-width: 50%;
+		}
+
+		.ds-col-lg-7 {
+			-ms-flex:  0 0 58.333333%;
+			flex:      0 0 58.333333%;
+			max-width: 58.333333%;
+		}
+
+		.ds-col-lg-8 {
+			-ms-flex:  0 0 66.666667%;
+			flex:      0 0 66.666667%;
+			max-width: 66.666667%;
+		}
+
+		.ds-col-lg-9 {
+			-ms-flex:  0 0 75%;
+			flex:      0 0 75%;
+			max-width: 75%;
+		}
+
+		.ds-col-lg-10 {
+			-ms-flex:  0 0 83.333333%;
+			flex:      0 0 83.333333%;
+			max-width: 83.333333%;
+		}
+
+		.ds-col-lg-11 {
+			-ms-flex:  0 0 91.666667%;
+			flex:      0 0 91.666667%;
+			max-width: 91.666667%;
+		}
+
+		.ds-col-lg-12 {
+			-ms-flex:  0 0 100%;
+			flex:      0 0 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+
+/*
+██████  ███████        ██████  ██       ██████  ██████   █████  ██       ██     ██ ██ ██████  ████████ ██   ██      ██   ██ ██
+██   ██ ██            ██       ██      ██    ██ ██   ██ ██   ██ ██       ██     ██ ██ ██   ██    ██    ██   ██       ██ ██  ██
+██   ██ ███████ █████ ██   ███ ██      ██    ██ ██████  ███████ ██ █████ ██  █  ██ ██ ██   ██    ██    ███████ █████  ███   ██
+██   ██      ██       ██    ██ ██      ██    ██ ██   ██ ██   ██ ██       ██ ███ ██ ██ ██   ██    ██    ██   ██       ██ ██  ██
+██████  ███████        ██████  ███████  ██████  ██████  ██   ██ ███████   ███ ███  ██ ██████     ██    ██   ██      ██   ██ ███████
+*/
+@media ( min-width: $ds-global-width-xl ) {
+	.ds-row {
+		.ds-col-xl-1 {
+			-ms-flex:  0 0 8.333333%;
+			flex:      0 0 8.333333%;
+			max-width: 8.333333%;
+		}
+
+		.ds-col-xl-2 {
+			-ms-flex:  0 0 16.666667%;
+			flex:      0 0 16.666667%;
+			max-width: 16.666667%;
+		}
+
+		.ds-col-xl-3 {
+			-ms-flex:  0 0 25%;
+			flex:      0 0 25%;
+			max-width: 25%;
+		}
+
+		.ds-col-xl-4 {
+			-ms-flex:  0 0 33.333333%;
+			flex:      0 0 33.333333%;
+			max-width: 33.333333%;
+		}
+
+		.ds-col-xl-5 {
+			-ms-flex:  0 0 41.666667%;
+			flex:      0 0 41.666667%;
+			max-width: 41.666667%;
+		}
+
+		.ds-col-xl-6 {
+			-ms-flex:  0 0 50%;
+			flex:      0 0 50%;
+			max-width: 50%;
+		}
+
+		.ds-col-xl-7 {
+			-ms-flex:  0 0 58.333333%;
+			flex:      0 0 58.333333%;
+			max-width: 58.333333%;
+		}
+
+		.ds-col-xl-8 {
+			-ms-flex:  0 0 66.666667%;
+			flex:      0 0 66.666667%;
+			max-width: 66.666667%;
+		}
+
+		.ds-col-xl-9 {
+			-ms-flex:  0 0 75%;
+			flex:      0 0 75%;
+			max-width: 75%;
+		}
+
+		.ds-col-xl-10 {
+			-ms-flex:  0 0 83.333333%;
+			flex:      0 0 83.333333%;
+			max-width: 83.333333%;
+		}
+
+		.ds-col-xl-11 {
+			-ms-flex:  0 0 91.666667%;
+			flex:      0 0 91.666667%;
+			max-width: 91.666667%;
+		}
+
+		.ds-col-xl-12 {
+			-ms-flex:  0 0 100%;
+			flex:      0 0 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+
+/*
+██████  ███████        ██████  ██       ██████  ██████   █████  ██       ██     ██ ██ ██████  ████████ ██   ██      ██   ██ ██   ██ ██
+██   ██ ██            ██       ██      ██    ██ ██   ██ ██   ██ ██       ██     ██ ██ ██   ██    ██    ██   ██       ██ ██   ██ ██  ██
+██   ██ ███████ █████ ██   ███ ██      ██    ██ ██████  ███████ ██ █████ ██  █  ██ ██ ██   ██    ██    ███████ █████  ███     ███   ██
+██   ██      ██       ██    ██ ██      ██    ██ ██   ██ ██   ██ ██       ██ ███ ██ ██ ██   ██    ██    ██   ██       ██ ██   ██ ██  ██
+██████  ███████        ██████  ███████  ██████  ██████  ██   ██ ███████   ███ ███  ██ ██████     ██    ██   ██      ██   ██ ██   ██ ███████
+*/
+@media ( min-width: $ds-global-width-xxl ) {
+	.ds-row {
+		.ds-col-xxl-1 {
+			-ms-flex:  0 0 8.333333%;
+			flex:      0 0 8.333333%;
+			max-width: 8.333333%;
+		}
+
+		.ds-col-xxl-2 {
+			-ms-flex:  0 0 16.666667%;
+			flex:      0 0 16.666667%;
+			max-width: 16.666667%;
+		}
+
+		.ds-col-xxl-3 {
+			-ms-flex:  0 0 25%;
+			flex:      0 0 25%;
+			max-width: 25%;
+		}
+
+		.ds-col-xxl-4 {
+			-ms-flex:  0 0 33.333333%;
+			flex:      0 0 33.333333%;
+			max-width: 33.333333%;
+		}
+
+		.ds-col-xxl-5 {
+			-ms-flex:  0 0 41.666667%;
+			flex:      0 0 41.666667%;
+			max-width: 41.666667%;
+		}
+
+		.ds-col-xxl-6 {
+			-ms-flex:  0 0 50%;
+			flex:      0 0 50%;
+			max-width: 50%;
+		}
+
+		.ds-col-xxl-7 {
+			-ms-flex:  0 0 58.333333%;
+			flex:      0 0 58.333333%;
+			max-width: 58.333333%;
+		}
+
+		.ds-col-xxl-8 {
+			-ms-flex:  0 0 66.666667%;
+			flex:      0 0 66.666667%;
+			max-width: 66.666667%;
+		}
+
+		.ds-col-xxl-9 {
+			-ms-flex:  0 0 75%;
+			flex:      0 0 75%;
+			max-width: 75%;
+		}
+
+		.ds-col-xxl-10 {
+			-ms-flex:  0 0 83.333333%;
+			flex:      0 0 83.333333%;
+			max-width: 83.333333%;
+		}
+
+		.ds-col-xxl-11 {
+			-ms-flex:  0 0 91.666667%;
+			flex:      0 0 91.666667%;
+			max-width: 91.666667%;
+		}
+
+		.ds-col-xxl-12 {
+			-ms-flex:  0 0 100%;
+			flex:      0 0 100%;
+			max-width: 100%;
+		}
+	}
+}
