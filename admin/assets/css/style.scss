@@ -16,6 +16,14 @@ $black: #000;
 $ds-font-size: 16px;
 $ds-line-height: 18px;
 
+
+/*
+███████ ███████ ████████ ████████ ██ ███    ██  ██████  ███████
+██      ██         ██       ██    ██ ████   ██ ██       ██
+███████ █████      ██       ██    ██ ██ ██  ██ ██   ███ ███████
+     ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
+███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
+*/
 #dssd-form-saved-notice {
 	transition: right 0.4s;
 	position: fixed;
@@ -76,6 +84,41 @@ $ds-line-height: 18px;
 			height: 28px !important;
 			line-height: 28px !important;
 		}
+	}
+}
+
+@media( min-width: $ds-global-width-sm ) {
+
+}
+
+@media( min-width: $ds-global-width-md ) {
+
+}
+
+@media( min-width: $ds-global-width-lg ) {
+
+}
+
+@media( min-width: $ds-global-width-xl ) {
+
+}
+
+@media( min-width: $ds-global-width-xxl ) {
+
+}
+
+
+/*
+███████ ████████  ██████  ██████  ███████     ███████ ███████ ████████ ████████ ██ ███    ██  ██████  ███████
+██         ██    ██    ██ ██   ██ ██          ██      ██         ██       ██    ██ ████   ██ ██       ██
+███████    ██    ██    ██ ██████  █████       ███████ █████      ██       ██    ██ ██ ██  ██ ██   ███ ███████
+     ██    ██    ██    ██ ██   ██ ██               ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
+███████    ██     ██████  ██   ██ ███████     ███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
+*/
+#dssd_store_options {
+	> .inside {
+		margin: 0;
+		padding: 0;
 	}
 }
 
