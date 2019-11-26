@@ -312,8 +312,12 @@ body {
 							padding: 10px 0 10px 15px;
 						}
 
+						&.store-number {
+							@include ds-dimensions( 15%, 100% );
+						}
+
 						&.store-title {
-							@include ds-dimensions( 25%, 100% );
+							@include ds-dimensions( 30%, 100% );
 
 							> span {
 								&:last-child {
@@ -323,18 +327,10 @@ body {
 						}
 
 						&.store-category {
-							@include ds-dimensions( 25%, 100% );
-						}
-
-						&.store-number {
-							@include ds-dimensions( 15%, 100% );
+							@include ds-dimensions( 35%, 100% );
 						}
 
 						&.store-contact-number {
-							@include ds-dimensions( 15%, 100% );
-						}
-
-						&.store-view-details {
 							@include ds-dimensions( 20%, 100% );
 						}
 					}

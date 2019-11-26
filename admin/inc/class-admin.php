@@ -144,6 +144,8 @@ class DS_STORE_DIRECTORY_ADMIN {
 
 		// Refresh cached settings.
 		$dssd->settings = $db_settings;
+
+		flush_rewrite_fules();
 	}
 
 	/**
@@ -152,7 +154,7 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 * @access public
 	 */
 	public function deactivate() {
-
+		flush_rewrite_fules();
 	}
 
 	/**

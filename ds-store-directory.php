@@ -25,15 +25,15 @@ if( !defined( 'DIVSPOT_URL' ) )
 
 define( 'DSSD_BASENAME'      , plugin_basename( __FILE__ ) );
 define( 'DSSD_ROOT_URL'      , plugins_url( '', DSSD_BASENAME ) . '/' ); // User-Friendly URL
-define( 'DSSD_ROOT_PATH'     , __DIR__        . '/' ); // FTP Path
-define( 'DSSD_ADMIN_URL'     , DSSD_ROOT_URL  . 'admin/' ); // FTP Path
-define( 'DSSD_ADMIN_PATH'    , DSSD_ROOT_PATH . 'admin/' ); // FTP Path
-define( 'DSSD_ASSETS_URL'    , DSSD_ROOT_URL  . 'assets/' ); // FTP Path
-define( 'DSSD_ASSETS_PATH'   , DSSD_ROOT_PATH . 'assets/' ); // FTP Path
-define( 'DSSD_TEMPLATES_URL' , DSSD_ROOT_URL  . 'templates/' ); // FTP Path
-define( 'DSSD_TEMPLATES_PATH', DSSD_ROOT_PATH . 'templates/' ); // FTP Path
-define( 'DSSD_TITLE'         , 'DS Store Directory' );
-define( 'DSSD_SLUG'          , sanitize_title( DSSD_TITLE ) ); // Plugin slug.
+define( 'DSSD_ROOT_PATH'     , __DIR__        . '/' );                   // FTP Path
+define( 'DSSD_ADMIN_URL'     , DSSD_ROOT_URL  . 'admin/' );              // User-Friendly URL
+define( 'DSSD_ADMIN_PATH'    , DSSD_ROOT_PATH . 'admin/' );              // FTP Path
+define( 'DSSD_ASSETS_URL'    , DSSD_ROOT_URL  . 'assets/' );             // User-Friendly URL
+define( 'DSSD_ASSETS_PATH'   , DSSD_ROOT_PATH . 'assets/' );             // FTP Path
+define( 'DSSD_TEMPLATES_URL' , DSSD_ROOT_URL  . 'templates/' );          // User-Friendly URL
+define( 'DSSD_TEMPLATES_PATH', DSSD_ROOT_PATH . 'templates/' );          // FTP Path
+define( 'DSSD_TITLE'         , 'DS Store Directory' );                   // DSSD Title
+define( 'DSSD_SLUG'          , sanitize_title( DSSD_TITLE ) );           // Plugin slug.
 define( 'DSSD_VERSION'       , '1.0' );
 
 
@@ -84,18 +84,33 @@ class DS_STORE_DIRECTORY {
 		$this->settings = get_option( 'dssd_settings' );
 
 		// Register the store post type & taxonomies.
-		add_action( 'init', array( $this, 'register_store_post_type' ) );
-		add_action( 'init', array( $this, 'register_store_post_taxonomies' ) );
+		add_action( 'init', array( $this, 'register_store_post_type' )      , 10 );
+		add_action( 'init', array( $this, 'register_store_post_taxonomies' ), 10 );
+
+		// Register store & store category rewrite rules
+		add_action( 'init'      , array( $this, 'add_rewrite_rules' ), 0 );
+		add_filter( 'query_vars', array( $this, 'add_query_vars' ), 0, 1 );
+
+		// Render the store & store category template.
+		add_filter( 'template_include', array( $this, 'store_directory_render_template' ), 0, 1 );
+
+		// Filter the root "store-directory" title.
+		add_filter( 'document_title_parts', array( $this, 'store_directory_filter_title' ), 0, 1 );
+
+		// Alter the main WP_Query object to pull all stores on the root "store-directory" page.
+		add_action( 'pre_get_posts', array( $this, 'update_wp_query' ), 0, 1 );
 
 		// Enqueue plugin assets.
 		add_action( 'wp_enqueue_scripts', function() {
-			/*
-			████████ ██   ██ ███████ ███████ ███████      █████  ███████ ███████ ███████ ████████ ███████     ██       ██████   █████  ██████       ██████  ███    ██      █████  ██      ██          ██████   █████   ██████  ███████ ███████         █████  ██████  ██████       ██████  ██████  ███    ██ ██████  ██ ████████ ██  ██████  ███    ██
-			   ██    ██   ██ ██      ██      ██          ██   ██ ██      ██      ██         ██    ██          ██      ██    ██ ██   ██ ██   ██     ██    ██ ████   ██     ██   ██ ██      ██          ██   ██ ██   ██ ██       ██      ██             ██   ██ ██   ██ ██   ██     ██      ██    ██ ████   ██ ██   ██ ██    ██    ██ ██    ██ ████   ██
-			   ██    ███████ █████   ███████ █████       ███████ ███████ ███████ █████      ██    ███████     ██      ██    ██ ███████ ██   ██     ██    ██ ██ ██  ██     ███████ ██      ██          ██████  ███████ ██   ███ █████   ███████        ███████ ██   ██ ██   ██     ██      ██    ██ ██ ██  ██ ██   ██ ██    ██    ██ ██    ██ ██ ██  ██
-			   ██    ██   ██ ██           ██ ██          ██   ██      ██      ██ ██         ██         ██     ██      ██    ██ ██   ██ ██   ██     ██    ██ ██  ██ ██     ██   ██ ██      ██          ██      ██   ██ ██    ██ ██           ██        ██   ██ ██   ██ ██   ██     ██      ██    ██ ██  ██ ██ ██   ██ ██    ██    ██ ██    ██ ██  ██ ██
-			   ██    ██   ██ ███████ ███████ ███████     ██   ██ ███████ ███████ ███████    ██    ███████     ███████  ██████  ██   ██ ██████       ██████  ██   ████     ██   ██ ███████ ███████     ██      ██   ██  ██████  ███████ ███████ ██     ██   ██ ██████  ██████       ██████  ██████  ██   ████ ██████  ██    ██    ██  ██████  ██   ████ ██
-			*/
+			global $wp_query;
+
+			// Continue only on relevant store and store category pages.
+			if (
+				   empty( $wp_query->query_vars['store_directory_root'] )
+				&& empty( $wp_query->query_vars['store_directory_category'] )
+			)
+				return;
+
 			wp_enqueue_script( 'dssd-script', DSSD_ASSETS_URL . 'js/script.js' , array(), DSSD_VERSION );
 		   wp_enqueue_style( 'dssd-style' , DSSD_ASSETS_URL . 'css/style.css', array(), DSSD_VERSION );
 
@@ -121,10 +136,11 @@ class DS_STORE_DIRECTORY {
 
 		if ( !empty( $this->settings['general']['read_more'] ) )
 			$styles .= '@media ( min-width: 992px ) {
-				.store-number { width: 15% !important; }
-				.store-title { width: 30% !important; }
-				.store-category { width: 35% !important; }
+				.store-number { width: 10% !important; }
+				.store-title { width: 25% !important; }
+				.store-category { width: 25% !important; }
 				.store-contact-number { width: 20% !important; }
+				.store-view-details{ width: 20% !important; }
 			}';
 
 		return $styles;
@@ -140,13 +156,13 @@ class DS_STORE_DIRECTORY {
 	 * @param string $tag     The shortcode tag, useful for shared callback functions
 	 */
 	public function shortcode_handler( $atts, $content, $tag ) {
-		$atts_merged = shortcode_atts( array(
-			'category_id' => -1
-		), $atts );
-
-		ob_start();
-		include DSSD_ROOT_PATH . 'templates/store-directory-list.php';
-		return ob_get_clean();
+		// $atts_merged = shortcode_atts( array(
+		// 	'category_id' => -1
+		// ), $atts );
+		//
+		// ob_start();
+		// include DSSD_ROOT_PATH . 'templates/store-directory-list.php';
+		// return ob_get_clean();
 		return '';
 	}
 
@@ -227,8 +243,86 @@ class DS_STORE_DIRECTORY {
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'store-directory' ),
+			'rewrite'           => array( 'slug' => 'store-directory' )
 		) );
+	}
+
+	/**
+	 * Register store & store category rewrite rules.
+	 *
+	 * @access public
+	 */
+	public function add_rewrite_rules() {
+		add_rewrite_rule(
+			'^store-directory/?$',
+			'index.php?store_directory_root=store-directory',
+			'top'
+		);
+	}
+
+	/**
+	 * Register store & store category query vars.
+	 *
+	 * @access public
+	 */
+	public function add_query_vars( $vars ) {
+		$vars[] = 'store_directory_root';
+		return $vars;
+	}
+
+	/**
+	 * Register store & store category query vars.
+	 *
+	 * @access public
+	 */
+	public function store_directory_render_template( $template ) {
+		global $wp_query;
+// echo '<pre>'; print_r($wp_query->query_vars); echo '</pre>';
+		if (
+			(
+				!empty( $wp_query->query_vars['store_directory_category'] )
+				&& term_exists( $wp_query->query_vars['store_directory_category'] )
+			)
+			|| !empty( $wp_query->query_vars['store_directory_root'] )
+		)
+			return DSSD_ROOT_PATH . 'templates/archive-categories.php';
+
+		return $template;
+	}
+
+	/**
+	 * Alter the main WP_Query object to pull all stores on the root "store-directory" page.
+	 *
+	 * @access public
+	 */
+	public function update_wp_query( $query ) {
+		if ( !$query->is_main_query() )
+			return;
+
+		if ( !empty( $query->query_vars['store_directory_root'] ) ) {
+			$query->set( 'post_type', 'store' );
+			$query->set( 'posts_per_page', -1 );
+			$query->set( 'orderby', 'name' );
+			$query->set( 'order', 'ASC' );
+			$query->set( 'post_status', 'publish' );
+		}
+	}
+
+	/**
+	 * Filter the root "store-directory" page title.
+	 *
+	 * @access public
+	 */
+	public function store_directory_filter_title( $title_parts ) {
+		global $wp_query;
+
+		if ( !empty( $wp_query->query_vars['store_directory_root'] ) )
+			$title_parts = array(
+				'title' => 'Store Directory',
+				'site' => get_bloginfo()
+			);
+
+		return $title_parts;
 	}
 }
 

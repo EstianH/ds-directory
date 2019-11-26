@@ -2487,27 +2487,23 @@ body.admin-bar .store-directory-container .store-directory-body .store-directory
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:last-child,
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:last-child {
           padding: 10px 0 10px 15px; }
+        .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
+        .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
+          height: 100%;
+          width: 15%; }
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
           height: 100%;
-          width: 25%; }
+          width: 30%; }
           .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
           .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
             font-weight: normal; }
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
           height: 100%;
-          width: 25%; }
-        .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
-        .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
-          height: 100%;
-          width: 15%; }
+          width: 35%; }
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
         .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
-          height: 100%;
-          width: 15%; }
-        .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-view-details,
-        .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-view-details {
           height: 100%;
           width: 20%; } }
 
