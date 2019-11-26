@@ -1,7 +1,7 @@
 <?php if( !defined( 'ABSPATH' ) ) exit;
 
 $dssd = DS_STORE_DIRECTORY::get_instance();
-// echo '<pre>'; print_r( $dssd ); echo '</pre>';
+
 $tabs = array(
 	'General'
 );

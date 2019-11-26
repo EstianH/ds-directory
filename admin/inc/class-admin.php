@@ -125,46 +125,15 @@ class DS_STORE_DIRECTORY_ADMIN {
 	}
 
 	/**
-	 * Handle plugin activation.
-	 *
-	 * @access public
-	 */
-	public function activate() {
-		$dssd = DS_STORE_DIRECTORY::get_instance();
-		include DSSD_ROOT_PATH . 'admin/default-settings.php'; // Fetch $default_settings.
-
-		update_option( 'dssd_version', DSSD_VERSION );
-
-		$db_settings = get_option( 'dssd_settings' );
-
-		if ( empty( $db_settings ) ) {
-			update_option( 'dssd_settings', $default_settings );
-			$db_settings = $default_settings;
-		}
-
-		// Refresh cached settings.
-		$dssd->settings = $db_settings;
-
-		flush_rewrite_fules();
-	}
-
-	/**
-	 * Handle plugin deactivation.
-	 *
-	 * @access public
-	 */
-	public function deactivate() {
-		flush_rewrite_fules();
-	}
-
-	/**
 	 * Update database settings if versions differ.
 	 *
 	 * @access public
 	 */
 	public function update_settings_maybe() {
-		if ( version_compare( get_option( 'dssd_version' ), DSSD_VERSION, '<' ) )
-			$this->activate();
+		if ( version_compare( get_option( 'dssd_version' ), DSSD_VERSION, '<' ) ) {
+			$dssd = DS_STORE_DIRECTORY::get_instance();
+			$dssd->activate();
+		}
 	}
 
 	/**
@@ -175,7 +144,7 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 * @return array $links Updated plugin links.
 	 */
 	public function register_plugin_action_links( $links ) {
-		$settings_link = '<a href="' . esc_url( admin_url( '/edit.php' ) ) . '?page=' . DSSD_SLUG . '">' . __( 'Settings', DSSD_SLUG ) . '</a>';
+		$settings_link = '<a href="' . esc_url( admin_url( '/edit.php' ) ) . '?page=' . DSSD_SLUG . '&post_type=store">' . __( 'Settings', DSSD_SLUG ) . '</a>';
 		array_push( $links, $settings_link );
 
 		return $links;
@@ -278,21 +247,3 @@ class DS_STORE_DIRECTORY_ADMIN {
 		}
 	}
 }
-
-
-/*
- █████   ██████ ████████ ██ ██    ██  █████  ████████ ███████     ██ ██████  ███████  █████   ██████ ████████ ██ ██    ██  █████  ████████ ███████
-██   ██ ██         ██    ██ ██    ██ ██   ██    ██    ██         ██  ██   ██ ██      ██   ██ ██         ██    ██ ██    ██ ██   ██    ██    ██
-███████ ██         ██    ██ ██    ██ ███████    ██    █████     ██   ██   ██ █████   ███████ ██         ██    ██ ██    ██ ███████    ██    █████
-██   ██ ██         ██    ██  ██  ██  ██   ██    ██    ██       ██    ██   ██ ██      ██   ██ ██         ██    ██  ██  ██  ██   ██    ██    ██
-██   ██  ██████    ██    ██   ████   ██   ██    ██    ███████ ██     ██████  ███████ ██   ██  ██████    ██    ██   ████   ██   ██    ██    ███████
-*/
-/**
- * Register plugin activation hook.
- */
-register_activation_hook( __FILE__, array( 'DS_STORE_DIRECTORY_ADMIN', 'activate' ) );
-
-/**
- * Register plugin deactivation hook.
- */
-register_deactivation_hook( __FILE__, array( 'DS_STORE_DIRECTORY_ADMIN', 'deactivate' ) );

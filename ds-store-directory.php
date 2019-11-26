@@ -124,6 +124,42 @@ class DS_STORE_DIRECTORY {
 	}
 
 	/**
+	 * Handle plugin activation.
+	 *
+	 * @access public
+	 */
+	static public function activate() {
+		include DSSD_ADMIN_PATH . 'default-settings.php'; // Fetch $default_settings.
+
+		update_option( 'dssd_version', DSSD_VERSION );
+
+		if ( empty( get_option( 'dssd_settings' ) ) )
+			update_option( 'dssd_settings', $default_settings );
+
+		self::register_store_post_type();
+		self::register_store_post_taxonomies();
+		self::add_rewrite_rules();
+		flush_rewrite_rules();
+	}
+
+	/**
+	 * Handle plugin deactivation.
+	 *
+	 * See: https://core.trac.wordpress.org/ticket/14761#comment:12
+	 * The "unregister_" functions remove the customly registered post_type & taxonomies correctly,
+	 * but the "flush_rewrite_rules()" function fails in removing rules added with add_rewrite_rule(), it seems.
+	 * The above link explains that deleting the option entirely solves this issue at the cost of a longer next page load.
+	 *
+	 * @access public
+	 */
+	static public function deactivate() {
+		// unregister_post_type( 'store' );
+		//  unregister_taxonomy( 'store_directory_category' );
+		//  flush_rewrite_rules();
+		delete_option( 'rewrite_rules' );
+	}
+
+	/**
 	 * Return dynamic styles.
 	 *
 	 * @access public
@@ -171,7 +207,7 @@ class DS_STORE_DIRECTORY {
 	 *
 	 * @access public
 	 */
-	public function register_store_post_type() {
+	static public function register_store_post_type() {
 		$args = array(
 			'label'               => __( 'store',  DSSD_SLUG ),
 			'description'         => __( 'Stores', DSSD_SLUG ),
@@ -222,7 +258,7 @@ class DS_STORE_DIRECTORY {
 	 *
 	 * @access public
 	 */
-	public function register_store_post_taxonomies() {
+	static public function register_store_post_taxonomies() {
 		register_taxonomy( 'store_directory_category', array( 'store' ), array(
 			'hierarchical'      => true,
 			// 'labels'            => array(
@@ -252,7 +288,7 @@ class DS_STORE_DIRECTORY {
 	 *
 	 * @access public
 	 */
-	public function add_rewrite_rules() {
+	static public function add_rewrite_rules() {
 		add_rewrite_rule(
 			'^store-directory/?$',
 			'index.php?store_directory_root=store-directory',
@@ -261,7 +297,7 @@ class DS_STORE_DIRECTORY {
 	}
 
 	/**
-	 * Register store & store category query vars.
+	 * Register the store root query var.
 	 *
 	 * @access public
 	 */
@@ -277,7 +313,7 @@ class DS_STORE_DIRECTORY {
 	 */
 	public function store_directory_render_template( $template ) {
 		global $wp_query;
-// echo '<pre>'; print_r($wp_query->query_vars); echo '</pre>';
+
 		if (
 			(
 				!empty( $wp_query->query_vars['store_directory_category'] )
@@ -339,3 +375,21 @@ if ( is_admin() ) {
 	require_once DSSD_ROOT_PATH . 'admin/inc/class-admin.php';
 	add_action( 'plugins_loaded', array( 'DS_STORE_DIRECTORY_ADMIN', 'get_instance' ) );
 }
+
+
+/*
+ █████   ██████ ████████ ██ ██    ██  █████  ████████ ███████     ██ ██████  ███████  █████   ██████ ████████ ██ ██    ██  █████  ████████ ███████
+██   ██ ██         ██    ██ ██    ██ ██   ██    ██    ██         ██  ██   ██ ██      ██   ██ ██         ██    ██ ██    ██ ██   ██    ██    ██
+███████ ██         ██    ██ ██    ██ ███████    ██    █████     ██   ██   ██ █████   ███████ ██         ██    ██ ██    ██ ███████    ██    █████
+██   ██ ██         ██    ██  ██  ██  ██   ██    ██    ██       ██    ██   ██ ██      ██   ██ ██         ██    ██  ██  ██  ██   ██    ██    ██
+██   ██  ██████    ██    ██   ████   ██   ██    ██    ███████ ██     ██████  ███████ ██   ██  ██████    ██    ██   ████   ██   ██    ██    ███████
+*/
+/**
+ * Register plugin activation hook.
+ */
+register_activation_hook( __FILE__, array( 'DS_STORE_DIRECTORY', 'activate' ) );
+
+/**
+ * Register plugin deactivation hook.
+ */
+register_deactivation_hook( __FILE__, array( 'DS_STORE_DIRECTORY', 'deactivate' ) );
