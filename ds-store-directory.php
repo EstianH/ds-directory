@@ -174,9 +174,9 @@ class DS_STORE_DIRECTORY {
 			$styles .= '@media ( min-width: 992px ) {
 				.store-number { width: 10% !important; }
 				.store-title { width: 25% !important; }
-				.store-category { width: 25% !important; }
-				.store-contact-number { width: 20% !important; }
-				.store-view-details{ width: 20% !important; }
+				.store-category { width: 35% !important; }
+				.store-contact-number { width: 15% !important; }
+				.store-view-details{ width: 15% !important; }
 			}';
 
 		return $styles;

@@ -25,7 +25,7 @@ $navigation_active = (
 <div class="store-directory-container">
 	<div class="store-directory-header">
 		<div class="store-directory-list-nav-container">
-			<button class="store-directory-button" type="button"><?php echo $navigation_active; ?><i class="fas fa-angle-down ds-ml-2"></i></button>
+			<button class="ds-button" type="button"><?php echo $navigation_active; ?><i class="fas fa-angle-down ds-ml-2"></i></button>
 			<ul class="store-directory-list-nav" style="display: none;">
 				<li><a href="<?php echo esc_url( home_url() . '/store-directory' ); ?>"><?php _e( 'All Stores', DSSD_SLUG ); ?></a></li>
 				<?php foreach ( $store_categories as $store_category ) {
@@ -49,10 +49,10 @@ $navigation_active = (
 		<ul class="store-directory-list">
 			<?php
 			echo '<li class="store-directory-list-header ds-d-none ds-d-lg-flex">' .
-				'<div class="store-number">'             . __( 'Store Number'  , DSSD_SLUG ) . '</div>' .
+				'<div class="store-number">'             . __( 'Store No.'  , DSSD_SLUG ) . '</div>' .
 				'<div class="store-title">'              . __( 'Store Name'    , DSSD_SLUG ) . '</div>' .
 				'<div class="store-category">'           . __( 'Store Category', DSSD_SLUG ) . '</div>' .
-				'<div class="store-contact-number">'     . __( 'Contact Number', DSSD_SLUG ) . '</div>';
+				'<div class="store-contact-number">'     . __( 'Contact No.', DSSD_SLUG ) . '</div>';
 
 			if ( !empty( $dssd->settings['general']['read_more'] ) )
 				echo '<div class="store-view-details">'       . __( 'View Details',   DSSD_SLUG ) . '</div>';
@@ -63,7 +63,8 @@ $navigation_active = (
 				while( have_posts() ) {
 					the_post();
 
-					$store_options = get_post_meta( get_the_ID(), 'store_options', true );
+					$store_categories = get_the_terms( get_the_ID(), 'store_directory_category' );
+					   $store_options = get_post_meta( get_the_ID(), 'store_options', true );
 
 					if ( empty( $store_options ) )
 						continue;
@@ -78,13 +79,12 @@ $navigation_active = (
 							'<span>' . sanitize_text_field( get_the_title() ) . '</span>' .
 						'</div>';
 
-						$store_categories = get_the_category( get_the_ID() );
-
 						echo '<div class="store-category">' .
 							'<span class="ds-d-lg-none">' . __( 'Store Category', DSSD_SLUG ) . '</span>' .
 							'<span>';
 
-						// Insert Category here.
+						if ( !empty( $store_categories[0]->name ) )
+							echo $store_categories[0]->name;
 
 						echo '</span>' .
 						'</div>';
@@ -95,9 +95,12 @@ $navigation_active = (
 						'</div>';
 
 						if ( !empty( $dssd->settings['general']['read_more'] ) )
-							echo '<div class="store-view-details">' .
-								'<a href="' . get_permalink() . '">' . get_the_title() . '</a>' .
-							'</div>';
+							if ( empty( $store_options['excl_read_more_col'] ) )
+								echo '<div class="store-view-details">' .
+									'<a class="ds-button" href="' . get_permalink() . '">Read More</a>' .
+								'</div>';
+							else
+								echo '<div class="store-view-details ds-justify-content-center">-</div>';
 
 					echo '</li>';
 				}
