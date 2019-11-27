@@ -2264,19 +2264,24 @@ select.ds-input-box {
 
   .ds-justify-content-xxl-between {
     justify-content: space-between !important; } }
-body #store-directory-wrapper {
-  background: #fff; }
-  body #store-directory-wrapper * {
+body #dssd-wrapper {
+  background: #fff;
+  font-family: inherit; }
+  body #dssd-wrapper * {
     text-decoration: none;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased; }
-    body #store-directory-wrapper *:focus {
+    -webkit-font-smoothing: antialiased;
+    font-family: inherit; }
+    body #dssd-wrapper *:focus {
       outline: none; }
-  body #store-directory-wrapper .store-directory-container {
+  body #dssd-wrapper > .entry-header,
+  body #dssd-wrapper > .entry-content {
+    margin: 0 auto; }
+  body #dssd-wrapper .store-directory-container {
     max-width: 1260px;
     margin: 0 auto;
     padding: 0 30px; }
-    body #store-directory-wrapper .store-directory-container .store-directory-header {
+    body #dssd-wrapper .store-directory-container .store-directory-header {
       position: relative;
       display: flex;
       flex-wrap: wrap;
@@ -2284,11 +2289,11 @@ body #store-directory-wrapper {
       align-items: center;
       justify-content: space-between;
       margin-bottom: 35px; }
-      body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container {
+      body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container {
         height: auto;
         width: 100%;
         position: static; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav {
           position: absolute;
           max-width: 100%;
           height: auto;
@@ -2306,20 +2311,20 @@ body #store-directory-wrapper {
           box-shadow: 1px 1px 5px -2px rgba(0, 0, 0, 0.2);
           border-top: 2px solid #515151;
           margin-top: 5px; }
-          body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li {
+          body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li {
             margin: 0;
             height: auto;
             width: 100%; }
-            body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li:not(:last-child) {
+            body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li:not(:last-child) {
               border-bottom: 1px solid #efefef; }
-            body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li > a {
+            body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li > a {
               display: block;
               padding: 10px 15px;
               color: #515151; }
-              body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li > a:hover {
+              body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li > a:hover {
                 background-color: #f9f9f9;
                 color: #515151; }
-      body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container {
+      body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container {
         max-width: 600px;
         height: 100%;
         width: 100%;
@@ -2330,35 +2335,35 @@ body #store-directory-wrapper {
         align-items: center;
         justify-content: flex-end;
         margin-top: 35px; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form {
           height: 100%;
           width: 100%;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           justify-content: flex-end; }
-          body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form input[type="text"] {
+          body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form input[type="text"] {
             height: 42px;
             width: 100%;
             margin: 0 0 5px;
             color: #515151;
             border-color: #efefef; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container a {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container a {
           color: #515151;
           font-weight: bold;
           border-bottom: 2px solid #515151;
           margin: 0 0 15px 0; }
-    body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list {
+    body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list {
       list-style: none;
       padding: 0;
       margin: 0; }
-      body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
         font-weight: bold;
         position: sticky;
         top: 0;
         background: #fff; }
-      body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header,
-      body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item {
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header,
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item {
         height: 100%;
         width: 100%;
         display: flex;
@@ -2367,11 +2372,11 @@ body #store-directory-wrapper {
         align-items: center;
         justify-content: flex-start;
         margin: 0; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:not(:last-child),
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:not(:last-child) {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:not(:last-child),
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:not(:last-child) {
           border-bottom: 1px solid #efefef; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
           display: flex;
           flex-wrap: wrap;
           flex-direction: column;
@@ -2382,82 +2387,87 @@ body #store-directory-wrapper {
           min-height: 58px;
           overflow: hidden;
           text-overflow: ellipsis; }
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
             height: 100%;
             width: 100%; }
-            body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
-            body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
+            body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
+            body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
               font-weight: bold; }
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
             height: 100%;
             width: 100%; }
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
             height: 100%;
             width: 100%; }
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
             height: 100%;
             width: 100%; }
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-view-details,
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-view-details {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-view-details,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-view-details {
             height: 100%;
             width: 100%; }
-    body #store-directory-wrapper .store-directory-container input[type="submit"],
-    body #store-directory-wrapper .store-directory-container .ds-button,
-    body #store-directory-wrapper .store-directory-container button {
-      transition: all 0.4s;
-      display: block;
-      cursor: pointer;
-      border: 0;
-      height: auto;
-      width: 100%;
-      background: transparent;
-      border: 1px solid;
-      color: #515151;
-      text-transform: uppercase;
-      text-align: center;
-      font-weight: normal;
-      padding: 13px 10px;
-      font-size: 14px;
-      line-height: 1;
-      letter-spacing: 1px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75); }
-      body #store-directory-wrapper .store-directory-container input[type="submit"].active, body #store-directory-wrapper .store-directory-container input[type="submit"]:hover,
-      body #store-directory-wrapper .store-directory-container .ds-button.active,
-      body #store-directory-wrapper .store-directory-container .ds-button:hover,
-      body #store-directory-wrapper .store-directory-container button.active,
-      body #store-directory-wrapper .store-directory-container button:hover {
-        color: #fff;
-        -webkit-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
-        box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75); }
+  body #dssd-wrapper input[type="submit"],
+  body #dssd-wrapper .ds-button,
+  body #dssd-wrapper button {
+    transition: all 0.4s;
+    display: block;
+    cursor: pointer;
+    border: 0;
+    height: auto;
+    width: 100%;
+    background: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #efefef;
+    color: #515151;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+    padding: 13px 10px;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+    body #dssd-wrapper input[type="submit"].active, body #dssd-wrapper input[type="submit"]:hover,
+    body #dssd-wrapper .ds-button.active,
+    body #dssd-wrapper .ds-button:hover,
+    body #dssd-wrapper button.active,
+    body #dssd-wrapper button:hover {
+      color: #fff;
+      -webkit-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75); }
 body.admin-bar #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
   top: 32px; }
 
 @media (min-width: 992px) {
-  body #store-directory-wrapper .store-directory-container .store-directory-header {
+  body #dssd-wrapper .store-directory-container .store-directory-header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between; }
-    body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container {
+    body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container {
       height: auto;
       width: 50%; }
-      body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li {
+      body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li {
         height: auto;
         width: 50%; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li:nth-child(odd) {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li:nth-child(odd) {
           border-right: 1px solid #efefef; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li > a {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-nav-container > .store-directory-list-nav > li > a {
           padding: 10px 15px; }
-    body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container {
+    body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container {
       height: 100%;
       width: 50%;
       text-align: right;
@@ -2465,65 +2475,65 @@ body.admin-bar #store-directory-wrapper .store-directory-container .store-direct
       align-items: center;
       justify-content: flex-end;
       margin-top: 0px; }
-      body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form {
+      body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form {
         max-width: 400px;
         align-items: center;
         justify-content: flex-end; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form input[type="text"] {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form input[type="text"] {
           height: 42px;
           width: 70%;
           margin: 0;
           color: #515151;
           border-right-width: 0; }
-        body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form input[type="submit"] {
+        body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container .store-directory-search-form input[type="submit"] {
           height: 42px;
           width: 30%; }
-      body #store-directory-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container a {
+      body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container a {
         margin: 0 15px 0 0; }
-  body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list {
+  body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list {
     padding: 0;
     margin: 0; }
-    body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header,
-    body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item {
+    body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header,
+    body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item {
       height: 100%;
       width: 100%;
       flex-direction: row;
       justify-content: flex-start; }
-      body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
-      body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
         flex-direction: row;
         justify-content: flex-start;
         text-align: left;
         padding: 10px 15px;
         min-height: 58px; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:first-child,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:first-child {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:first-child,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:first-child {
           padding: 10px 15px 10px 0; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:last-child,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:last-child {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:last-child,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:last-child {
           padding: 10px 0 10px 15px; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
           height: 100%;
           width: 15%; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
           height: 100%;
           width: 35%; }
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
-          body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
             font-weight: normal; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
           height: 100%;
           width: 35%; }
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
-        body #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
           height: 100%;
           width: 15%; }
-  body #store-directory-wrapper .store-directory-container input[type="submit"],
-  body #store-directory-wrapper .store-directory-container .ds-button,
-  body #store-directory-wrapper .store-directory-container button {
+  body #dssd-wrapper input[type="submit"],
+  body #dssd-wrapper .ds-button,
+  body #dssd-wrapper button {
     max-width: 260px; } }
 
 /*# sourceMappingURL=style.css.map */

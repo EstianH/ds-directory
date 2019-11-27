@@ -1,44 +1,38 @@
 <?php
 /**
- * Template used for stores.
+ * Template used for store single pages.
  *
- * @package DS Store Directory
- * @subpackage Templates
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package WordPress
+ * @subpackage Twenty_Twenty
+ * @since 1.0.0
  */
 
-// Do not allow directly accessing this file.
-if ( !defined( 'ABSPATH' ) ) exit();
+get_header();
 ?>
-<?php get_header(); ?>
-<section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
-	<?php while ( have_posts() ) : ?>
-		<?php the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<?php echo fusion_render_rich_snippets_for_pages(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-
-			<?php avada_singular_featured_image(); ?>
-
-			<div class="post-content">
-				<?php the_content(); ?>
-				<?php fusion_link_pages(); ?>
+<main id="site-content" role="main">
+	<div id="dssd-wrapper" class="entry store-single-container">
+		<div class="entry-header">
+			<div class="entry-header-inner section-inner ds-text-center">
+				<h1 class="entry-title"><?php the_title(); ?></h1>
 			</div>
-			<?php if ( ! post_password_required( $post->ID ) ) : ?>
-				<?php do_action( 'avada_before_additional_page_content' ); ?>
-				<?php if ( class_exists( 'WooCommerce' ) ) : ?>
-					<?php $woo_thanks_page_id = get_option( 'woocommerce_thanks_page_id' ); ?>
-					<?php $is_woo_thanks_page = ( ! get_option( 'woocommerce_thanks_page_id' ) ) ? false : is_page( get_option( 'woocommerce_thanks_page_id' ) ); ?>
-					<?php if ( Avada()->settings->get( 'comments_pages' ) && ! is_cart() && ! is_checkout() && ! is_account_page() && ! $is_woo_thanks_page ) : ?>
-						<?php comments_template(); ?>
-					<?php endif; ?>
-				<?php else : ?>
-					<?php if ( Avada()->settings->get( 'comments_pages' ) ) : ?>
-						<?php comments_template(); ?>
-					<?php endif; ?>
-				<?php endif; ?>
-				<?php do_action( 'avada_after_additional_page_content' ); ?>
-			<?php endif; // Password check. ?>
 		</div>
-	<?php endwhile; ?>
-</section>
-<?php do_action( 'avada_after_content' ); ?>
+		<div class="entry-content">
+			<?php
+			if ( have_posts() ) {
+				while ( have_posts() ) {
+					the_post();
+
+					$store_categories = get_the_terms( get_the_ID(), 'store_directory_category' );
+
+					if ( !empty( $store_categories[0]->name ) )
+						echo '<a class="ds-button" href="' . esc_url( get_term_link( $store_categories[0] ) ) . '">' . $store_categories[0]->name . '</a>';
+					// Pending development.
+				}
+			}
+			?>
+		</div>
+	</div>
+</main><!-- #site-content -->
 <?php get_footer(); ?>

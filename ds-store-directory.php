@@ -93,6 +93,7 @@ class DS_STORE_DIRECTORY {
 
 		// Render the store & store category template.
 		add_filter( 'template_include', array( $this, 'store_directory_render_template' ), 0, 1 );
+		add_filter( 'template_include', array( $this, 'store_single_render_template'    ), 0, 1 );
 
 		// Filter the root "store-directory" title.
 		add_filter( 'document_title_parts', array( $this, 'store_directory_filter_title' ), 0, 1 );
@@ -108,6 +109,7 @@ class DS_STORE_DIRECTORY {
 			if (
 				   empty( $wp_query->query_vars['store_directory_root'] )
 				&& empty( $wp_query->query_vars['store_directory_category'] )
+				&& empty( $wp_query->query_vars['store'] )
 			)
 				return;
 
@@ -322,6 +324,20 @@ class DS_STORE_DIRECTORY {
 			|| !empty( $wp_query->query_vars['store_directory_root'] )
 		)
 			return DSSD_ROOT_PATH . 'templates/archive-categories.php';
+
+		return $template;
+	}
+
+	/**
+	 * Register store & store category query vars.
+	 *
+	 * @access public
+	 */
+	public function store_single_render_template( $template ) {
+		global $wp_query;
+
+		if ( !empty( $wp_query->query_vars['store'] ) )
+			return DSSD_ROOT_PATH . 'templates/store.php';
 
 		return $template;
 	}

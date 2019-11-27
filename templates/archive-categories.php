@@ -1,6 +1,6 @@
 <?php
 /**
- * Template used for stores.
+ * Template used for store categories.
  *
  * @package DS Store Directory
  * @subpackage Templates
@@ -10,8 +10,10 @@
 if ( !defined( 'ABSPATH' ) ) exit();
 ?>
 <?php get_header(); ?>
-<section id="store-directory-wrapper">
-	<?php the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
-	<?php include DSSD_ROOT_PATH . 'templates/categories-list.php'; ?>
-</section>
+<main id="site-content" role="main">
+	<section id="dssd-wrapper">
+		<?php the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
+		<?php include DSSD_ROOT_PATH . 'templates/categories-list.php'; ?>
+	</section>
+</main>
 <?php get_footer(); ?>

@@ -9,17 +9,24 @@
 
 
 body {
-	#store-directory-wrapper {
+	#dssd-wrapper {
 		background: $white;
+		font-family: inherit;
 
 		* {
 			text-decoration: none;
 			box-sizing: border-box;
 			-webkit-font-smoothing: antialiased;
+			font-family: inherit;
 
 			&:focus {
 				outline: none;
 			}
+		}
+
+		> .entry-header,
+		> .entry-content {
+			margin: 0 auto;
 		}
 
 		.store-directory-container {
@@ -181,35 +188,38 @@ body {
 					}
 				}
 			}
+		}
 
-			input[type="submit"],
-			.ds-button,
-			button {
-				transition: all 0.4s;
-				display: block;
-				cursor: pointer;
-				border: 0;
-				@include ds-dimensions( 100%, auto );
-				background: transparent;
-				border: 1px solid;
-				color: $ds-grey-dark;
-				text-transform: uppercase;
-				text-align: center;
-				font-weight: normal;
-				padding: 13px 10px;
-				font-size: 14px;
-				line-height: 1;
-				letter-spacing: 1px;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				@include ds-box-shadow( inset 0px 0px 0px 0px rgba( 0,0,0,0.75 ) );
+		input[type="submit"],
+		.ds-button,
+		button {
+			transition: all 0.4s;
+			display: block;
+			cursor: pointer;
+			border: 0;
+			@include ds-dimensions( 100%, auto );
+			background: transparent;
+			border-width: 1px;
+			border-style: solid;
+			border-color: $ds-grey;
+			color: $ds-grey-dark;
+			text-transform: uppercase;
+			text-align: center;
+			font-weight: normal;
+			padding: 13px 10px;
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: 1px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			@include ds-box-shadow( inset 0px 0px 0px 0px rgba( 0,0,0,0.75 ) );
+			@include ds-border-radius( 0 );
 
-				&.active,
-				&:hover {
-					color: $white;
-					@include ds-box-shadow( inset 0px -50px 0px 0px rgba( 0,0,0,0.75 ) );
-				}
+			&.active,
+			&:hover {
+				color: $white;
+				@include ds-box-shadow( inset 0px -50px 0px 0px rgba( 0,0,0,0.75 ) );
 			}
 		}
 	}
@@ -239,7 +249,7 @@ body {
 
 @media ( min-width: $ds-global-width-lg ) {
 	body {
-		#store-directory-wrapper {
+		#dssd-wrapper {
 			.store-directory-container {
 				.store-directory-header {
 					flex-direction: row;
@@ -346,12 +356,12 @@ body {
 						}
 					}
 				}
+			}
 
-				input[type="submit"],
-				.ds-button,
-				button {
-					max-width: 260px;
-				}
+			input[type="submit"],
+			.ds-button,
+			button {
+				max-width: 260px;
 			}
 		}
 	}
