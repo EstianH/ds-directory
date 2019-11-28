@@ -3,7 +3,8 @@
 $dssd = DS_STORE_DIRECTORY::get_instance();
 
 $tabs = array(
-	'General'
+	'General',
+	'Design'
 );
 $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'general' );
 ?>
@@ -36,7 +37,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 				██      ██ ██   ██ ██ ██   ████
 				*/
 				?>
-				<div class="ds-col-12 ds-col-lg-9 ds-mb-2">
+				<div class="ds-col-12 ds-col-lg-9 ds-col-xl-8 ds-col-xxl-6 ds-mb-2">
 					<form id="dssd-form-main" method="post" action="options.php">
 						<div id="dssd-form-loading-panel"></div>
 						<?php settings_fields( 'dssd_settings' );
@@ -60,10 +61,10 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 										</div>
 										<div class="ds-block-body">
 											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
-												<div class="ds-col-12 ds-col-lg-3 ds-p-0 ds-pr-lg-2">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<?php _e( 'Enable Read More', DSSD_SLUG ); ?>:
 												</div>
-												<div class="ds-col-12 ds-col-lg-9 ds-p-0">
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<label class="ds-toggler">
 														<input
 															name="dssd_settings[general][read_more]"
@@ -71,6 +72,90 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															value="1"
 															<?php echo ( !empty( $dssd->settings['general']['read_more'] ) ? ' checked="checked"' : ''); ?> />
 															<span></span>
+													</label>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+										</div><!-- .ds-block-body -->
+									</div><!-- .ds-block -->
+								</div><!-- .ds-col -->
+							</div><!-- .ds-row -->
+						</div><!-- #tab-<?php echo sanitize_title( $tabs[0] ); ?> -->
+						<?php
+						/*
+						████████  █████  ██████         ██████  ███████ ███████ ██  ██████  ███    ██
+						   ██    ██   ██ ██   ██ ██     ██   ██ ██      ██      ██ ██       ████   ██
+						   ██    ███████ ██████         ██   ██ █████   ███████ ██ ██   ███ ██ ██  ██
+						   ██    ██   ██ ██   ██ ██     ██   ██ ██           ██ ██ ██    ██ ██  ██ ██
+						   ██    ██   ██ ██████         ██████  ███████ ███████ ██  ██████  ██   ████
+						*/
+						?>
+						<div id="tab-<?php echo sanitize_title( $tabs[1] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[1] ) ? ' active' : '' ); ?>">
+							<div class="ds-row ds-mb-2">
+								<div class="ds-col">
+									<div class="ds-block">
+										<div class="ds-block-body">
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<?php _e( 'Maximum Width', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<input
+														class="ds-input-box"
+														name="dssd_settings[design][max_width]"
+														type="text"
+														value="<?php echo ( !empty( $dssd->settings['design']['max_width'] ) ? $dssd->settings['design']['max_width'] : '' ); ?>"
+														placeholder="Default: 1260px" />
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Wrapper Padding', DSSD_SLUG ); ?>:<br />
+													<small>(Any valid CSS unit, e.g. px or %)</small>
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<label class="ds-row ds-flex-align-center">
+														<div class="ds-col-2 ds-text-right">Top:</div>
+														<div class="ds-col-10">
+															<input
+																class="ds-input-box"
+																name="dssd_settings[design][padding][top]"
+																type="text"
+																value="<?php echo ( !empty( $dssd->settings['design']['padding']['top'] ) ? $dssd->settings['design']['padding']['top'] : '' ); ?>"
+																placeholder="Default: 30px" />
+														</div>
+													</label>
+													<label class="ds-row ds-flex-align-center">
+														<div class="ds-col-2 ds-text-right">Right:</div>
+														<div class="ds-col-10">
+															<input
+																class="ds-input-box"
+																name="dssd_settings[design][padding][right]"
+																type="text"
+																value="<?php echo ( !empty( $dssd->settings['design']['padding']['right'] ) ? $dssd->settings['design']['padding']['right'] : '' ); ?>"
+																placeholder="Default: 30px" />
+														</div>
+													</label>
+													<label class="ds-row ds-flex-align-center">
+														<div class="ds-col-2 ds-text-right">Bottom:</div>
+														<div class="ds-col-10">
+															<input
+																class="ds-input-box"
+																name="dssd_settings[design][padding][bottom]"
+																type="text"
+																value="<?php echo ( !empty( $dssd->settings['design']['padding']['bottom'] ) ? $dssd->settings['design']['padding']['bottom'] : '' ); ?>"
+																placeholder="Default: 30px" />
+														</div>
+													</label>
+													<label class="ds-row ds-flex-align-center">
+														<div class="ds-col-2 ds-text-right">Left:</div>
+														<div class="ds-col-10">
+															<input
+																class="ds-input-box"
+																name="dssd_settings[design][padding][left]"
+																type="text"
+																value="<?php echo ( !empty( $dssd->settings['design']['padding']['left'] ) ? $dssd->settings['design']['padding']['left'] : '' ); ?>"
+																placeholder="Default: 30px" />
+														</div>
 													</label>
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->

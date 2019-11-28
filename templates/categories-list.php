@@ -25,7 +25,7 @@ $navigation_active = (
 <div class="store-directory-container">
 	<div class="store-directory-header">
 		<div class="store-directory-list-nav-container">
-			<button class="ds-button" type="button"><?php echo $navigation_active; ?><i class="fas fa-angle-down ds-ml-2"></i></button>
+			<button class="ds-button" type="button"><?php echo $navigation_active; ?></button>
 			<ul class="store-directory-list-nav" style="display: none;">
 				<li><a href="<?php echo esc_url( home_url() . '/store-directory' ); ?>"><?php _e( 'All Stores', DSSD_SLUG ); ?></a></li>
 				<?php foreach ( $store_categories as $store_category ) {
@@ -72,7 +72,7 @@ $navigation_active = (
 					echo '<li class="store-directory-list-item">';
 						echo '<div class="store-number">' .
 							'<span class="ds-d-lg-none">' . __( 'Store Number', DSSD_SLUG ) . '</span>' .
-							'<span>' . sanitize_text_field( $store_options['store_number'] ) . '</span>' .
+							'<span>' . ( sanitize_text_field( $store_options['store_number'] ) ?: '-' ) . '</span>' .
 						'</div>' .
 						'<div class="store-title">' .
 							'<span class="ds-d-lg-none">' . __( 'Store Name', DSSD_SLUG ) . '</span>' .
@@ -83,8 +83,14 @@ $navigation_active = (
 							'<span class="ds-d-lg-none">' . __( 'Store Category', DSSD_SLUG ) . '</span>' .
 							'<span>';
 
-						if ( !empty( $store_categories[0]->name ) )
-							echo $store_categories[0]->name;
+						if ( !empty( $store_categories[0]->name ) ) {
+							$categories_array = array();
+
+							foreach ( $store_categories as $store_category )
+								$categories_array[] = $store_category->name;
+
+							echo implode( ', ', $categories_array );
+						}
 
 						echo '</span>' .
 						'</div>';

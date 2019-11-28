@@ -181,6 +181,23 @@ class DS_STORE_DIRECTORY {
 				.store-view-details{ width: 15% !important; }
 			}';
 
+		if ( !empty( $this->settings['design']['padding'] ) ) {
+			if ( !empty( $this->settings['design']['padding']['top'] ) )
+				$styles .= 'body #dssd-wrapper { padding-top: ' . $this->settings['design']['padding']['top'] . ' }';
+
+			if ( !empty( $this->settings['design']['padding']['right'] ) )
+				$styles .= 'body #dssd-wrapper { padding-right: ' . $this->settings['design']['padding']['right'] . ' }';
+
+			if ( !empty( $this->settings['design']['padding']['bottom'] ) )
+				$styles .= 'body #dssd-wrapper { padding-bottom: ' . $this->settings['design']['padding']['bottom'] . ' }';
+
+			if ( !empty( $this->settings['design']['padding']['left'] ) )
+				$styles .= 'body #dssd-wrapper { padding-left: ' . $this->settings['design']['padding']['left'] . ' }';
+		}
+
+		if ( !empty( $this->settings['design']['max_width'] ) )
+			$styles .= 'body #dssd-wrapper > .store-directory-container { max-width: ' . $this->settings['design']['max_width'] . ' }';
+
 		return $styles;
 	}
 
