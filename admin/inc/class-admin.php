@@ -96,8 +96,8 @@ class DS_STORE_DIRECTORY_ADMIN {
 		// Filters
 		add_filter( 'plugin_action_links_' . DSSD_BASENAME, array( $this, 'register_plugin_action_links' ), 10, 1 ); // Add plugin list settings link.
 
-		// Register plugin settings.
-		register_setting( 'dssd_settings', 'dssd_settings' );
+		// Handle plugin setting updates.
+		add_action( 'wp_ajax_dssd_settings_update', array( $this, 'dssd_settings_update' ), 10 );
 	}
 
 	/**
@@ -245,5 +245,32 @@ class DS_STORE_DIRECTORY_ADMIN {
 				$_POST['store_options']
 			);
 		}
+	}
+
+	/**
+	 * Handle plugin setting updates.
+	 */
+	public function dssd_settings_update() {
+		// Return early if no settings have been posted.
+		if ( empty( $_POST['dssd_settings'] ) )
+			return;
+
+		// Return early if the form nonce fails.
+		if (
+			empty( $_POST['dssd_settings_nonce'] )
+			|| !wp_verify_nonce( $_POST['dssd_settings_nonce'], 'dssd_settings_update' )
+		)
+			return;
+
+		// Add the default CSS unit to relevant fields.
+		foreach ( $_POST['dssd_settings']['design']['padding'] as $side => &$padding )
+			if ( '0' === $padding )
+				$padding .= 'px';
+
+		// If this string value contains only numbers.
+		if ( ctype_digit( $_POST['dssd_settings']['design']['max_width'] ) )
+			$_POST['dssd_settings']['design']['max_width'] .= 'px';
+
+		update_option( 'dssd_settings', $_POST['dssd_settings'] );
 	}
 }
