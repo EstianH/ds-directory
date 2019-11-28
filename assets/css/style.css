@@ -2266,7 +2266,8 @@ select.ds-input-box {
     justify-content: space-between !important; } }
 body #dssd-wrapper {
   background: #fff;
-  font-family: inherit; }
+  font-family: inherit;
+  padding: 30px; }
   body #dssd-wrapper * {
     text-decoration: none;
     box-sizing: border-box;
@@ -2279,8 +2280,7 @@ body #dssd-wrapper {
     margin: 0 auto; }
   body #dssd-wrapper .store-directory-container {
     max-width: 1260px;
-    margin: 0 auto;
-    padding: 0 30px; }
+    margin: 0 auto; }
     body #dssd-wrapper .store-directory-container .store-directory-header {
       position: relative;
       display: flex;

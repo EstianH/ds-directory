@@ -76,7 +76,7 @@ $navigation_active = (
 						'</div>' .
 						'<div class="store-title">' .
 							'<span class="ds-d-lg-none">' . __( 'Store Name', DSSD_SLUG ) . '</span>' .
-							'<span>' . sanitize_text_field( get_the_title() ) . '</span>' .
+							'<span>' . get_the_title() . '</span>' .
 						'</div>';
 
 						echo '<div class="store-category">' .

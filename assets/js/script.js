@@ -46,7 +46,8 @@ function dssd_nav_menu_toggle( nav_button, nav_container, force_close ) {
 		nav_button.addClass( 'active' );
 		nav_container.stop( true ).slideDown();
 	} else {
-		nav_button.removeClass( 'active' );
-		nav_container.stop( true ).slideUp();
+		nav_container.stop( true ).slideUp( function() {
+			nav_button.removeClass( 'active' );
+		} );
 	}
 }
