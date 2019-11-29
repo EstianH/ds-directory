@@ -2449,7 +2449,7 @@ body #dssd-wrapper {
       -webkit-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
       box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75); }
-body.admin-bar #store-directory-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
+body.admin-bar #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
   top: 32px; }
 
 @media (min-width: 992px) {

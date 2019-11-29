@@ -41,7 +41,7 @@ $navigation_active = (
 			<form class="store-directory-search-form" method="get" action="<?php echo $store_current_permalink; ?>">
 				<input type="text" name="s" value="<?php echo get_search_query(); ?>" class="store-directory-search" size="15" placeholder="<?php echo $navigation_active; ?>" />
 				<!--<input type="hidden" name="test" class="test" value="this-will-show-in-url" />-->
-				<input type="submit" value="Search" />
+				<input type="submit" value="Search" class="<?php echo ( !empty( get_search_query() ) ? ' active' : '' ); ?>" />
 			</form>
 		</div>
 	</div>

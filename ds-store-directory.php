@@ -181,9 +181,14 @@ class DS_STORE_DIRECTORY {
 				.store-view-details{ width: 15% !important; }
 			}';
 
+		$paddings = '';
+
 		foreach ( $this->settings['design']['padding'] as $side => $padding )
 			if ( !empty( $padding ) )
-				$styles .= 'body #dssd-wrapper { padding-' . $side . ': ' . $padding . ' }';
+				$paddings .= 'padding-' . $side . ': ' . $padding . ';';
+
+		if ( $paddings )
+			$styles .= 'body #dssd-wrapper { ' . $paddings . ' }';
 
 		if ( !empty( $this->settings['design']['max_width'] ) )
 			$styles .= 'body #dssd-wrapper > .store-directory-container { max-width: ' . $this->settings['design']['max_width'] . ' }';
@@ -350,7 +355,7 @@ class DS_STORE_DIRECTORY {
 	}
 
 	/**
-	 * Alter the main WP_Query object to pull all stores on the root "store-directory" page.
+	 * Alter the main WP_Query object to modify fetched store & store category data.
 	 *
 	 * @access public
 	 */
@@ -364,6 +369,10 @@ class DS_STORE_DIRECTORY {
 			$query->set( 'orderby', 'name' );
 			$query->set( 'order', 'ASC' );
 			$query->set( 'post_status', 'publish' );
+		}
+
+		if ( !empty( $query->query_vars['store_directory_category'] ) ) {
+			$query->set( 'posts_per_page', -1 );
 		}
 	}
 
