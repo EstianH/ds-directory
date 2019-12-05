@@ -55,6 +55,9 @@ class DS_STORE_DIRECTORY_ADMIN {
 		add_action( 'edited_store_directory_category', array( $this, 'category_save_form_fields' ), 10, 2 );
 		add_action( 'create_store_directory_category', array( $this, 'category_save_form_fields' ), 10, 2 );
 
+		// Add theme specific "Avada Fusion" options to our custom taxonomies.
+		add_filter( 'fusion_tax_meta_allowed_screens', array( $this, 'category_fusion_options' ), 0, 1 );
+
 		/**
 		 * Enqueue admin assets.
 		 *
@@ -272,5 +275,15 @@ class DS_STORE_DIRECTORY_ADMIN {
 			$_POST['dssd_settings']['design']['max_width'] .= 'px';
 
 		update_option( 'dssd_settings', $_POST['dssd_settings'] );
+	}
+
+
+
+	/**
+	 * Add theme specific "Avada Fusion" options to our custom taxonomies.
+	 */
+	public function category_fusion_options( $taxonomies ) {
+		$taxonomies[] = 'store_directory_category';
+		return $taxonomies;
 	}
 }

@@ -5,6 +5,7 @@ global $wp_query;
 
 $dssd = DS_STORE_DIRECTORY::get_instance();
 
+$store_cat_all = get_term_by( 'slug', 'all-stores', 'store_directory_category' );
 $store_current_cat_obj = $wp_query->queried_object; // If this empty it means the root "store-directory" is active.
 $store_current_permalink = esc_url( ( !empty( $store_current_cat_obj ) ? get_term_link( $store_current_cat_obj ) : home_url() . '/store-directory' ) );
 
@@ -27,8 +28,11 @@ $navigation_active = (
 		<div class="store-directory-list-nav-container">
 			<button class="ds-button" type="button"><?php echo $navigation_active; ?></button>
 			<ul class="store-directory-list-nav" style="display: none;">
-				<li><a href="<?php echo esc_url( home_url() . '/store-directory' ); ?>"><?php _e( 'All Stores', DSSD_SLUG ); ?></a></li>
+				<li><a href="<?php echo esc_url( get_term_link( $store_cat_all ) ); ?>"><?php _e( $store_cat_all->name, DSSD_SLUG ); ?></a></li>
 				<?php foreach ( $store_categories as $store_category ) {
+					if ( $store_cat_all->term_id === $store_category->term_id )
+						continue;
+
 					echo '<li><a href="' . get_term_link( $store_category ) . '">' . $store_category->name . ' (' . $store_category->count . ')</a></li>';
 				} ?>
 			</ul>

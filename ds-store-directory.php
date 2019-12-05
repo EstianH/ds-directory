@@ -87,19 +87,16 @@ class DS_STORE_DIRECTORY {
 		add_action( 'init', array( $this, 'register_store_post_type' )      , 10 );
 		add_action( 'init', array( $this, 'register_store_post_taxonomies' ), 10 );
 
-		// Register store & store category rewrite rules
-		add_action( 'init'      , array( $this, 'add_rewrite_rules' ), 0 );
-		add_filter( 'query_vars', array( $this, 'add_query_vars' ), 0, 1 );
-
 		// Render the store & store category template.
 		add_filter( 'template_include', array( $this, 'store_directory_render_template' ), 0, 1 );
 		add_filter( 'template_include', array( $this, 'store_single_render_template'    ), 0, 1 );
 
-		// Filter the root "store-directory" title.
-		add_filter( 'document_title_parts', array( $this, 'store_directory_filter_title' ), 0, 1 );
+		// Redirect root "/store-directory" to "all-stores".
+		add_action( 'template_redirect', array( $this, 'store_directory_root_redirect' ) );
 
-		// Alter the main WP_Query object to pull all stores on the root "store-directory" page.
-		add_action( 'pre_get_posts', array( $this, 'update_wp_query' ), 0, 1 );
+		// Alter the main WP_Query object to pull relevant stores.
+		add_action( 'pre_get_posts'  , array( $this, 'update_wp_query'     ), 0, 1 );
+		add_action( 'parse_tax_query', array( $this, 'update_wp_tax_query' ), 0, 1 );
 
 		// Enqueue plugin assets.
 		add_action( 'wp_enqueue_scripts', function() {
@@ -140,25 +137,18 @@ class DS_STORE_DIRECTORY {
 
 		self::register_store_post_type();
 		self::register_store_post_taxonomies();
-		self::add_rewrite_rules();
 		flush_rewrite_rules();
 	}
 
 	/**
 	 * Handle plugin deactivation.
 	 *
-	 * See: https://core.trac.wordpress.org/ticket/14761#comment:12
-	 * The "unregister_" functions remove the customly registered post_type & taxonomies correctly,
-	 * but the "flush_rewrite_rules()" function fails in removing rules added with add_rewrite_rule(), it seems.
-	 * The above link explains that deleting the option entirely solves this issue at the cost of a longer next page load.
-	 *
 	 * @access public
 	 */
 	static public function deactivate() {
-		// unregister_post_type( 'store' );
-		//  unregister_taxonomy( 'store_directory_category' );
-		//  flush_rewrite_rules();
-		delete_option( 'rewrite_rules' );
+		unregister_post_type( 'store' );
+		 unregister_taxonomy( 'store_directory_category' );
+		 flush_rewrite_rules();
 	}
 
 	/**
@@ -295,29 +285,15 @@ class DS_STORE_DIRECTORY {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'store-directory' )
 		) );
-	}
 
-	/**
-	 * Register store & store category rewrite rules.
-	 *
-	 * @access public
-	 */
-	static public function add_rewrite_rules() {
-		add_rewrite_rule(
-			'^store-directory/?$',
-			'index.php?store_directory_root=store-directory',
-			'top'
-		);
-	}
+		register_taxonomy_for_object_type( 'store_directory_category', 'store' );
 
-	/**
-	 * Register the store root query var.
-	 *
-	 * @access public
-	 */
-	public function add_query_vars( $vars ) {
-		$vars[] = 'store_directory_root';
-		return $vars;
+		if ( !term_exists( 'all-stores', 'store_directory_category' ) ) {
+			$args = array(
+				'slug' => 'all-stores'
+			);
+			wp_insert_term( 'All Stores', 'store_directory_category', $args );
+		}
 	}
 
 	/**
@@ -329,11 +305,8 @@ class DS_STORE_DIRECTORY {
 		global $wp_query;
 
 		if (
-			(
-				!empty( $wp_query->query_vars['store_directory_category'] )
-				&& term_exists( $wp_query->query_vars['store_directory_category'] )
-			)
-			|| !empty( $wp_query->query_vars['store_directory_root'] )
+			!empty( $wp_query->query_vars['store_directory_category'] )
+			&& term_exists( $wp_query->query_vars['store_directory_category'] )
 		)
 			return DSSD_ROOT_PATH . 'templates/archive-categories.php';
 
@@ -360,37 +333,69 @@ class DS_STORE_DIRECTORY {
 	 * @access public
 	 */
 	public function update_wp_query( $query ) {
+		if ( is_admin() )
+			return;
+
 		if ( !$query->is_main_query() )
 			return;
 
-		if ( !empty( $query->query_vars['store_directory_root'] ) ) {
+		if ( !empty( $query->query_vars['store_directory_category'] ) ) {
 			$query->set( 'post_type', 'store' );
-			$query->set( 'posts_per_page', -1 );
 			$query->set( 'orderby', 'name' );
 			$query->set( 'order', 'ASC' );
 			$query->set( 'post_status', 'publish' );
-		}
-
-		if ( !empty( $query->query_vars['store_directory_category'] ) ) {
 			$query->set( 'posts_per_page', -1 );
 		}
 	}
 
 	/**
-	 * Filter the root "store-directory" page title.
+	 * Alter the main WP_Query object to modify fetched store & store category data.
 	 *
 	 * @access public
 	 */
-	public function store_directory_filter_title( $title_parts ) {
-		global $wp_query;
+	public function update_wp_tax_query( $query ) {
+		if ( is_admin() )
+			return;
 
-		if ( !empty( $wp_query->query_vars['store_directory_root'] ) )
-			$title_parts = array(
-				'title' => 'Store Directory',
-				'site' => get_bloginfo()
+		if ( !$query->is_main_query() )
+			return;
+
+		if (
+			!empty( $query->query_vars['store_directory_category'] )
+			&& 'all-stores' === $query->query_vars['store_directory_category']
+		) {
+			$terms = get_terms( array( 'taxonomy' => 'store_directory_category' ) );
+			$term_ids = array();
+
+			foreach ( $terms as $term )
+				$term_ids[] = $term->term_id;
+
+			$tax_query = array(
+				'taxonomy' => 'store_directory_category',
+				'field' => 'term_id',
+				'terms' => $term_ids,
+				'operator' => 'IN',
+				'include_children' => true
 			);
+			$query->tax_query->queries[0] = $tax_query;
+		}
+	}
 
-		return $title_parts;
+	/**
+	 * Alter the main WP_Query object to modify fetched store & store category data.
+	 *
+	 * @access public
+	 */
+	public function store_directory_root_redirect() {
+		global $wp_query;
+// echo '<pre>'; var_dump($wp_query); echo '</pre>';
+		if (
+			!empty( $wp_query->query['name'] )
+			&& 'store-directory' === $wp_query->query['name']
+		) {
+			wp_safe_redirect( esc_url( home_url() . '/store-directory/all-stores/' ) );
+			exit;
+		}
 	}
 }
 
