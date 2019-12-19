@@ -26,6 +26,10 @@ Version:     1.2
 ██      ██    ██ ██  ██ ██    ██         ██
 ██       ██████  ██   ████    ██    ███████
 */
+/*
+ * Fonts generated via the IcoMoon app.
+ * https://icomoon.io/app/
+ */
 @font-face {
   font-family: 'divspot';
   src: url("../fonts/divspot.eot?5oo6kn");
@@ -33,7 +37,8 @@ Version:     1.2
   font-weight: normal;
   font-style: normal;
   font-display: block; }
-[class^="ds-icon-"], [class*=" ds-icon-"] {
+[class^="ds-icon-"],
+[class*=" ds-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'divspot' !important;
   speak: none;

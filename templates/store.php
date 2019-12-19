@@ -27,7 +27,7 @@ get_header();
 					$store_categories = get_the_terms( get_the_ID(), 'store_directory_category' );
 
 					if ( !empty( $store_categories[0]->name ) )
-						echo '<a class="ds-button" href="' . esc_url( get_term_link( $store_categories[0] ) ) . '">' . $store_categories[0]->name . '</a>';
+						echo '<a class="ds-button" href="' . esc_url( get_term_link( $store_categories[0] ) ) . '">Back to ' . $store_categories[0]->name . '</a>';
 					// Pending development.
 				}
 			}

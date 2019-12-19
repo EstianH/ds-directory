@@ -33,6 +33,10 @@ Version:     1.2
 ██      ██    ██ ██  ██ ██    ██         ██
 ██       ██████  ██   ████    ██    ███████
 */
+/*
+ * Fonts generated via the IcoMoon app.
+ * https://icomoon.io/app/
+ */
 @font-face {
   font-family: 'divspot';
   src: url("../fonts/divspot.eot?5oo6kn");
@@ -40,7 +44,8 @@ Version:     1.2
   font-weight: normal;
   font-style: normal;
   font-display: block; }
-[class^="ds-icon-"], [class*=" ds-icon-"] {
+[class^="ds-icon-"],
+[class*=" ds-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'divspot' !important;
   speak: none;
@@ -2278,6 +2283,45 @@ body #dssd-wrapper {
   body #dssd-wrapper > .entry-header,
   body #dssd-wrapper > .entry-content {
     margin: 0 auto; }
+  body #dssd-wrapper input[type="submit"],
+  body #dssd-wrapper .ds-button,
+  body #dssd-wrapper button {
+    transition: all 0.4s;
+    display: block;
+    cursor: pointer;
+    border: 0;
+    height: auto;
+    width: 100%;
+    background: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #efefef;
+    color: #515151;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+    padding: 13px 10px;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+    body #dssd-wrapper input[type="submit"].active, body #dssd-wrapper input[type="submit"]:hover,
+    body #dssd-wrapper .ds-button.active,
+    body #dssd-wrapper .ds-button:hover,
+    body #dssd-wrapper button.active,
+    body #dssd-wrapper button:hover {
+      color: #fff;
+      -webkit-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75); }
   body #dssd-wrapper .store-directory-container {
     max-width: 1260px;
     margin: 0 auto; }
@@ -2372,9 +2416,9 @@ body #dssd-wrapper {
         align-items: center;
         justify-content: flex-start;
         margin: 0; }
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:not(:last-child),
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:not(:last-child) {
-          border-bottom: 1px solid #efefef; }
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:not(:first-child),
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:not(:first-child) {
+          border-top: 1px solid #f9f9f9; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
           display: flex;
@@ -2404,55 +2448,37 @@ body #dssd-wrapper {
             width: 100%; }
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
+            justify-content: center;
             height: 100%;
             width: 100%; }
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-view-details,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-view-details {
             height: 100%;
             width: 100%; }
-  body #dssd-wrapper input[type="submit"],
-  body #dssd-wrapper .ds-button,
-  body #dssd-wrapper button {
-    transition: all 0.4s;
-    display: block;
-    cursor: pointer;
-    border: 0;
-    height: auto;
-    width: 100%;
-    background: transparent;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #efefef;
-    color: #515151;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: normal;
-    padding: 13px 10px;
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0; }
-    body #dssd-wrapper input[type="submit"].active, body #dssd-wrapper input[type="submit"]:hover,
-    body #dssd-wrapper .ds-button.active,
-    body #dssd-wrapper .ds-button:hover,
-    body #dssd-wrapper button.active,
-    body #dssd-wrapper button:hover {
-      color: #fff;
-      -webkit-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: inset 0px -50px 0px 0px rgba(0, 0, 0, 0.75); }
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div > .ds-button:hover,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div > .ds-button:hover {
+            -webkit-box-shadow: inset 260px 0px 0px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: inset 260px 0px 0px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: inset 260px 0px 0px 0px rgba(0, 0, 0, 0.75); }
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:hover,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:hover {
+          transition: all 0.4s;
+          border-color: #efefef; }
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:hover + .store-directory-list-item,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:hover + .store-directory-list-item {
+            transition: all 0.4s;
+            border-color: #efefef; }
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:hover .ds-button,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:hover .ds-button {
+            background-color: #efefef; }
 body.admin-bar #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
   top: 32px; }
 
 @media (min-width: 992px) {
+  body #dssd-wrapper input[type="submit"],
+  body #dssd-wrapper .ds-button,
+  body #dssd-wrapper button {
+    max-width: 260px; }
   body #dssd-wrapper .store-directory-container .store-directory-header {
     flex-direction: row;
     align-items: center;
@@ -2530,10 +2556,6 @@ body.admin-bar #dssd-wrapper .store-directory-container .store-directory-body .s
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
           height: 100%;
-          width: 15%; }
-  body #dssd-wrapper input[type="submit"],
-  body #dssd-wrapper .ds-button,
-  body #dssd-wrapper button {
-    max-width: 260px; } }
+          width: 15%; } }
 
 /*# sourceMappingURL=style.css.map */

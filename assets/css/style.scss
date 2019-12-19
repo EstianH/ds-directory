@@ -30,6 +30,39 @@ body {
 			margin: 0 auto;
 		}
 
+		input[type="submit"],
+		.ds-button,
+		button {
+			transition: all 0.4s;
+			display: block;
+			cursor: pointer;
+			border: 0;
+			@include ds-dimensions( 100%, auto );
+			background: transparent;
+			border-width: 1px;
+			border-style: solid;
+			border-color: $ds-grey;
+			color: $ds-grey-dark;
+			text-transform: uppercase;
+			text-align: center;
+			font-weight: normal;
+			padding: 13px 10px;
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: 1px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			@include ds-box-shadow( inset 0px 0px 0px 0px rgba( 0, 0, 0, 0.75 ) );
+			@include ds-border-radius( 0 );
+
+			&.active,
+			&:hover {
+				color: $white;
+				@include ds-box-shadow( inset 0px -50px 0px 0px rgba( 0, 0, 0, 0.75 ) );
+			}
+		}
+
 		.store-directory-container {
 			max-width: 1260px;
 			margin: 0 auto;
@@ -143,8 +176,8 @@ body {
 						justify-content: flex-start;
 						margin: 0;
 
-						&:not( :last-child ) {
-							border-bottom: 1px solid #efefef;
+						&:not( :first-child ) {
+							border-top: 1px solid $ds-grey-light;
 						}
 
 						> div {
@@ -178,48 +211,36 @@ body {
 							}
 
 							&.store-contact-number {
+								justify-content: center;
 								@include ds-dimensions( 100%, 100% );
 							}
 
 							&.store-view-details {
 								@include ds-dimensions( 100%, 100% );
 							}
+
+							> .ds-button {
+								&:hover {
+									@include ds-box-shadow( inset 260px 0px 0px 0px rgba( 0, 0, 0, 0.75 ) );
+								}
+							}
+						}
+
+						&:hover {
+							transition: all 0.4s;
+							border-color: $ds-grey;
+
+							& + .store-directory-list-item {
+								transition: all 0.4s;
+								border-color: $ds-grey;
+							}
+
+							.ds-button {
+								background-color: $ds-grey;
+							}
 						}
 					}
 				}
-			}
-		}
-
-		input[type="submit"],
-		.ds-button,
-		button {
-			transition: all 0.4s;
-			display: block;
-			cursor: pointer;
-			border: 0;
-			@include ds-dimensions( 100%, auto );
-			background: transparent;
-			border-width: 1px;
-			border-style: solid;
-			border-color: $ds-grey;
-			color: $ds-grey-dark;
-			text-transform: uppercase;
-			text-align: center;
-			font-weight: normal;
-			padding: 13px 10px;
-			font-size: 14px;
-			line-height: 1;
-			letter-spacing: 1px;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
-			@include ds-box-shadow( inset 0px 0px 0px 0px rgba( 0,0,0,0.75 ) );
-			@include ds-border-radius( 0 );
-
-			&.active,
-			&:hover {
-				color: $white;
-				@include ds-box-shadow( inset 0px -50px 0px 0px rgba( 0,0,0,0.75 ) );
 			}
 		}
 	}
@@ -250,6 +271,12 @@ body {
 @media ( min-width: $ds-global-width-lg ) {
 	body {
 		#dssd-wrapper {
+			input[type="submit"],
+			.ds-button,
+			button {
+				max-width: 260px;
+			}
+
 			.store-directory-container {
 				.store-directory-header {
 					flex-direction: row;
@@ -356,12 +383,6 @@ body {
 						}
 					}
 				}
-			}
-
-			input[type="submit"],
-			.ds-button,
-			button {
-				max-width: 260px;
 			}
 		}
 	}

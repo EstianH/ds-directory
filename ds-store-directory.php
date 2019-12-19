@@ -110,8 +110,8 @@ class DS_STORE_DIRECTORY {
 			)
 				return;
 
-			wp_enqueue_script( 'dssd-script', DSSD_ASSETS_URL . 'js/script.js' , array(), DSSD_VERSION );
-		   wp_enqueue_style( 'dssd-style' , DSSD_ASSETS_URL . 'css/style.css', array(), DSSD_VERSION );
+			wp_enqueue_script( 'dssd-script', DSSD_ASSETS_URL . 'js/script.js' , array( 'jquery-core' ), DSSD_VERSION );
+		   wp_enqueue_style( 'dssd-style' , DSSD_ASSETS_URL . 'css/style.css', array()               , DSSD_VERSION );
 
 			// Setting based styles.
 	 		if ( $dynamic_styles = $this->get_dynamic_styles() )
@@ -173,6 +173,7 @@ class DS_STORE_DIRECTORY {
 
 		$paddings = '';
 
+		// Setting values may be empty, but the array will never be considered "empty" since it contains top-right-bottom-left.
 		foreach ( $this->settings['design']['padding'] as $side => $padding )
 			if ( !empty( $padding ) )
 				$paddings .= 'padding-' . $side . ': ' . $padding . ';';

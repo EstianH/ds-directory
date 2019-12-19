@@ -1,11 +1,8 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) exit;
 
-/**
- * Options.
- *
- * @since 1.0
- */
+// Add functionality to delete all stores & store categories.
+
 delete_metadata(
 	'store',         // $meta_type
 	0,               // $object_id (Will be ignored)
@@ -13,5 +10,11 @@ delete_metadata(
 	false,           // $meta_value,
 	true             // $delete_all (Ignores $object_id)
 );
+
+/**
+ * Options.
+ *
+ * @since 1.0
+ */
 delete_option( 'dssd_version' );
 delete_option( 'dssd_settings' );
