@@ -55,19 +55,54 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 								<div class="ds-col">
 									<div class="ds-block">
 										<div class="ds-block-body">
-											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-													<?php _e( 'Enable Read More', DSSD_SLUG ); ?>:
+													<?php _e( 'Enable Store Single Pages', DSSD_SLUG ); ?>:
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<label class="ds-toggler">
 														<input
-															name="dssd_settings[general][read_more]"
+															name="dssd_settings[general][store_single]"
 															type="checkbox"
 															value="1"
-															<?php echo ( !empty( $dssd->settings['general']['read_more'] ) ? ' checked="checked"' : ''); ?> />
+															<?php echo ( !empty( $dssd->settings['general']['store_single'] ) ? ' checked="checked"' : ''); ?> />
 															<span></span>
 													</label>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Store Load Count', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<?php $store_load_count = ( empty( $dssd->settings['general']['store_load_count'] ) ? 'all' : $dssd->settings['general']['store_load_count'] ); ?>
+													<div class="ds-row">
+														<div class="ds-col-12">
+															<label class="ds-radio">
+																<input
+																	name="dssd_settings[general][store_load_count]"
+																	type="radio"
+																	value="-1"
+																	<?php echo ( '-1' === $store_load_count ? ' checked="checked"' : ''); ?> />
+																	<span>Load All</span>
+															</label>
+														</div>
+													</div>
+													<div class="ds-row ds-mt-1">
+														<div class="ds-col-12">
+															<label class="ds-radio">
+																<input
+																	name="dssd_settings[general][store_load_count]"
+																	type="radio"
+																	value="load_more"
+																	<?php echo ( 'load_more' === $store_load_count ? ' checked="checked"' : ''); ?> />
+																	<span>
+																		Load More Button
+																		<small class="ds-ml-1"><a href="<?php echo admin_url( 'options-reading.php' ); ?>" target="_blank">(See the WP Blog setting for Store load count)</a></small>
+																	</span>
+															</label>
+														</div>
+													</div>
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
 										</div><!-- .ds-block-body -->
@@ -111,7 +146,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													<div class="ds-row">
 														<label class="ds-col-12 ds-col-lg-6">
 															<div class="ds-row ds-flex-align-center">
-																<div class="ds-col-3 ds-text-right">Top:</div>
+																<div class="ds-col-3 ds-text-lg-right">Top:</div>
 																<div class="ds-col-9">
 																	<input
 																		class="ds-input-box"
@@ -122,9 +157,9 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																</div>
 															</div>
 														</label>
-														<label class="ds-col-12 ds-col-lg-6">
+														<label class="ds-col-12 ds-col-lg-6 ds-mt-1 ds-mt-lg-0">
 															<div class="ds-row ds-flex-align-center">
-																<div class="ds-col-3 ds-text-right">Right:</div>
+																<div class="ds-col-3 ds-text-lg-right">Right:</div>
 																<div class="ds-col-9">
 																	<input
 																		class="ds-input-box"
@@ -136,10 +171,10 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															</div>
 														</label>
 													</div>
-													<div class="ds-row">
+													<div class="ds-row ds-mt-1">
 														<label class="ds-col-12 ds-col-lg-6">
 															<div class="ds-row ds-flex-align-center">
-																<div class="ds-col-3 ds-text-right">Bottom:</div>
+																<div class="ds-col-3 ds-text-lg-right">Bottom:</div>
 																<div class="ds-col-9">
 																	<input
 																		class="ds-input-box"
@@ -150,9 +185,9 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																</div>
 															</div>
 														</label>
-														<label class="ds-col-12 ds-col-lg-6">
+														<label class="ds-col-12 ds-col-lg-6 ds-mt-1 ds-mt-lg-0">
 															<div class="ds-row ds-flex-align-center">
-																<div class="ds-col-3 ds-text-right">Left:</div>
+																<div class="ds-col-3 ds-text-lg-right">Left:</div>
 																<div class="ds-col-9">
 																	<input
 																		class="ds-input-box"
@@ -164,6 +199,76 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															</div>
 														</label>
 													</div>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Text Color', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<input
+														class="wp-color-picker"
+														data-alpha="true"
+														name="dssd_settings[design][text_color]"
+														type="text"
+														value="<?php echo ( !empty( $dssd->settings['design']['text_color'] ) ? $dssd->settings['design']['text_color'] : '#515151' ); ?>"
+														placeholder="#515151" />
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Button Color', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<input
+														class="wp-color-picker"
+														data-alpha="true"
+														name="dssd_settings[design][button_color_bg]"
+														type="text"
+														value="<?php echo ( !empty( $dssd->settings['design']['button_color_bg'] ) ? $dssd->settings['design']['button_color_bg'] : '#fff' ); ?>"
+														placeholder="#fff" />
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-mt-1 ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Button Hover Color', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<input
+														class="wp-color-picker"
+														data-alpha="true"
+														name="dssd_settings[design][button_color_bg_hover]"
+														type="text"
+														value="<?php echo ( !empty( $dssd->settings['design']['button_color_bg_hover'] ) ? $dssd->settings['design']['button_color_bg_hover'] : '#515151' ); ?>"
+														placeholder="#515151" />
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-mt-5 ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Button Text Color', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<input
+														class="wp-color-picker"
+														data-alpha="true"
+														name="dssd_settings[design][button_color_text]"
+														type="text"
+														value="<?php echo ( !empty( $dssd->settings['design']['button_color_text'] ) ? $dssd->settings['design']['button_color_text'] : '#515151' ); ?>"
+														placeholder="#515151" />
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Button Text Hover Color', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<input
+														class="wp-color-picker"
+														data-alpha="true"
+														name="dssd_settings[design][button_color_text_hover]"
+														type="text"
+														value="<?php echo ( !empty( $dssd->settings['design']['button_color_text_hover'] ) ? $dssd->settings['design']['button_color_text_hover'] : '#fff' ); ?>"
+														placeholder="#fff" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
 										</div><!-- .ds-block-body -->

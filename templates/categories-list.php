@@ -58,7 +58,7 @@ $navigation_active = (
 				'<div class="store-category">'           . __( 'Store Category', DSSD_SLUG ) . '</div>' .
 				'<div class="store-contact-number">'     . __( 'Contact No.', DSSD_SLUG ) . '</div>';
 
-			if ( !empty( $dssd->settings['general']['read_more'] ) )
+			if ( !empty( $dssd->settings['general']['store_single'] ) )
 				echo '<div class="store-view-details">'       . __( 'View Details',   DSSD_SLUG ) . '</div>';
 
 			echo '</li>';
@@ -104,10 +104,10 @@ $navigation_active = (
 							'<span>' . ( sanitize_text_field( $store_options['contact_number'] ) ?: '-' ) . '</span>' .
 						'</div>';
 
-						if ( !empty( $dssd->settings['general']['read_more'] ) )
-							if ( empty( $store_options['excl_read_more_col'] ) )
+						if ( !empty( $dssd->settings['general']['store_single'] ) )
+							if ( empty( $store_options['store_single_excl'] ) )
 								echo '<div class="store-view-details">' .
-									'<a class="ds-button" href="' . get_permalink() . '">Read More</a>' .
+									'<a class="ds-button" href="' . get_permalink() . '">Details</a>' .
 								'</div>';
 							else
 								echo '<div class="store-view-details ds-justify-content-center">-</div>';
@@ -118,5 +118,20 @@ $navigation_active = (
 				echo '<li class="store-directory-list-empty ds-pt-3">' . __( 'No results found.', DSSD_SLUG ) . '</li>';
 			?>
 		</ul>
+		<?php
+		if (
+			$store_category->count > get_option( 'posts_per_page' )
+			&& (
+				    empty( $dssd->settings['general']['store_load_count'] )
+				|| '-1' !== $dssd->settings['general']['store_load_count']
+			)
+		) {
+		?>
+		<div class="ds-row">
+			<div class="ds-col-12">
+				<button class="ds-button ds-ml-auto ds-mr-auto ds-mt-5">Load More</button>
+			</div>
+		</div>
+		<?php } ?>
 	</div>
 </div>

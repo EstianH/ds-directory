@@ -33,18 +33,18 @@ wp_nonce_field( 'save_post', 'store_options_save_nonce' );
 				placeholder="eg. 000 111 2222" />
 		</div><!-- .ds-col -->
 	</div><!-- .ds-row -->
-	<?php if ( !empty( $dssd->settings['general']['read_more'] ) ) { ?>
+	<?php if ( !empty( $dssd->settings['general']['store_single'] ) ) { ?>
 		<div class="ds-row ds-flex-align-center ds-pt-1 ds-mt-1 ds-bt">
 			<div class="ds-col-12 ds-col-lg-3">
-				<?php _e( 'Exclude Read More Button', DSSD_SLUG ); ?>:
+				<?php _e( 'Disable Store Page', DSSD_SLUG ); ?>:
 			</div>
 			<div class="ds-col-12 ds-col-lg-9">
 				<label class="ds-toggler">
 					<input
-						name="store_options[excl_read_more_col]"
+						name="store_options[store_single_excl]"
 						type="checkbox"
 						value="1"
-						<?php echo ( !empty( $store_options['excl_read_more_col'] ) ? ' checked="checked"' : '' ); ?> />
+						<?php echo ( !empty( $store_options['store_single_excl'] ) ? ' checked="checked"' : '' ); ?> />
 					<span></span>
 				</label>
 			</div><!-- .ds-col -->

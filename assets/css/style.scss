@@ -33,12 +33,12 @@ body {
 		input[type="submit"],
 		.ds-button,
 		button {
-			transition: all 0.4s;
+			transition: all 0.2s;
 			display: block;
 			cursor: pointer;
 			border: 0;
 			@include ds-dimensions( 100%, auto );
-			background: transparent;
+			background-color: $white;
 			border-width: 1px;
 			border-style: solid;
 			border-color: $ds-grey;
@@ -53,13 +53,12 @@ body {
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
-			@include ds-box-shadow( inset 0px 0px 0px 0px rgba( 0, 0, 0, 0.75 ) );
 			@include ds-border-radius( 0 );
 
 			&.active,
 			&:hover {
 				color: $white;
-				@include ds-box-shadow( inset 0px -50px 0px 0px rgba( 0, 0, 0, 0.75 ) );
+				background-color: $ds-grey-dark;
 			}
 		}
 
@@ -218,25 +217,15 @@ body {
 							&.store-view-details {
 								@include ds-dimensions( 100%, 100% );
 							}
-
-							> .ds-button {
-								&:hover {
-									@include ds-box-shadow( inset 260px 0px 0px 0px rgba( 0, 0, 0, 0.75 ) );
-								}
-							}
 						}
 
 						&:hover {
-							transition: all 0.4s;
+							transition: all 0.2s;
 							border-color: $ds-grey;
 
 							& + .store-directory-list-item {
-								transition: all 0.4s;
+								transition: all 0.2s;
 								border-color: $ds-grey;
-							}
-
-							.ds-button {
-								background-color: $ds-grey;
 							}
 						}
 					}

@@ -46,7 +46,8 @@
 .wp-picker-container > .wp-color-result.button {
   height: 30px !important;
   border-radius: 0 !important;
-  box-shadow: none !important; }
+  box-shadow: none !important;
+  margin-bottom: 0 !important; }
   .wp-picker-container > .wp-color-result.button > .wp-color-result-text,
   .wp-picker-container > .wp-color-result.button > .color-alpha {
     height: 28px !important;

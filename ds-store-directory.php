@@ -162,7 +162,8 @@ class DS_STORE_DIRECTORY {
 		if ( empty( $this->settings ) )
 			return $styles;
 
-		if ( !empty( $this->settings['general']['read_more'] ) )
+		// ================ General ================
+		if ( !empty( $this->settings['general']['store_single'] ) )
 			$styles .= '@media ( min-width: 992px ) {
 				.store-number { width: 10% !important; }
 				.store-title { width: 25% !important; }
@@ -171,9 +172,10 @@ class DS_STORE_DIRECTORY {
 				.store-view-details{ width: 15% !important; }
 			}';
 
+		// ================ Design: Paddings ================
 		$paddings = '';
 
-		// Setting values may be empty, but the array will never be considered "empty" since it contains top-right-bottom-left.
+		// Setting values may be empty, but the array will never be considered "empty" since it contains the top-right-bottom-left keys.
 		foreach ( $this->settings['design']['padding'] as $side => $padding )
 			if ( !empty( $padding ) )
 				$paddings .= 'padding-' . $side . ': ' . $padding . ';';
@@ -181,8 +183,43 @@ class DS_STORE_DIRECTORY {
 		if ( $paddings )
 			$styles .= 'body #dssd-wrapper { ' . $paddings . ' }';
 
+		//  ================ Design: Max-width ================
 		if ( !empty( $this->settings['design']['max_width'] ) )
 			$styles .= 'body #dssd-wrapper > .store-directory-container { max-width: ' . $this->settings['design']['max_width'] . ' }';
+
+		// ================ Design: Button colors ================
+		if ( !empty( $this->settings['design']['button_color_bg'] ) )
+			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"],
+			            body #dssd-wrapper > .store-directory-container .ds-button,
+			            body #dssd-wrapper > .store-directory-container button {
+			            	background-color: ' . $this->settings['design']['button_color_bg'] . ';
+			            }';
+
+		if ( !empty( $this->settings['design']['button_color_bg_hover'] ) )
+			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"]:hover,
+			            body #dssd-wrapper > .store-directory-container .ds-button:hover,
+			            body #dssd-wrapper > .store-directory-container button:hover {
+			            	background-color: ' . $this->settings['design']['button_color_bg_hover'] . ';
+			            }';
+
+		if ( !empty( $this->settings['design']['button_color_text'] ) )
+			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"],
+			            body #dssd-wrapper > .store-directory-container .ds-button,
+			            body #dssd-wrapper > .store-directory-container button {
+			            	color: ' . $this->settings['design']['button_color_text'] . ';
+			            }';
+
+		if ( !empty( $this->settings['design']['button_color_text_hover'] ) )
+			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"]:hover,
+			            body #dssd-wrapper > .store-directory-container .ds-button:hover,
+			            body #dssd-wrapper > .store-directory-container button:hover {
+			            	color: ' . $this->settings['design']['button_color_text_hover'] . ';
+			            }';
+
+		if ( !empty( $this->settings['design']['text_color'] ) )
+			$styles .= 'body #dssd-wrapper * {
+			            	color: ' . $this->settings['design']['text_color'] . ';
+			            }';
 
 		return $styles;
 	}
@@ -266,21 +303,21 @@ class DS_STORE_DIRECTORY {
 	static public function register_store_post_taxonomies() {
 		register_taxonomy( 'store_directory_category', array( 'store' ), array(
 			'hierarchical'      => true,
-			// 'labels'            => array(
-			// 	'name'              => _x( 'Directories', 'taxonomy general name',  DSSD_SLUG ),
-			// 	'singular_name'     => _x( 'Directory',   'taxonomy singular name', DSSD_SLUG ),
-			// 	'search_items'      => __( 'Search Directories',   DSSD_SLUG ),
-			// 	'not_found'         => __( 'No directories found', DSSD_SLUG ),
-			// 	'all_items'         => __( 'All Directories',      DSSD_SLUG ),
-			// 	'parent_item'       => __( 'Parent Directory',     DSSD_SLUG ),
-			// 	'parent_item_colon' => __( 'Parent Directory:',    DSSD_SLUG ),
-			// 	'edit_item'         => __( 'Edit Directory',       DSSD_SLUG ),
-			// 	'update_item'       => __( 'Update Directory',     DSSD_SLUG ),
-			// 	'add_new_item'      => __( 'Add New Directory',    DSSD_SLUG ),
-			// 	'view_item'         => __( 'View Directory',       DSSD_SLUG ),
-			// 	'new_item_name'     => __( 'New Directory Name',   DSSD_SLUG ),
-			// 	'menu_name'         => __( 'Directories',          DSSD_SLUG ),
-		  // ),
+			'labels'            => array(
+				'name'              => _x( 'Store Categories', 'taxonomy general name' , DSSD_SLUG ),
+				'singular_name'     => _x( 'Store Category',   'taxonomy singular name', DSSD_SLUG ),
+				'search_items'      => __( 'Search Store Categories'  , DSSD_SLUG ),
+				'not_found'         => __( 'No Store Categories found', DSSD_SLUG ),
+				'all_items'         => __( 'All Store Categories'     , DSSD_SLUG ),
+				'parent_item'       => __( 'Parent Store Category'    , DSSD_SLUG ),
+				'parent_item_colon' => __( 'Parent Store Category:'   , DSSD_SLUG ),
+				'edit_item'         => __( 'Edit Store Category'      , DSSD_SLUG ),
+				'update_item'       => __( 'Update Store Category'    , DSSD_SLUG ),
+				'add_new_item'      => __( 'Add New Store Category'   , DSSD_SLUG ),
+				'view_item'         => __( 'View Store Category'      , DSSD_SLUG ),
+				'new_item_name'     => __( 'New Store Category Name'  , DSSD_SLUG ),
+				'menu_name'         => __( 'Store Categories'         , DSSD_SLUG ),
+		  ),
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
@@ -341,16 +378,22 @@ class DS_STORE_DIRECTORY {
 			return;
 
 		if ( !empty( $query->query_vars['store_directory_category'] ) ) {
-			$query->set( 'post_type', 'store' );
-			$query->set( 'orderby', 'name' );
-			$query->set( 'order', 'ASC' );
-			$query->set( 'post_status', 'publish' );
-			$query->set( 'posts_per_page', -1 );
+			if (
+				    !empty( $this->settings['general']['store_load_count'] )
+				&& '-1' === $this->settings['general']['store_load_count']
+			)
+				$query->set( 'posts_per_page', $this->settings['general']['store_load_count'] );
+
+			$query->set( 'post_status'   , 'publish' );
+			$query->set( 'post_type'     , 'store' );
+			$query->set( 'orderby'       , 'name' );
+			$query->set( 'order'         , 'ASC' );
 		}
 	}
 
 	/**
 	 * Alter the main WP_Query object to modify fetched store & store category data.
+	 * Handle store directory root query (Fetch all stores).
 	 *
 	 * @access public
 	 */
@@ -372,10 +415,10 @@ class DS_STORE_DIRECTORY {
 				$term_ids[] = $term->term_id;
 
 			$tax_query = array(
-				'taxonomy' => 'store_directory_category',
-				'field' => 'term_id',
-				'terms' => $term_ids,
-				'operator' => 'IN',
+				'taxonomy'         => 'store_directory_category',
+				'field'            => 'term_id',
+				'terms'            => $term_ids,
+				'operator'         => 'IN',
 				'include_children' => true
 			);
 			$query->tax_query->queries[0] = $tax_query;
