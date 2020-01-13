@@ -52,9 +52,19 @@ $navigation_active = (
 	<div class="store-directory-body">
 		<ul class="store-directory-list">
 			<?php
+			$order_direction = ( !empty( $_GET['order'] ) && 'DESC' === $_GET['order'] ? 'ASC' : 'DESC' );
 			echo '<li class="store-directory-list-header ds-d-none ds-d-lg-flex">' .
 				'<div class="store-number">'             . __( 'Store No.'  , DSSD_SLUG ) . '</div>' .
-				'<div class="store-title">'              . __( 'Store Name'    , DSSD_SLUG ) . '</div>' .
+				'<div class="store-title">
+					<a href="' . esc_url( $store_current_permalink . '?sort=name&order=' . $order_direction ) . '">' .
+						__( 'Store Name'    , DSSD_SLUG ) .
+						(
+							'DESC' === $order_direction
+							? ''
+							: ''
+						) .
+					'</a>
+				</div>' .
 				'<div class="store-category">'           . __( 'Store Category', DSSD_SLUG ) . '</div>' .
 				'<div class="store-contact-number">'     . __( 'Contact No.', DSSD_SLUG ) . '</div>';
 
@@ -115,21 +125,33 @@ $navigation_active = (
 					echo '</li>';
 				}
 			else
-				echo '<li class="store-directory-list-empty ds-pt-3">' . __( 'No results found.', DSSD_SLUG ) . '</li>';
+				echo '<li class="store-directory-list-empty ds-pt-3">' . __( 'No stores found.', DSSD_SLUG ) . '</li>';
 			?>
 		</ul>
 		<?php
 		if (
-			$store_category->count > get_option( 'posts_per_page' )
-			&& (
-				    empty( $dssd->settings['general']['store_load_count'] )
-				|| '-1' !== $dssd->settings['general']['store_load_count']
-			)
+			      empty( $dssd->settings['general']['store_load_condition'] )
+			|| 'all' !== $dssd->settings['general']['store_load_condition']
 		) {
 		?>
 		<div class="ds-row">
 			<div class="ds-col-12">
-				<button class="ds-button ds-ml-auto ds-mr-auto ds-mt-5">Load More</button>
+				<div class="ds-pagination ds-mt-5">
+					<?php
+					$big = 999999999; // An unlikely integer.
+					$args = array(
+						'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+						'format'    => '?paged=%#%',
+						'current'   => max( 1, get_query_var( 'paged' ) ),
+						'total'     => $wp_query->max_num_pages,
+						'prev_text' => '«',
+						'next_text' => '»',
+						'end_size'  => 3,
+						'mid_size'  => 3
+					);
+					echo paginate_links( $args );
+					?>
+				</div>
 			</div>
 		</div>
 		<?php } ?>

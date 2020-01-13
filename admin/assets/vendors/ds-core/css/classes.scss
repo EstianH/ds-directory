@@ -359,13 +359,45 @@ select {
 			background: $ds-grey-dark;
 			color: $white;
 		}
-	}
-}
+	} // .ds-tab-nav
+} // .ds-tab-nav-wrapper
+
 .ds-tab-content {
 	&:not( .active ) {
 		display: none;
 	}
-}
+} // .ds-tab-content
+
+.ds-pagination {
+	text-align: center;
+
+	> a.page-numbers,
+	> span {
+		position: relative;
+		display: inline-block;
+		padding: 5px 10px;
+
+		&:after {
+			content: " ";
+			position: absolute;
+			transition: all .2s ease-in-out;
+			top: 0;
+			left: 0;
+			width: 100%;
+			border-top: 2px solid;
+			@include ds-transform( scaleX( 0 ) );
+		}
+	}
+
+	> a.page-numbers:hover,
+	> .current {
+		background-color: $ds-grey-light;
+
+		&:after {
+			@include ds-transform( scaleX( 1 ) );
+		}
+	}
+} // .ds-pagination
 
 
 /*
@@ -481,7 +513,7 @@ select {
 	.ds-justify-content-sm-start  { justify-content: flex-start !important; }
 	.ds-justify-content-sm-end    { justify-content: flex-end !important; }
 	.ds-justify-content-sm-between { justify-content: space-between !important; }
-}
+} // @media ( min-width: $ds-global-width-sm )
 
 
 /*
@@ -597,7 +629,7 @@ select {
 	.ds-justify-content-md-start  { justify-content: flex-start !important; }
 	.ds-justify-content-md-end    { justify-content: flex-end !important; }
 	.ds-justify-content-md-between { justify-content: space-between !important; }
-}
+} // @media ( min-width: $ds-global-width-md )
 
 
 /*
@@ -713,7 +745,7 @@ select {
 	.ds-justify-content-lg-start  { justify-content: flex-start !important; }
 	.ds-justify-content-lg-end    { justify-content: flex-end !important; }
 	.ds-justify-content-lg-between { justify-content: space-between !important; }
-}
+} // @media ( min-width: $ds-global-width-lg )
 
 
 /*
@@ -829,7 +861,7 @@ select {
 	.ds-justify-content-xl-start  { justify-content: flex-start !important; }
 	.ds-justify-content-xl-end    { justify-content: flex-end !important; }
 	.ds-justify-content-xl-between { justify-content: space-between !important; }
-}
+} // @media ( min-width: $ds-global-width-xl )
 
 
 /*
@@ -945,4 +977,4 @@ select {
 	.ds-justify-content-xxl-start  { justify-content: flex-start !important; }
 	.ds-justify-content-xxl-end    { justify-content: flex-end !important; }
 	.ds-justify-content-xxl-between { justify-content: space-between !important; }
-}
+} // @media ( min-width: $ds-global-width-xxl )

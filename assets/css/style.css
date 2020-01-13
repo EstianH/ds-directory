@@ -5,13 +5,6 @@
 ██   ██ ███████     ██      ██    ██ ██████  █████
 ██   ██      ██     ██      ██    ██ ██   ██ ██
 ██████  ███████      ██████  ██████  ██   ██ ███████
-*/
-/*
-██████  ███████      ██████  ██████  ██████  ███████
-██   ██ ██          ██      ██    ██ ██   ██ ██
-██   ██ ███████     ██      ██    ██ ██████  █████
-██   ██      ██     ██      ██    ██ ██   ██ ██
-██████  ███████      ██████  ██████  ██   ██ ███████
 
 
 Description: This framework was built and intended for creating consistent layouts among all divSpot products.
@@ -928,6 +921,38 @@ select.ds-input-box {
 
 .ds-tab-content:not(.active) {
   display: none; }
+
+.ds-pagination {
+  text-align: center; }
+  .ds-pagination > a.page-numbers,
+  .ds-pagination > span {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px; }
+    .ds-pagination > a.page-numbers:after,
+    .ds-pagination > span:after {
+      content: " ";
+      position: absolute;
+      transition: all .2s ease-in-out;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border-top: 2px solid;
+      -webkit-transform: scaleX(0);
+      -moz-transform: scaleX(0);
+      -ms-transform: scaleX(0);
+      -o-transform: scaleX(0);
+      transform: scaleX(0); }
+  .ds-pagination > a.page-numbers:hover,
+  .ds-pagination > .current {
+    background-color: #f9f9f9; }
+    .ds-pagination > a.page-numbers:hover:after,
+    .ds-pagination > .current:after {
+      -webkit-transform: scaleX(1);
+      -moz-transform: scaleX(1);
+      -ms-transform: scaleX(1);
+      -o-transform: scaleX(1);
+      transform: scaleX(1); }
 
 /*
 ██████  ███████        ██████  ██       ██████  ██████   █████  ██       ██     ██ ██ ██████  ████████ ██   ██       ███████ ███    ███

@@ -198,6 +198,7 @@ class DS_STORE_DIRECTORY {
 		if ( !empty( $this->settings['design']['button_color_bg_hover'] ) )
 			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"]:hover,
 			            body #dssd-wrapper > .store-directory-container .ds-button:hover,
+			            body #dssd-wrapper > .store-directory-container .ds-button.active,
 			            body #dssd-wrapper > .store-directory-container button:hover {
 			            	background-color: ' . $this->settings['design']['button_color_bg_hover'] . ';
 			            }';
@@ -212,6 +213,7 @@ class DS_STORE_DIRECTORY {
 		if ( !empty( $this->settings['design']['button_color_text_hover'] ) )
 			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"]:hover,
 			            body #dssd-wrapper > .store-directory-container .ds-button:hover,
+			            body #dssd-wrapper > .store-directory-container .ds-button.active,
 			            body #dssd-wrapper > .store-directory-container button:hover {
 			            	color: ' . $this->settings['design']['button_color_text_hover'] . ';
 			            }';
@@ -346,7 +348,7 @@ class DS_STORE_DIRECTORY {
 			!empty( $wp_query->query_vars['store_directory_category'] )
 			&& term_exists( $wp_query->query_vars['store_directory_category'] )
 		)
-			return DSSD_ROOT_PATH . 'templates/archive-categories.php';
+			return DSSD_ROOT_PATH . 'templates/archive.php';
 
 		return $template;
 	}
@@ -379,15 +381,28 @@ class DS_STORE_DIRECTORY {
 
 		if ( !empty( $query->query_vars['store_directory_category'] ) ) {
 			if (
-				    !empty( $this->settings['general']['store_load_count'] )
-				&& '-1' === $this->settings['general']['store_load_count']
+				    !empty( $this->settings['general']['store_load_condition'] )
+				&& 'all' !== $this->settings['general']['store_load_condition']
 			)
 				$query->set( 'posts_per_page', $this->settings['general']['store_load_count'] );
+			else
+				$query->set( 'posts_per_page', -1 );
 
-			$query->set( 'post_status'   , 'publish' );
-			$query->set( 'post_type'     , 'store' );
-			$query->set( 'orderby'       , 'name' );
-			$query->set( 'order'         , 'ASC' );
+			$query->set( 'post_status', 'publish' );
+			$query->set( 'post_type'  , 'store' );
+
+			if (
+				      !empty( $_GET['sort'] )
+				&& 'name' === $_GET['sort']
+			) {
+				$query->set( 'orderby', $_GET['sort']  );
+				$query->set( 'order', (
+					      !empty( $_GET['order'] )
+					&& 'DESC' === $_GET['order']
+					? $_GET['order']
+					: 'ASC'
+				) );
+			}
 		}
 	}
 

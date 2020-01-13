@@ -75,15 +75,15 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													<?php _e( 'Store Load Count', DSSD_SLUG ); ?>:
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
-													<?php $store_load_count = ( empty( $dssd->settings['general']['store_load_count'] ) ? 'all' : $dssd->settings['general']['store_load_count'] ); ?>
+													<?php $store_load_condition = ( empty( $dssd->settings['general']['store_load_condition'] ) ? 'all' : $dssd->settings['general']['store_load_condition'] ); ?>
 													<div class="ds-row">
 														<div class="ds-col-12">
 															<label class="ds-radio">
 																<input
-																	name="dssd_settings[general][store_load_count]"
+																	name="dssd_settings[general][store_load_condition]"
 																	type="radio"
-																	value="-1"
-																	<?php echo ( '-1' === $store_load_count ? ' checked="checked"' : ''); ?> />
+																	value="all"
+																	<?php echo ( 'all' === $store_load_condition ? ' checked="checked"' : ''); ?> />
 																	<span>Load All</span>
 															</label>
 														</div>
@@ -92,13 +92,17 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														<div class="ds-col-12">
 															<label class="ds-radio">
 																<input
-																	name="dssd_settings[general][store_load_count]"
+																	name="dssd_settings[general][store_load_condition]"
 																	type="radio"
-																	value="load_more"
-																	<?php echo ( 'load_more' === $store_load_count ? ' checked="checked"' : ''); ?> />
+																	value="paginated"
+																	<?php echo ( 'paginated' === $store_load_condition ? ' checked="checked"' : ''); ?> />
 																	<span>
-																		Load More Button
-																		<small class="ds-ml-1"><a href="<?php echo admin_url( 'options-reading.php' ); ?>" target="_blank">(See the WP Blog setting for Store load count)</a></small>
+																		<input
+																			class="ds-input-box"
+																			type="number"
+																			name="dssd_settings[general][store_load_count]"
+																			value="<?php echo ( !empty( $dssd->settings['general']['store_load_count'] ) ? $dssd->settings['general']['store_load_count'] : '' ); ?>"
+																			placeholder="15" />
 																	</span>
 															</label>
 														</div>

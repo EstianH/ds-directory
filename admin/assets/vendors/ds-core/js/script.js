@@ -61,3 +61,17 @@ jQuery( document ).ready( function() {
 		} );
 	} );
 } );
+
+
+/*
+██ ███    ██ ██████  ██    ██ ████████ ███████
+██ ████   ██ ██   ██ ██    ██    ██    ██
+██ ██ ██  ██ ██████  ██    ██    ██    ███████
+██ ██  ██ ██ ██      ██    ██    ██         ██
+██ ██   ████ ██       ██████     ██    ███████
+*/
+jQuery( document ).ready( function() {
+	jQuery(document).on( 'focus', '.ds-radio .ds-input-box', function() {
+		jQuery( this ).closest( '.ds-radio' ).trigger( 'click' );
+	} );
+} );

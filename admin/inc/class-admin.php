@@ -274,6 +274,13 @@ class DS_STORE_DIRECTORY_ADMIN {
 		if ( ctype_digit( $_POST['dssd_settings']['design']['max_width'] ) )
 			$_POST['dssd_settings']['design']['max_width'] .= 'px';
 
+		// If the store paginated option is selected without adding a number, save 15 as the default.
+		if (
+			'all' !== $_POST['dssd_settings']['general']['store_load_condition']
+			&& empty( $_POST['dssd_settings']['general']['store_load_count'] )
+		)
+			$_POST['dssd_settings']['general']['store_load_count'] = 15;
+
 		update_option( 'dssd_settings', $_POST['dssd_settings'] );
 	}
 
