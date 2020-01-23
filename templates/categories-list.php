@@ -22,18 +22,24 @@ $navigation_active = (
 	? 'All Stores'
 	: $store_current_cat_obj->name
 );
+
+$sort_order = ( !empty( $_GET['order'] ) && 'DESC' === $_GET['order'] ? $_GET['order'] : 'ASC' );
+$sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_order : '' );
 ?>
 <div class="store-directory-container">
 	<div class="store-directory-header">
 		<div class="store-directory-list-nav-container">
-			<button class="ds-button" type="button"><?php echo $navigation_active; ?></button>
+			<button class="ds-button ds-d-flex ds-flex-align-center ds-justify-content-center" type="button">
+				<?php echo $navigation_active; ?>
+				<span class="ds-icon-arrow-down ds-ml-1"></span>
+			</button>
 			<ul class="store-directory-list-nav" style="display: none;">
-				<li><a href="<?php echo esc_url( get_term_link( $store_cat_all ) ); ?>"><?php _e( $store_cat_all->name, DSSD_SLUG ); ?></a></li>
+				<li><a href="<?php echo esc_url( get_term_link( $store_cat_all ) . $sort_order_link_addon ); ?>"><?php _e( $store_cat_all->name, DSSD_SLUG ); ?></a></li>
 				<?php foreach ( $store_categories as $store_category ) {
 					if ( $store_cat_all->term_id === $store_category->term_id )
 						continue;
 
-					echo '<li><a href="' . get_term_link( $store_category ) . '">' . $store_category->name . ' (' . $store_category->count . ')</a></li>';
+					echo '<li><a href="' . esc_url( get_term_link( $store_category ) . $sort_order_link_addon ) . '">' . $store_category->name . ' <span>(' . $store_category->count . ')</span></a></li>';
 				} ?>
 			</ul>
 		</div>
@@ -52,17 +58,14 @@ $navigation_active = (
 	<div class="store-directory-body">
 		<ul class="store-directory-list">
 			<?php
-			$order_direction = ( !empty( $_GET['order'] ) && 'DESC' === $_GET['order'] ? 'ASC' : 'DESC' );
 			echo '<li class="store-directory-list-header ds-d-none ds-d-lg-flex">' .
 				'<div class="store-number">'             . __( 'Store No.'  , DSSD_SLUG ) . '</div>' .
 				'<div class="store-title">
-					<a href="' . esc_url( $store_current_permalink . '?sort=name&order=' . $order_direction ) . '">' .
+					<a
+						href="' . esc_url( $store_current_permalink . '?sort=name&order=' . ( 'DESC' === $sort_order ? 'ASC' : 'DESC' ) ) . '"
+						class="ds-d-flex ds-flex-align-center' . ( 'DESC' !== $sort_order ? ' active' : '' ) . '">' .
 						__( 'Store Name'    , DSSD_SLUG ) .
-						(
-							'DESC' === $order_direction
-							? ''
-							: ''
-						) .
+						'<span class="ds-icon-arrow-down ds-ml-1"></span>' .
 					'</a>
 				</div>' .
 				'<div class="store-category">'           . __( 'Store Category', DSSD_SLUG ) . '</div>' .
@@ -140,7 +143,7 @@ $navigation_active = (
 					<?php
 					$big = 999999999; // An unlikely integer.
 					$args = array(
-						'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+						'base'      => str_replace( $big, '%#%', get_pagenum_link( $big, false ) ),
 						'format'    => '?paged=%#%',
 						'current'   => max( 1, get_query_var( 'paged' ) ),
 						'total'     => $wp_query->max_num_pages,

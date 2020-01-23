@@ -9,6 +9,17 @@
  * @since 1.0.0
  */
 
+$store_options = get_post_meta( get_the_ID(), 'store_options', true );
+var_dump($store_options);
+// Redirect store pages that are saved to exclude single pages.
+if (
+		 !empty( $store_options )
+	&& !empty( $store_options['store_single_excl'] )
+) {
+	wp_safe_redirect( esc_url( home_url() . '/store-directory/all-stores/' ) );
+	exit;
+}
+
 get_header();
 ?>
 <main id="site-content" role="main">
@@ -29,6 +40,8 @@ get_header();
 					if ( !empty( $store_categories[0]->name ) )
 						echo '<a class="ds-button" href="' . esc_url( get_term_link( $store_categories[0] ) ) . '">Back to ' . $store_categories[0]->name . '</a>';
 					// Pending development.
+
+					the_content();
 				}
 			}
 			?>

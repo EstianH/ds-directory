@@ -110,8 +110,9 @@ class DS_STORE_DIRECTORY {
 			)
 				return;
 
-			wp_enqueue_script( 'dssd-script', DSSD_ASSETS_URL . 'js/script.js' , array( 'jquery-core' ), DSSD_VERSION );
-		   wp_enqueue_style( 'dssd-style' , DSSD_ASSETS_URL . 'css/style.css', array()               , DSSD_VERSION );
+			wp_enqueue_script( 'dssd-script', DSSD_ASSETS_URL . 'js/script.js'                        , array( 'jquery-core' ), DSSD_VERSION );
+			 wp_enqueue_style( 'dssd-style' , DSSD_ASSETS_URL . 'css/style.css'                       , array()               , DSSD_VERSION );
+		   wp_enqueue_style( 'dssd-core'  , DSSD_ADMIN_URL  . 'assets/vendors/ds-core/css/style.css', array( 'dssd-style' ) , DSSD_VERSION );
 
 			// Setting based styles.
 	 		if ( $dynamic_styles = $this->get_dynamic_styles() )
@@ -185,7 +186,10 @@ class DS_STORE_DIRECTORY {
 
 		//  ================ Design: Max-width ================
 		if ( !empty( $this->settings['design']['max_width'] ) )
-			$styles .= 'body #dssd-wrapper > .store-directory-container { max-width: ' . $this->settings['design']['max_width'] . ' }';
+			$styles .= 'body #dssd-wrapper > .taxonomy-description,
+									body #dssd-wrapper > .store-directory-container{
+										max-width: ' . $this->settings['design']['max_width'] . '
+									}';
 
 		// ================ Design: Button colors ================
 		if ( !empty( $this->settings['design']['button_color_bg'] ) )
@@ -195,13 +199,20 @@ class DS_STORE_DIRECTORY {
 			            	background-color: ' . $this->settings['design']['button_color_bg'] . ';
 			            }';
 
-		if ( !empty( $this->settings['design']['button_color_bg_hover'] ) )
+		if ( !empty( $this->settings['design']['button_color_bg_hover'] ) ) {
 			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"]:hover,
 			            body #dssd-wrapper > .store-directory-container .ds-button:hover,
 			            body #dssd-wrapper > .store-directory-container .ds-button.active,
 			            body #dssd-wrapper > .store-directory-container button:hover {
 			            	background-color: ' . $this->settings['design']['button_color_bg_hover'] . ';
 			            }';
+
+			// Pagination styling to match button styling.
+			$styles .= 'body #dssd-wrapper > .store-directory-container .ds-pagination > a.page-numbers:hover:after,
+									body #dssd-wrapper > .store-directory-container .ds-pagination > .current:after {
+										border-color: ' . $this->settings['design']['button_color_bg_hover'] . ';
+									}';
+		}
 
 		if ( !empty( $this->settings['design']['button_color_text'] ) )
 			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"],
@@ -210,13 +221,21 @@ class DS_STORE_DIRECTORY {
 			            	color: ' . $this->settings['design']['button_color_text'] . ';
 			            }';
 
-		if ( !empty( $this->settings['design']['button_color_text_hover'] ) )
+		if ( !empty( $this->settings['design']['button_color_text_hover'] ) ) {
 			$styles .= 'body #dssd-wrapper > .store-directory-container input[type="submit"]:hover,
 			            body #dssd-wrapper > .store-directory-container .ds-button:hover,
 			            body #dssd-wrapper > .store-directory-container .ds-button.active,
 			            body #dssd-wrapper > .store-directory-container button:hover {
 			            	color: ' . $this->settings['design']['button_color_text_hover'] . ';
 			            }';
+
+			$styles .= 'body #dssd-wrapper > .store-directory-container button.active .ds-icon-arrow-down:before,
+									body #dssd-wrapper > .store-directory-container button.active .ds-icon-arrow-down:after,
+									body #dssd-wrapper > .store-directory-container button:hover .ds-icon-arrow-down:before,
+									body #dssd-wrapper > .store-directory-container button:hover .ds-icon-arrow-down:after {
+										background: ' . $this->settings['design']['button_color_text_hover'] . ';
+									}';
+		}
 
 		if ( !empty( $this->settings['design']['text_color'] ) )
 			$styles .= 'body #dssd-wrapper * {
@@ -291,7 +310,8 @@ class DS_STORE_DIRECTORY {
 			'yarpp_support'       => true,
 			// 'taxonomies' 	        => array( 'post_tag' ),
 			'publicly_queryable'  => true,
-			'capability_type'     => 'post'
+			'capability_type'     => 'post',
+			'menu_icon'           => DSSD_ASSETS_URL . 'images/icon-xs.png'
 		);
 
 		register_post_type( 'store', $args );
@@ -361,10 +381,10 @@ class DS_STORE_DIRECTORY {
 	public function store_single_render_template( $template ) {
 		global $wp_query;
 
-		if ( !empty( $wp_query->query_vars['store'] ) )
-			return DSSD_ROOT_PATH . 'templates/store.php';
+		if ( empty( $wp_query->query_vars['store'] ) )
+			return $template;
 
-		return $template;
+		return DSSD_ROOT_PATH . 'templates/store.php';
 	}
 
 	/**
@@ -391,17 +411,21 @@ class DS_STORE_DIRECTORY {
 			$query->set( 'post_status', 'publish' );
 			$query->set( 'post_type'  , 'store' );
 
+			// 'Unnecessary' for the moment. Simply defaults to name sorting.
 			if (
 				      !empty( $_GET['sort'] )
 				&& 'name' === $_GET['sort']
 			) {
 				$query->set( 'orderby', $_GET['sort']  );
-				$query->set( 'order', (
+				$query->set( 'order'  , (
 					      !empty( $_GET['order'] )
 					&& 'DESC' === $_GET['order']
 					? $_GET['order']
 					: 'ASC'
 				) );
+			} else {
+				$query->set( 'orderby', 'name'  );
+				$query->set( 'order'  , 'ASC' );
 			}
 		}
 	}
@@ -447,7 +471,8 @@ class DS_STORE_DIRECTORY {
 	 */
 	public function store_directory_root_redirect() {
 		global $wp_query;
-// echo '<pre>'; var_dump($wp_query); echo '</pre>';
+
+		// Redirect root to .../all-stores/
 		if (
 			!empty( $wp_query->query['name'] )
 			&& 'store-directory' === $wp_query->query['name']

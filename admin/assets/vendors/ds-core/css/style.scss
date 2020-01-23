@@ -12,23 +12,14 @@ Author URI:  https://www.divspot.co.za
 Version:     1.2
 */
 
-$ds-global-width-sm:   576px; // Bootstrap 4: 576px
-$ds-global-width-md:   768px; // Bootstrap 4: 768px
-$ds-global-width-lg:   992px; // Bootstrap 4: 992px
-$ds-global-width-xl:  1200px; // Bootstrap 4: 1200px
-$ds-global-width-xxl: 1680px; // DS Frame: 1680px
-
-$ds-grey-light: #f9f9f9;
-$ds-grey:       #efefef;
-$ds-grey-dark:  #515151;
-$ds-red:        #D0021B;
-$ds-green:      #f8fff8;
-
-$white: #fff;
-$black: #000;
-
-$ds-font-size: 16px;
-$ds-line-height: 18px;
+/*
+██    ██  █████  ██████  ██  █████  ██████  ██      ███████ ███████
+██    ██ ██   ██ ██   ██ ██ ██   ██ ██   ██ ██      ██      ██
+██    ██ ███████ ██████  ██ ███████ ██████  ██      █████   ███████
+ ██  ██  ██   ██ ██   ██ ██ ██   ██ ██   ██ ██      ██           ██
+  ████   ██   ██ ██   ██ ██ ██   ██ ██████  ███████ ███████ ███████
+*/
+@import 'variables';
 
 
 /*

@@ -37,3 +37,53 @@
 .ds-icon-check-alt:before {
 	content: "\ea11";
 }
+
+.ds-icon-arrow-down {
+	position: relative;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}
+
+.ds-icon-arrow-down:before,
+.ds-icon-arrow-down:after {
+	content: "";
+	position: absolute;
+	display: block;
+	left: calc( 50% + 2.5px );
+	top: 50%;
+	background: #515151;
+	transition: all 0.4s;
+	height: 8px;
+	width: 2px;
+	-webkit-transform: translate( -50%, -50% ) rotate( 45deg );
+	   -moz-transform: translate( -50%, -50% ) rotate( 45deg );
+	    -ms-transform: translate( -50%, -50% ) rotate( 45deg );
+	     -o-transform: translate( -50%, -50% ) rotate( 45deg );
+	        transform: translate( -50%, -50% ) rotate( 45deg );
+}
+
+.ds-icon-arrow-down:after {
+	left: calc( 50% - 2.5px );
+	-webkit-transform: translate( -50%, -50% ) rotate( -45deg );
+	   -moz-transform: translate( -50%, -50% ) rotate( -45deg );
+	    -ms-transform: translate( -50%, -50% ) rotate( -45deg );
+	     -o-transform: translate( -50%, -50% ) rotate( -45deg );
+	        transform: translate( -50%, -50% ) rotate( -45deg );
+}
+
+.active .ds-icon-arrow-down:before {
+	-webkit-transform: translate( -50%, -50% ) rotate( -45deg );
+	   -moz-transform: translate( -50%, -50% ) rotate( -45deg );
+	    -ms-transform: translate( -50%, -50% ) rotate( -45deg );
+	     -o-transform: translate( -50%, -50% ) rotate( -45deg );
+	        transform: translate( -50%, -50% ) rotate( -45deg );
+}
+
+.active .ds-icon-arrow-down:after {
+	-webkit-transform: translate( -50%, -50% ) rotate( 45deg );
+	   -moz-transform: translate( -50%, -50% ) rotate( 45deg );
+	    -ms-transform: translate( -50%, -50% ) rotate( 45deg );
+	     -o-transform: translate( -50%, -50% ) rotate( 45deg );
+	        transform: translate( -50%, -50% ) rotate( 45deg );
+}
