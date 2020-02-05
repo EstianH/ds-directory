@@ -99,7 +99,6 @@ body #dssd-wrapper {
                 color: #515151; }
       body #dssd-wrapper .taxonomy-description .store-directory-header .store-directory-list-search-container,
       body #dssd-wrapper .store-directory-container .store-directory-header .store-directory-list-search-container {
-        max-width: 600px;
         height: 100%;
         width: 100%;
         text-align: right;
@@ -142,9 +141,9 @@ body #dssd-wrapper {
         top: 0;
         background: #fff; }
       body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header,
-      body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item,
+      body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store,
       body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header,
-      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item {
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store {
         height: 100%;
         width: 100%;
         display: flex;
@@ -154,14 +153,14 @@ body #dssd-wrapper {
         justify-content: flex-start;
         margin: 0; }
         body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header:not(:first-child),
-        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item:not(:first-child),
+        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store:not(:first-child),
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:not(:first-child),
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:not(:first-child) {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store:not(:first-child) {
           border-top: 1px solid #f9f9f9; }
         body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div,
-        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div,
+        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div,
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div {
           display: flex;
           flex-wrap: wrap;
           flex-direction: column;
@@ -173,53 +172,78 @@ body #dssd-wrapper {
           overflow: hidden;
           text-overflow: ellipsis; }
           body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title,
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div.store-title,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-title {
             height: 100%;
             width: 100%; }
             body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
-            body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child,
+            body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div.store-title > span:last-child,
             body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
-            body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
+            body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-title > span:last-child {
               font-weight: bold; }
           body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category,
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div.store-category,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-category {
             height: 100%;
             width: 100%; }
           body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number,
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div.store-number,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-number {
             height: 100%;
             width: 100%; }
           body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number,
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div.store-contact-number,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-contact-number {
             justify-content: center;
             height: 100%;
             width: 100%; }
           body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header > div.store-view-details,
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item > div.store-view-details,
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store > div.store-view-details,
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-view-details,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-view-details {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-view-details {
             height: 100%;
             width: 100%; }
         body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header:hover,
-        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item:hover,
+        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store:hover,
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:hover,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:hover {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store:hover {
           transition: all 0.2s;
           border-color: #efefef; }
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header:hover + .store-directory-list-item,
-          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-item:hover + .store-directory-list-item,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:hover + .store-directory-list-item,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item:hover + .store-directory-list-item {
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store-directory-list-header:hover + .store,
+          body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-list > .store:hover + .store,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header:hover + .store,
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store:hover + .store {
             transition: all 0.2s;
             border-color: #efefef; }
+    body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-grid .ds-block,
+    body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-grid .ds-block {
+      transition: 0.4s all;
+      border: 1px solid #f9f9f9; }
+      body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-grid .ds-block > .ds-store-featured-image,
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-grid .ds-block > .ds-store-featured-image {
+        height: 150px;
+        width: 100%;
+        padding: 15px; }
+        body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-grid .ds-block > .ds-store-featured-image > div,
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-grid .ds-block > .ds-store-featured-image > div {
+          height: 100%;
+          width: 100%;
+          background-position: center center;
+          background-size: contain;
+          background-repeat: no-repeat; }
+      body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-grid .ds-block > .ds-block-title,
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-grid .ds-block > .ds-block-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      body #dssd-wrapper .taxonomy-description .store-directory-body .store-directory-grid .ds-block:hover,
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-grid .ds-block:hover {
+        background-color: #f9f9f9;
+        border-color: #efefef; }
 body.admin-bar #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header {
   top: 32px; }
 
@@ -265,41 +289,41 @@ body.admin-bar #dssd-wrapper .store-directory-container .store-directory-body .s
     padding: 0;
     margin: 0; }
     body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header,
-    body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item {
+    body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store {
       height: 100%;
       width: 100%;
       flex-direction: row;
       justify-content: flex-start; }
       body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div,
-      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div {
+      body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div {
         flex-direction: row;
         justify-content: flex-start;
         text-align: left;
         padding: 10px 15px;
         min-height: 58px; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:first-child,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:first-child {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div:first-child {
           padding: 10px 15px 10px 0; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div:last-child,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div:last-child {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div:last-child {
           padding: 10px 0 10px 15px; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-number,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-number {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-number {
           height: 100%;
           width: 15%; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-title {
           height: 100%;
           width: 35%; }
           body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-title > span:last-child,
-          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-title > span:last-child {
+          body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-title > span:last-child {
             font-weight: normal; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-category,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-category {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-category {
           height: 100%;
           width: 35%; }
         body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-header > div.store-contact-number,
-        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store-directory-list-item > div.store-contact-number {
+        body #dssd-wrapper .store-directory-container .store-directory-body .store-directory-list > .store > div.store-contact-number {
           height: 100%;
           width: 15%; } }
 

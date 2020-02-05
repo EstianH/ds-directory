@@ -39,8 +39,8 @@ Version:     1.2
  */
 @font-face {
   font-family: 'divspot';
-  src: url("../fonts/divspot.eot?5oo6kn");
-  src: url("../fonts/divspot.eot?5oo6kn#iefix") format("embedded-opentype"), url("../fonts/divspot.ttf?5oo6kn") format("truetype"), url("../fonts/divspot.woff?5oo6kn") format("woff"), url("../fonts/divspot.svg?5oo6kn#divspot") format("svg");
+  src: url("../fonts/divspot.eot?iwwbx9");
+  src: url("../fonts/divspot.eot?iwwbx9#iefix") format("embedded-opentype"), url("../fonts/divspot.ttf?iwwbx9") format("truetype"), url("../fonts/divspot.woff?iwwbx9") format("woff"), url("../fonts/divspot.svg?iwwbx9#divspot") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block; }
@@ -58,11 +58,20 @@ Version:     1.2
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.ds-icon-shop:before {
+  content: "\e901"; }
+
+.ds-icon-phone:before {
+  content: "\e900"; }
+
 .ds-icon-check:before {
   content: "\ea10"; }
 
 .ds-icon-check-alt:before {
   content: "\ea11"; }
+
+.ds-icon-search:before {
+  content: "\e986"; }
 
 .ds-icon-arrow-down {
   position: relative;

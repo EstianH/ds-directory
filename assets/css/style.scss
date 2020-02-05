@@ -109,7 +109,6 @@ body {
 				}
 
 				.store-directory-list-search-container {
-					max-width: 600px;
 					@include ds-dimensions( 100%, 100% );
 					text-align: right;
 					display: flex;
@@ -157,7 +156,7 @@ body {
 					}
 
 					> .store-directory-list-header,
-					> .store-directory-list-item {
+					> .store {
 						@include ds-dimensions( 100%, 100% );
 						display: flex;
 						flex-wrap: wrap;
@@ -214,10 +213,41 @@ body {
 							transition: all 0.2s;
 							border-color: $ds-grey;
 
-							& + .store-directory-list-item {
+							& + .store {
 								transition: all 0.2s;
 								border-color: $ds-grey;
 							}
+						}
+					}
+				}
+
+				.store-directory-grid {
+					.ds-block { // .store
+						transition: 0.4s all;
+						border: 1px solid $ds-grey-light;
+
+						> .ds-store-featured-image {
+							@include ds-dimensions( 100%, 150px );
+							padding: 15px;
+
+							> div {
+								@include ds-dimensions( 100%, 100% );
+								// background-image: url( http://speen-beast-pc/test/wp-content/uploads/2020/02/store-_0030s_0001_Absa.jpg );
+								background-position: center center;
+								background-size: contain;
+								background-repeat: no-repeat;
+							}
+						}
+
+						> .ds-block-title {
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+
+						&:hover {
+							background-color: $ds-grey-light;
+							border-color: $ds-grey;
 						}
 					}
 				}
@@ -312,7 +342,7 @@ body {
 						margin: 0;
 
 						> .store-directory-list-header,
-						> .store-directory-list-item {
+						> .store {
 							@include ds-dimensions( 100%, 100% );
 							flex-direction: row;
 							justify-content: flex-start;

@@ -70,6 +70,38 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													</label>
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
+													<?php _e( 'Store Category Template', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<?php $store_category_template = ( empty( $dssd->settings['general']['store_category_template'] ) ? 'list' : $dssd->settings['general']['store_category_template'] ); ?>
+													<div class="ds-row">
+														<div class="ds-col-12">
+															<label class="ds-radio">
+																<input
+																	name="dssd_settings[general][store_category_template]"
+																	type="radio"
+																	value="list"
+																	<?php echo ( 'list' === $store_category_template ? ' checked="checked"' : ''); ?> />
+																	<span>List View</span>
+															</label>
+														</div>
+													</div>
+													<div class="ds-row ds-mt-1">
+														<div class="ds-col-12">
+															<label class="ds-radio">
+																<input
+																	name="dssd_settings[general][store_category_template]"
+																	type="radio"
+																	value="grid"
+																	<?php echo ( 'grid' === $store_category_template ? ' checked="checked"' : ''); ?> />
+																	<span>Grid View</span>
+															</label>
+														</div>
+													</div>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
 											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
 													<?php _e( 'Store Load Count', DSSD_SLUG ); ?>:
@@ -261,7 +293,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														placeholder="#515151" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
-											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
+											<div class="ds-row ds-flex-align-center ds-mt-1 ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
 													<?php _e( 'Button Text Hover Color', DSSD_SLUG ); ?>:
 												</div>

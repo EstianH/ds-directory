@@ -6,7 +6,7 @@ global $wp_query;
 $dssd = DS_STORE_DIRECTORY::get_instance();
 
 $store_cat_all = get_term_by( 'slug', 'all-stores', 'store_directory_category' );
-$store_current_cat_obj = $wp_query->queried_object; // If this empty it means the root "store-directory" is active.
+$store_current_cat_obj = $wp_query->queried_object; // If this is empty it means the root "store-directory" is active.
 $store_current_permalink = esc_url( ( !empty( $store_current_cat_obj ) ? get_term_link( $store_current_cat_obj ) : home_url() . '/store-directory' ) );
 
 $args = array(
@@ -86,7 +86,7 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 					if ( empty( $store_options ) )
 						continue;
 
-					echo '<li class="store-directory-list-item">';
+					echo '<li class="store">';
 						echo '<div class="store-number">' .
 							'<span class="ds-d-lg-none">' . __( 'Store Number', DSSD_SLUG ) . '</span>' .
 							'<span>' . ( sanitize_text_field( $store_options['store_number'] ) ?: '-' ) . '</span>' .
