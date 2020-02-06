@@ -820,7 +820,7 @@ Version:     1.2
 .ds-danger {
   background-color: #D0021B; }
 
-.ds-block-toggler:not(.active) + .ds-block-toggler-block {
+[data-ds_block_toggler_block]:not(.active) {
   display: none; }
 
 .ds-toggler {

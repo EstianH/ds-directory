@@ -92,6 +92,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														<div class="ds-col-12">
 															<label class="ds-radio">
 																<input
+																	data-ds_block_toggler="store_category_template_grid"
 																	name="dssd_settings[general][store_category_template]"
 																	type="radio"
 																	value="grid"
@@ -145,6 +146,57 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 									</div><!-- .ds-block -->
 								</div><!-- .ds-col -->
 							</div><!-- .ds-row -->
+							<div
+								class="ds-row<?php echo ( 'grid' === $store_category_template ? ' active' : ''); ?>"
+								data-ds_block_toggler_block="store_category_template_grid">
+								<div class="ds-col ds-mb-2">
+									<div class="ds-block">
+										<div class="ds-block-title">
+											<h2>
+												<span class="dashicons dashicons-networking"></span>
+												<?php _e( 'Grid Settings:', DSSM_SLUG ); ?>
+											</h2>
+										</div>
+										<div class="ds-block-body">
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<?php _e( 'Enable Store Featured Images', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<label class="ds-toggler">
+														<input
+															name="dssd_settings[general][store_grid][featured_images]"
+															type="checkbox"
+															value="1"
+															<?php echo ( !empty( $dssd->settings['general']['store_grid']['featured_images'] ) ? ' checked="checked"' : ''); ?> />
+															<span></span>
+													</label>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<?php _e( 'Enable Store Featured Images', DSSD_SLUG ); ?>:
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<select class="ds-input-box" name="dssd_settings[general][store_grid][columns]">
+														<?php
+														$columns = array( 6, 4, 3, 2, 1 );
+
+														foreach ( $columns as $column ) {
+															echo '<option
+																value="' . $column . '"' .
+																( ( int )$dssd->settings['general']['store_grid']['columns'] === $column ? ' selected="selected"' : '' ) . '>' .
+																	$column . ' Column' . ( 1 !== $column ? 's' : '' ) .
+															'</option>';
+														}
+														?>
+													</select>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+										</div><!-- .ds-block-body -->
+									</div><!-- .ds-block -->
+								</div>
+							</div>
 						</div><!-- #tab-<?php echo sanitize_title( $tabs[0] ); ?> -->
 						<?php
 						/*

@@ -136,8 +136,8 @@
 	background-color: $ds-red;
 }
 
-.ds-block-toggler {
-	&:not( .active ) + .ds-block-toggler-block {
+[data-ds_block_toggler_block] {
+	&:not( .active ) {
 		display: none;
 	}
 }

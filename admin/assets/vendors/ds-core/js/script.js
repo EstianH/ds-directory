@@ -6,18 +6,16 @@
 ██████  ███████  ██████   ██████ ██   ██      ██     ██████   ██████   ██████  ███████ ███████ ██   ██
 */
 jQuery( document ).ready( function() {
-	jQuery( '.ds-block-toggler .ds-block-toggler-input' ).on( 'change', function() {
-		var parent = jQuery( this ).closest( '.ds-block-toggler' );
+	jQuery( '[data-ds_block_toggler]' ).on( 'change', function() {
+		var ds_block_selector = '[data-ds_block_toggler_block="' + jQuery( this ).data( 'ds_block_toggler' ) + '"]';
 
 		if ( jQuery( this ).is( ':checked' ) ) {
-			parent.siblings( '.ds-block-toggler-block' ).stop( true ).slideDown( function() {
-				jQuery( this ).removeAttr( 'style' );
-				parent.addClass( 'active' );
+			jQuery( ds_block_selector ).stop( true ).slideDown( function() {
+				jQuery( this ).removeAttr( 'style' ).addClass( 'active' );
 			} );
 		} else {
-			parent.siblings( '.ds-block-toggler-block' ).stop( true ).slideUp( function() {
-				jQuery( this ).removeAttr( 'style' );
-				parent.removeClass( 'active' );
+			jQuery( ds_block_selector ).stop( true ).slideUp( function() {
+				jQuery( this ).removeAttr( 'style' ).removeClass( 'active' );
 			} );
 		}
 	} );
@@ -71,7 +69,19 @@ jQuery( document ).ready( function() {
 ██ ██   ████ ██       ██████     ██    ███████
 */
 jQuery( document ).ready( function() {
-	jQuery(document).on( 'focus', '.ds-radio .ds-input-box', function() {
+	jQuery( document ).on( 'focus', '.ds-radio .ds-input-box', function() {
 		jQuery( this ).closest( '.ds-radio' ).trigger( 'click' );
+	} );
+
+	// Manually trigger change events on all radio buttons with the same name (except for the target).
+	jQuery( document ).on( 'click', '.ds-radio > input', function( e ) {
+		var target = e.target;
+
+		jQuery.each( jQuery( '[name="' + jQuery( this ).prop( 'name' ) + '"]' ), function() {
+			if ( jQuery( target ).is( jQuery( this ) ) )
+				return;
+
+			jQuery( this ).trigger( 'change' );
+		} );
 	} );
 } );
