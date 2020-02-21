@@ -10,8 +10,8 @@
  */
 
 $store_options = get_post_meta( get_the_ID(), 'store_options', true );
-var_dump($store_options);
-// Redirect store pages that are saved to exclude single pages.
+
+// Redirect store pages that are set to exclude single pages.
 if (
 		 !empty( $store_options )
 	&& !empty( $store_options['store_single_excl'] )
@@ -37,10 +37,33 @@ get_header();
 
 					$store_categories = get_the_terms( get_the_ID(), 'store_directory_category' );
 
-					if ( !empty( $store_categories[0]->name ) )
-						echo '<a class="ds-button" href="' . esc_url( get_term_link( $store_categories[0] ) ) . '">Back to ' . $store_categories[0]->name . '</a>';
-					// Pending development.
-
+					if ( !empty( $store_categories[0]->name ) ) {
+					?>
+						<div class="ds-container ds-mb-5">
+							<div class="ds-row ds-flex-align-center">
+								<div class="ds-col-12 ds-col-lg-6 ds-p-0 ds-pr-lg-3 ds-mb-5 ds-mb-lg-0">
+									<div class="ds-row ds-ml-auto ds-mr-auto ds-bb ds-pb-1 ds-mb-1">
+										<div class="ds-col-12 ds-p-0">
+											<span class="ds-icon-shop ds-mr-1"></span>
+											<span><?php echo ( !empty( $store_options['store_number'] ) ? $store_options['store_number'] : '-' ); ?></span>
+										</div>
+									</div>
+									<div class="ds-row ds-ml-auto ds-mr-auto">
+										<div class="ds-col-12 ds-p-0">
+											<span class="ds-icon-phone ds-mr-1"></span>
+											<span><?php echo ( !empty( $store_options['contact_number'] ) ? $store_options['contact_number'] : '-' ); ?></span>
+										</div>
+									</div>
+								</div>
+								<div class="ds-col-12 ds-col-lg-6 ds-p-0">
+									<a class="ds-button" href="<?php echo esc_url( get_term_link( $store_categories[0] ) ); ?>">
+										<?php echo __( 'Back to', DSSD_SLUG ) . ' ' . $store_categories[0]->name; ?>
+									</a>
+								</div>
+							</div>
+						</div>
+					<?php
+					}
 					the_content();
 				}
 			}
