@@ -120,7 +120,7 @@ class DS_STORE_DIRECTORY {
 		} );
 
 		// Register the store directory shortcode.
-		add_shortcode( 'store_directory', array( $this, 'shortcode_handler' ), 10, 3 );
+		add_shortcode( 'store_directory', array( $this, 'shortcode_store_directory' ), 10, 3 );
 	}
 
 	/**
@@ -254,7 +254,7 @@ class DS_STORE_DIRECTORY {
 	 * @param string $content The enclosed content (if the shortcode is used in its enclosing form)
 	 * @param string $tag     The shortcode tag, useful for shared callback functions
 	 */
-	public function shortcode_handler( $atts, $content, $tag ) {
+	public function shortcode_store_directory( $atts, $content, $tag ) {
 		// $atts_merged = shortcode_atts( array(
 		// 	'category_id' => -1
 		// ), $atts );
