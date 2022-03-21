@@ -5,22 +5,22 @@ global $wp_query;
 
 $dsdi = DS_DIRECTORY::get_instance();
 
-$cat_all           = get_term_by( 'slug', 'all', 'dsdi_category' );
-$current_cat_obj   = $wp_query->queried_object; // If this is empty it means the root directory is active.
-$current_permalink = esc_url( ( !empty( $current_cat_obj ) ? get_term_link( $current_cat_obj ) : home_url() . '/ds-directory' ) );
+$cat_all           = get_term_by( 'slug', 'all', 'ds_directory' );
+$current_dir_obj   = $wp_query->queried_object; // If this is empty it means the root directory is active.
+$current_permalink = esc_url( ( !empty( $current_dir_obj ) ? get_term_link( $current_dir_obj ) : home_url() . '/ds-directory' ) );
 
 $args = array(
 	'hide_empty' => false,
 	'orderby'    => 'name',
 	'order'      => 'ASC',
-	'taxonomy'   => 'dsdi_category'
+	'taxonomy'   => 'ds_directory'
 );
-$categories  = get_terms( $args );
+$directories  = get_terms( $args );
 
 $navigation_active = (
-	empty( $current_cat_obj->name ) // Root "ds-directory".
+	empty( $current_dir_obj->name ) // Root "ds-directory".
 		? 'All directory items'
-		: $store_current_cat_obj->name
+		: $current_dir_obj->name
 );
 
 $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] ) : 'ASC' );
@@ -35,11 +35,11 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 			</button>
 			<ul class="dsdi-directory-list-nav" style="display: none;">
 				<li><a href="<?php echo esc_url( get_term_link( $cat_all ) . $sort_order_link_addon ); ?>"><?php _e( $cat_all->name, DSDI_SLUG ); ?></a></li>
-				<?php foreach ( $categories as $category ) {
-					if ( $cat_all->term_id === $category->term_id )
+				<?php foreach ( $directories as $directory ) {
+					if ( $cat_all->term_id === $directory->term_id )
 						continue;
 
-					echo '<li><a href="' . esc_url( get_term_link( $category ) . $sort_order_link_addon ) . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
+					echo '<li><a href="' . esc_url( get_term_link( $directory ) . $sort_order_link_addon ) . '">' . $directory->name . ' <span>(' . $directory->count . ')</span></a></li>';
 				} ?>
 			</ul>
 		</div>
@@ -67,7 +67,7 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 						'<span class="ds-icon-arrow-down ds-ml-1"></span>' .
 					'</a>
 				</div>' .
-				'<div class="dsdi-category">' . __( 'Category', DSDI_SLUG ) . '</div>' .
+				'<div class="dsdi-directory">' . __( 'Directory', DSDI_SLUG ) . '</div>' .
 				'<div class="dsdi-contact-number">' . __( 'Contact No.', DSDI_SLUG ) . '</div>';
 
 			if ( !empty( $dsdi->settings['general']['single'] ) )
@@ -79,7 +79,7 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 				while( have_posts() ) {
 					the_post();
 
-					$categories = get_the_terms( get_the_ID(), 'dsdi_category' );
+					$directories = get_the_terms( get_the_ID(), 'ds_directory' );
 					   $options = get_post_meta( get_the_ID(), 'options', true );
 
 					if ( empty( $options ) )
@@ -95,17 +95,17 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 							'<span>' . get_the_title() . '</span>' .
 						'</div>';
 
-						echo '<div class="dsdi-category">' .
-							'<span class="ds-d-lg-none">' . __( 'Category', DSDI_SLUG ) . '</span>' .
+						echo '<div class="dsdi-directory">' .
+							'<span class="ds-d-lg-none">' . __( 'Directory', DSDI_SLUG ) . '</span>' .
 							'<span>';
 
-						if ( !empty( $categories[0]->name ) ) {
-							$categories_array = array();
+						if ( !empty( $directories[0]->name ) ) {
+							$directories_array = array();
 
-							foreach ( $categories as $category )
-								$categories_array[] = $category->name;
+							foreach ( $directories as $directory )
+								$directories_array[] = $directory->name;
 
-							echo implode( ', ', $categories_array );
+							echo implode( ', ', $directories_array );
 						}
 
 						echo '</span>' .

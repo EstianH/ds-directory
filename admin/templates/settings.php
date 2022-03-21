@@ -72,18 +72,18 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											</div><!-- .ds-row -->
 											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pb-1 ds-pb-lg-0 ds-pr-lg-2">
-													<?php _e( 'Category Template', DSDI_SLUG ); ?>:
+													<?php _e( 'Directory Template', DSDI_SLUG ); ?>:
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
-													<?php $category_template = ( empty( $dsdi->settings['general']['category_template'] ) ? 'list' : $dsdi->settings['general']['category_template'] ); ?>
+													<?php $directory_template = ( empty( $dsdi->settings['general']['directory_template'] ) ? 'list' : $dsdi->settings['general']['directory_template'] ); ?>
 													<div class="ds-row">
 														<div class="ds-col-12">
 															<label class="ds-radio">
 																<input
-																	name="dsdi_settings[general][category_template]"
+																	name="dsdi_settings[general][directory_template]"
 																	type="radio"
 																	value="list"
-																	<?php echo ( 'list' === $category_template ? ' checked="checked"' : ''); ?> />
+																	<?php echo ( 'list' === $directory_template ? ' checked="checked"' : ''); ?> />
 																	<span>List View</span>
 															</label>
 														</div>
@@ -92,11 +92,11 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														<div class="ds-col-12">
 															<label class="ds-radio">
 																<input
-																	data-ds_block_toggler="category_template_grid"
-																	name="dsdi_settings[general][category_template]"
+																	data-ds_block_toggler="directory_template_grid"
+																	name="dsdi_settings[general][directory_template]"
 																	type="radio"
 																	value="grid"
-																	<?php echo ( 'grid' === $category_template ? ' checked="checked"' : ''); ?> />
+																	<?php echo ( 'grid' === $directory_template ? ' checked="checked"' : ''); ?> />
 																	<span>Grid View</span>
 															</label>
 														</div>
@@ -146,8 +146,8 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 									</div><!-- .ds-block -->
 								</div><!-- .ds-col -->
 							</div><!-- .ds-row -->
-							<div class="ds-row<?php echo ( 'grid' === $category_template ? ' active' : ''); ?>"
-								data-ds_block_toggler_block="category_template_grid">
+							<div class="ds-row<?php echo ( 'grid' === $directory_template ? ' active' : ''); ?>"
+								data-ds_block_toggler_block="directory_template_grid">
 								<div class="ds-col ds-mb-2">
 									<div class="ds-block">
 										<div class="ds-block-title">

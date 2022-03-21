@@ -49,14 +49,14 @@ class DS_DIRECTORY_ADMIN {
 		add_action( 'add_meta_boxes'     , array( $this, 'edit_form_fields' ), 10 );
 		add_action( 'save_post_dsdi_item', array( $this, 'save_form_fields' ), 10, 3 );
 
-		// Handle setting fields on edit/add-new categories.
-		add_action( 'dsdi_category_add_form_fields',  array( $this, 'category_add_form_fields' ),  10, 1 );
-		add_action( 'dsdi_category_edit_form_fields', array( $this, 'category_edit_form_fields' ), 10, 2 );
-		add_action( 'edited_dsdi_category', array( $this, 'category_save_form_fields' ), 10, 2 );
-		add_action( 'create_dsdi_category', array( $this, 'category_save_form_fields' ), 10, 2 );
+		// Handle setting fields on edit/add-new directories.
+		add_action( 'ds_directory_add_form_fields',  array( $this, 'directory_add_form_fields' ),  10, 1 );
+		add_action( 'ds_directory_edit_form_fields', array( $this, 'directory_edit_form_fields' ), 10, 2 );
+		add_action( 'edited_ds_directory', array( $this, 'directory_save_form_fields' ), 10, 2 );
+		add_action( 'create_ds_directory', array( $this, 'directory_save_form_fields' ), 10, 2 );
 
 		// Add theme specific "Avada Fusion" options to our custom taxonomies.
-		add_filter( 'fusion_tax_meta_allowed_screens', array( $this, 'category_fusion_options' ), 0, 1 );
+		add_filter( 'fusion_tax_meta_allowed_screens', array( $this, 'directory_fusion_options' ), 0, 1 );
 
 		/**
 		 * Enqueue admin assets.
@@ -154,35 +154,35 @@ class DS_DIRECTORY_ADMIN {
 	}
 
 	/**
-	 * Add field settings to the category add new page.
+	 * Add field settings to the directory add new page.
 	 *
 	 * @param string  $taxonomy Current taxonomy slug.
 	 */
-	public function category_add_form_fields( $taxonomy ) {
+	public function directory_add_form_fields( $taxonomy ) {
 		// echo '<div class="form-field ds-mt-5">';
-		// 	include DSDI_ADMIN_PATH . 'templates/form-fields-category.php';
+		// 	include DSDI_ADMIN_PATH . 'templates/form-fields-directory.php';
 		// echo '</div>';
 	}
 
 	/**
-	 * Add field settings to the category edit page.
+	 * Add field settings to the directory edit page.
 	 *
 	 * @param WP_Term $term     Current taxonomy term object.
 	 * @param string  $taxonomy Current taxonomy slug.
 	 */
-	public function category_edit_form_fields( $term, $taxonomy ) {
+	public function directory_edit_form_fields( $term, $taxonomy ) {
 		// echo '<tr class="form-field"><td class="ds-pl-0 ds-pr-0" colspan="2">';
-		// 	include DSDI_ADMIN_PATH . 'templates/form-fields-category.php';
+		// 	include DSDI_ADMIN_PATH . 'templates/form-fields-directory.php';
 		// echo '</td></tr>';
 	}
 
 	/**
-	 * Save category field settings.
+	 * Save directory field settings.
 	 *
 	 * @param int    $term_id Term ID.
 	 * @param string $tt_id   Term taxonomy ID.
 	 */
-	public function category_save_form_fields( $term_id, $tt_id ) {
+	public function directory_save_form_fields( $term_id, $tt_id ) {
 		// if ( !empty( $_POST['option_1'] ) )
 		// 	update_term_meta( $term_id, 'option_1', sanitize_text_field( $_POST['option_1'] ) );
 	}
@@ -233,14 +233,13 @@ class DS_DIRECTORY_ADMIN {
 		// Return early if the metabox nonce fails.
 		if (
 			   empty( $_POST['dsdi_options_save_nonce'] )
-			|| !wp_verify_nonce( $_POST['dsdi_options_save_nonce'], 'save_post' )
+			|| !wp_verify_nonce( $_POST['dsdi_options_save_nonce'], 'dsdi_save_post' )
 		)
 			return;
 
 		if ( array_key_exists( 'dsdi_options', $_POST ) ) {
-			foreach( $_POST['dsdi_options'] as &$store_option ) {
+			foreach ( $_POST['dsdi_options'] as &$store_option )
 				$store_option = sanitize_text_field( $store_option );
-			}
 
 			update_post_meta(
 				$post_id,
@@ -289,8 +288,8 @@ class DS_DIRECTORY_ADMIN {
 	/**
 	 * Add theme specific "Avada Fusion" options to our custom taxonomies.
 	 */
-	public function category_fusion_options( $taxonomies ) {
-		$taxonomies[] = 'dsdi_category';
+	public function directory_fusion_options( $taxonomies ) {
+		$taxonomies[] = 'ds_directory';
 		return $taxonomies;
 	}
 }

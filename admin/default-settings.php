@@ -2,7 +2,7 @@
 $default_settings = array(
 	'general' => array(
 		'single' => 1,
-		'category_template' => 'grid',
+		'directory_template' => 'grid',
 		'load_condition' => 'all',
 		'grid' => array(
 			'featured_images' => 1,

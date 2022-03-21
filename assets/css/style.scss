@@ -191,7 +191,7 @@ body {
 								}
 							}
 
-							&.dsdi-category {
+							&.dsdi-directory {
 								@include ds-dimensions( 100%, 100% );
 							}
 
@@ -226,7 +226,7 @@ body {
 						transition: 0.4s all;
 						border: 1px solid $ds-grey-light;
 
-						> .ds-dsdi-featured-image {
+						> .dsdi-featured-image {
 							@include ds-dimensions( 100%, 150px );
 							padding: 15px;
 
@@ -376,7 +376,7 @@ body {
 									}
 								}
 
-								&.dsdi-category {
+								&.dsdi-directory {
 									@include ds-dimensions( 35%, 100% );
 								}
 

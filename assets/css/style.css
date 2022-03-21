@@ -182,10 +182,10 @@ body #dsdi-wrapper {
             body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title > span:last-child,
             body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title > span:last-child {
               font-weight: bold; }
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-category,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-category,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-category,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-category {
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-directory,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-directory,
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-directory,
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-directory {
             height: 100%;
             width: 100%; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-number,
@@ -223,13 +223,13 @@ body #dsdi-wrapper {
     body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block {
       transition: 0.4s all;
       border: 1px solid #f9f9f9; }
-      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-dsdi-featured-image,
-      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-dsdi-featured-image {
+      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image,
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image {
         height: 150px;
         width: 100%;
         padding: 15px; }
-        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-dsdi-featured-image > div,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-dsdi-featured-image > div {
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image > div,
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image > div {
           height: 100%;
           width: 100%;
           background-position: center center;
@@ -318,8 +318,8 @@ body.admin-bar #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsd
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title > span:last-child,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title > span:last-child {
             font-weight: normal; }
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-category,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-category {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-directory,
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-directory {
           height: 100%;
           width: 35%; }
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-contact-number,

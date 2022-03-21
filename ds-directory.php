@@ -32,7 +32,7 @@ define( 'DSDI_ASSETS_URL'    , DSDI_ROOT_URL  . 'assets/' );             // User
 define( 'DSDI_ASSETS_PATH'   , DSDI_ROOT_PATH . 'assets/' );             // FTP Path
 define( 'DSDI_TEMPLATES_URL' , DSDI_ROOT_URL  . 'templates/' );          // User-Friendly URL
 define( 'DSDI_TEMPLATES_PATH', DSDI_ROOT_PATH . 'templates/' );          // FTP Path
-define( 'DSDI_TITLE'         , 'DS Directory' );                   // DSDI Title
+define( 'DSDI_TITLE'         , 'DS Directory' );                         // DSDI Title
 define( 'DSDI_SLUG'          , sanitize_title( DSDI_TITLE ) );           // Plugin slug.
 define( 'DSDI_VERSION'       , '1.0' );
 
@@ -87,12 +87,12 @@ class DS_DIRECTORY {
 		add_action( 'init', array( $this, 'register_post_type' )      , 10 );
 		add_action( 'init', array( $this, 'register_post_taxonomies' ), 10 );
 
-		// Render the dsdi_item & category templates.
-		add_filter( 'template_include', array( $this, 'directory_render_template' ), 0, 1 );
-		add_filter( 'template_include', array( $this, 'single_render_template'    ), 0, 1 );
+		// Render the dsdi_item & ds_directory templates.
+		add_filter( 'template_include', array( $this, 'get_directory_template' ), 0, 1 );
+		add_filter( 'template_include', array( $this, 'get_directory_item_template' ), 0, 1 );
 
 		// Redirect root "/directory" to "all".
-		add_action( 'template_redirect', array( $this, 'directory_root_redirect' ) );
+		add_action( 'template_redirect', array( $this, 'template_root_redirect' ) );
 
 		// Alter the main WP_Query object to pull relevant dsdi_item's.
 		add_action( 'pre_get_posts'  , array( $this, 'update_wp_query'     ), 0, 1 );
@@ -102,10 +102,10 @@ class DS_DIRECTORY {
 		add_action( 'wp_enqueue_scripts', function() {
 			global $wp_query;
 
-			// Continue only on relevant dsdi_item & category pages.
+			// Continue only on relevant dsdi_item & ds_directory pages.
 			if (
 				   empty( $wp_query->query_vars['dsdi_root'] )
-				&& empty( $wp_query->query_vars['dsdi_category'] )
+				&& empty( $wp_query->query_vars['ds_directory'] )
 				&& empty( $wp_query->query_vars['dsdi_item'] )
 			)
 				return;
@@ -148,7 +148,7 @@ class DS_DIRECTORY {
 	 */
 	static public function deactivate() {
 		unregister_post_type( 'dsdi_item' );
-		 unregister_taxonomy( 'dsdi_category' );
+		 unregister_taxonomy( 'ds_directory' );
 		 flush_rewrite_rules();
 	}
 
@@ -158,91 +158,7 @@ class DS_DIRECTORY {
 	 * @access public
 	 */
 	public function get_dynamic_styles() {
-		$styles = '';
-
-		if ( empty( $this->settings ) )
-			return $styles;
-
-		// ================ General ================
-		if ( !empty( $this->settings['general']['single'] ) )
-			$styles .= '@media ( min-width: 992px ) {
-				.dsdi-number { width: 10% !important; }
-				.dsdi-title { width: 25% !important; }
-				.dsdi-category { width: 35% !important; }
-				.dsdi-contact-number { width: 15% !important; }
-				.dsdi-view-details{ width: 15% !important; }
-			}';
-
-		// ================ Design: Paddings ================
-		$paddings = '';
-
-		// Setting values may be empty, but the array will never be considered "empty" since it contains the top-right-bottom-left keys.
-		foreach ( $this->settings['design']['padding'] as $side => $padding )
-			if ( !empty( $padding ) )
-				$paddings .= 'padding-' . $side . ': ' . $padding . ';';
-
-		if ( $paddings )
-			$styles .= 'body #dsdi-wrapper { ' . $paddings . ' }';
-
-		//  ================ Design: Max-width ================
-		if ( !empty( $this->settings['design']['max_width'] ) )
-			$styles .= 'body #dsdi-wrapper > .taxonomy-description,
-									body #dsdi-wrapper > .dsdi-directory-container{
-										max-width: ' . $this->settings['design']['max_width'] . '
-									}';
-
-		// ================ Design: Button colors ================
-		if ( !empty( $this->settings['design']['button_color_bg'] ) )
-			$styles .= 'body #dsdi-wrapper > .dsdi-directory-container input[type="submit"],
-			            body #dsdi-wrapper > .dsdi-directory-container .ds-button,
-			            body #dsdi-wrapper > .dsdi-directory-container button {
-			            	background-color: ' . $this->settings['design']['button_color_bg'] . ';
-			            }';
-
-		if ( !empty( $this->settings['design']['button_color_bg_hover'] ) ) {
-			$styles .= 'body #dsdi-wrapper > .dsdi-directory-container input[type="submit"]:hover,
-			            body #dsdi-wrapper > .dsdi-directory-container .ds-button:hover,
-			            body #dsdi-wrapper > .dsdi-directory-container .ds-button.active,
-			            body #dsdi-wrapper > .dsdi-directory-container button:hover {
-			            	background-color: ' . $this->settings['design']['button_color_bg_hover'] . ';
-			            }';
-
-			// Pagination styling to match button styling.
-			$styles .= 'body #dsdi-wrapper > .dsdi-directory-container .ds-pagination > a.page-numbers:hover:after,
-									body #dsdi-wrapper > .dsdi-directory-container .ds-pagination > .current:after {
-										border-color: ' . $this->settings['design']['button_color_bg_hover'] . ';
-									}';
-		}
-
-		if ( !empty( $this->settings['design']['button_color_text'] ) )
-			$styles .= 'body #dsdi-wrapper > .dsdi-directory-container input[type="submit"],
-			            body #dsdi-wrapper > .dsdi-directory-container .ds-button,
-			            body #dsdi-wrapper > .dsdi-directory-container button {
-			            	color: ' . $this->settings['design']['button_color_text'] . ';
-			            }';
-
-		if ( !empty( $this->settings['design']['button_color_text_hover'] ) ) {
-			$styles .= 'body #dsdi-wrapper > .dsdi-directory-container input[type="submit"]:hover,
-			            body #dsdi-wrapper > .dsdi-directory-container .ds-button:hover,
-			            body #dsdi-wrapper > .dsdi-directory-container .ds-button.active,
-			            body #dsdi-wrapper > .dsdi-directory-container button:hover {
-			            	color: ' . $this->settings['design']['button_color_text_hover'] . ';
-			            }';
-
-			$styles .= 'body #dsdi-wrapper > .dsdi-directory-container button.active .ds-icon-arrow-down:before,
-									body #dsdi-wrapper > .dsdi-directory-container button.active .ds-icon-arrow-down:after,
-									body #dsdi-wrapper > .dsdi-directory-container button:hover .ds-icon-arrow-down:before,
-									body #dsdi-wrapper > .dsdi-directory-container button:hover .ds-icon-arrow-down:after {
-										background: ' . $this->settings['design']['button_color_text_hover'] . ';
-									}';
-		}
-
-		if ( !empty( $this->settings['design']['text_color'] ) )
-			$styles .= 'body #dsdi-wrapper * {
-			            	color: ' . $this->settings['design']['text_color'] . ';
-			            }';
-
-		return $styles;
+		return include( DSDI_ROOT_PATH . 'inc/dynamic-styles.php' );
 	}
 
 	/**
@@ -256,7 +172,7 @@ class DS_DIRECTORY {
 	 */
 	public function shortcode_directory( $atts, $content, $tag ) {
 		// $atts_merged = shortcode_atts( array(
-		// 	'category_id' => -1
+		// 	'directory_id' => -1
 		// ), $atts );
 		//
 		// ob_start();
@@ -311,7 +227,10 @@ class DS_DIRECTORY {
 			// 'taxonomies' 	        => array( 'post_tag' ),
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',
-			'menu_icon'           => DSDI_ASSETS_URL . 'images/icon-xs.png'
+			'menu_icon'           => DSDI_ASSETS_URL . 'images/icon-xs.png',
+			'rewrite'             => array(
+				'slug'            => 'directory-item'
+			)
 		);
 
 		register_post_type( 'dsdi_item', $args );
@@ -323,46 +242,48 @@ class DS_DIRECTORY {
 	 * @access public
 	 */
 	static public function register_post_taxonomies() {
-		register_taxonomy( 'dsdi_category', array( 'dsdi_item' ), array(
+		register_taxonomy( 'ds_directory', array( 'dsdi_item' ), array(
 			'hierarchical'      => true,
 			'labels'            => array(
 				'name'              => _x( 'Directories', 'taxonomy general name'        , DSDI_SLUG ),
-				'singular_name'     => _x( 'Directory category', 'taxonomy singular name', DSDI_SLUG ),
+				'singular_name'     => _x( 'Directory', 'taxonomy singular name', DSDI_SLUG ),
 				'search_items'      => __( 'Search directories'           , DSDI_SLUG ),
 				'not_found'         => __( 'No directories found'         , DSDI_SLUG ),
 				'all_items'         => __( 'All directories'              , DSDI_SLUG ),
-				'parent_item'       => __( 'Parent directory category'    , DSDI_SLUG ),
-				'parent_item_colon' => __( 'Parent directory category:'   , DSDI_SLUG ),
-				'edit_item'         => __( 'Edit directory category'      , DSDI_SLUG ),
-				'update_item'       => __( 'Update directory category'    , DSDI_SLUG ),
-				'add_new_item'      => __( 'Add new directory category'   , DSDI_SLUG ),
-				'view_item'         => __( 'View directory category'      , DSDI_SLUG ),
-				'new_item_name'     => __( 'New directory category name'  , DSDI_SLUG ),
+				'parent_item'       => __( 'Parent directory'    , DSDI_SLUG ),
+				'parent_item_colon' => __( 'Parent directory:'   , DSDI_SLUG ),
+				'edit_item'         => __( 'Edit directory'      , DSDI_SLUG ),
+				'update_item'       => __( 'Update directory'    , DSDI_SLUG ),
+				'add_new_item'      => __( 'Add new directory'   , DSDI_SLUG ),
+				'view_item'         => __( 'View directory'      , DSDI_SLUG ),
+				'new_item_name'     => __( 'New directory name'  , DSDI_SLUG ),
 				'menu_name'         => __( 'Directories'                  , DSDI_SLUG ),
 		  ),
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'ds-directory' )
+			'rewrite'           => array(
+				'slug' => 'directory'
+			)
 		) );
 
-		register_taxonomy_for_object_type( 'dsdi_category', 'dsdi_item' );
+		register_taxonomy_for_object_type( 'ds_directory', 'dsdi_item' );
 
-		if ( !term_exists( 'all', 'dsdi_category' ) )
-			wp_insert_term( 'All directories', 'dsdi_category', ['slug' => 'all'] );
+		if ( !term_exists( 'all', 'ds_directory' ) )
+			wp_insert_term( 'All directories', 'ds_directory', ['slug' => 'all'] );
 	}
 
 	/**
-	 * Register dsdi_item & dsdi_category query vars.
+	 * Register dsdi_item & ds_directory query vars.
 	 *
 	 * @access public
 	 */
-	public function directory_render_template( $template ) {
+	public function get_directory_template( $template ) {
 		global $wp_query;
 
 		if (
-			   !empty( $wp_query->query_vars['dsdi_category'] )
-			&& term_exists( $wp_query->query_vars['dsdi_category'] )
+			   !empty( $wp_query->query_vars['ds_directory'] )
+			&& term_exists( $wp_query->query_vars['ds_directory'] )
 		)
 			return DSDI_ROOT_PATH . 'templates/archive.php';
 
@@ -370,11 +291,11 @@ class DS_DIRECTORY {
 	}
 
 	/**
-	 * Register dsdi_item & dsdi_category query vars.
+	 * Register dsdi_item & ds_directory query vars.
 	 *
 	 * @access public
 	 */
-	public function single_render_template( $template ) {
+	public function get_directory_item_template( $template ) {
 		global $wp_query;
 
 		if ( empty( $wp_query->query_vars['dsdi_item'] ) )
@@ -384,7 +305,7 @@ class DS_DIRECTORY {
 	}
 
 	/**
-	 * Alter the main WP_Query object to modify fetched dsdi_item & dsdi_category data.
+	 * Alter the main WP_Query object to modify fetched dsdi_item & ds_directory data.
 	 *
 	 * @access public
 	 */
@@ -395,7 +316,7 @@ class DS_DIRECTORY {
 		if ( !$query->is_main_query() )
 			return;
 
-		if ( !empty( $query->query_vars['dsdi_category'] ) ) {
+		if ( !empty( $query->query_vars['ds_directory'] ) ) {
 			if (
 				   !empty( $this->settings['general']['load_condition'] )
 				&& 'all' !== $this->settings['general']['load_condition']
@@ -421,7 +342,7 @@ class DS_DIRECTORY {
 	}
 
 	/**
-	 * Alter the main WP_Query object to modify fetched dsdi_item & dsdi_category data.
+	 * Alter the main WP_Query object to modify fetched dsdi_item & ds_directory data.
 	 * Handle directory root query (Fetch all directories).
 	 *
 	 * @access public
@@ -434,17 +355,17 @@ class DS_DIRECTORY {
 			return;
 
 		if (
-			   !empty( $query->query_vars['dsdi_category'] )
-			&& 'all' === $query->query_vars['dsdi_category']
+			   !empty( $query->query_vars['ds_directory'] )
+			&& 'all' === $query->query_vars['ds_directory']
 		) {
-			$terms    = get_terms( array( 'taxonomy' => 'dsdi_category' ) );
+			$terms    = get_terms( array( 'taxonomy' => 'ds_directory' ) );
 			$term_ids = array();
 
 			foreach ( $terms as $term )
 				$term_ids[] = $term->term_id;
 
 			$tax_query = array(
-				'taxonomy'         => 'dsdi_category',
+				'taxonomy'         => 'ds_directory',
 				'field'            => 'term_id',
 				'terms'            => $term_ids,
 				'operator'         => 'IN',
@@ -455,21 +376,28 @@ class DS_DIRECTORY {
 	}
 
 	/**
-	 * Alter the main WP_Query object to modify fetched dsdi_item & dsdi_category data.
+	 * // Redirect root "/directory" to "/all".
 	 *
 	 * @access public
 	 */
-	public function directory_root_redirect() {
+	public function template_root_redirect() {
 		global $wp_query;
 
-		// Redirect root to .../all/
 		if (
 			   !empty( $wp_query->query['name'] )
 			&& 'ds_directory' === $wp_query->query['name']
-		) {
-			wp_safe_redirect( esc_url( home_url() . '/directory/all/' ) );
-			exit;
-		}
+		)
+			redirect_to_root();
+	}
+
+	/**
+	 * Alter the main WP_Query object to modify fetched dsdi_item & ds_directory data.
+	 *
+	 * @access public
+	 */
+	public function redirect_to_root() {
+		wp_safe_redirect( esc_url( home_url() . '/directory/all/' ) );
+		exit;
 	}
 }
 

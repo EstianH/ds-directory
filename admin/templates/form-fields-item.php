@@ -1,25 +1,12 @@
 <?php if( !defined( 'ABSPATH' ) ) exit;
 
 $dsdi = DS_DIRECTORY::get_instance();
-$options = get_post_meta( $post->ID, 'options', true );
+$options = get_post_meta( $post->ID, 'dsdi_options', true );
 
 // Render nonce field.
-wp_nonce_field( 'save_post', 'dsdi_options_save_nonce' );
+wp_nonce_field( 'dsdi_save_post', 'dsdi_options_save_nonce' );
 ?>
 <div class="ds-container ds-p-2">
-	<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb">
-		<div class="ds-col-12 ds-col-lg-3">
-			<?php _e( 'Number', DSDI_SLUG ); ?>:
-		</div>
-		<div class="ds-col-12 ds-col-lg-9">
-			<input
-				class="ds-input-box"
-				name="dsdi_options[number]"
-				type="text"
-				value="<?php echo ( !empty( $options['number'] ) ? $options['number'] : ''); ?>"
-				placeholder="eg. 1A" />
-		</div><!-- .ds-col -->
-	</div><!-- .ds-row -->
 	<div class="ds-row ds-flex-align-center">
 		<div class="ds-col-12 ds-col-lg-3">
 			<?php _e( 'Contact Number', DSDI_SLUG ); ?>:

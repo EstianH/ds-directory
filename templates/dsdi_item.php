@@ -9,11 +9,11 @@
  * @since 1.0.0
  */
 
-$options = get_post_meta( get_the_ID(), 'options', true );
+$options = get_post_meta( get_the_ID(), 'dsdi_options', true );
 
 // Redirect pages that are set to exclude single.
 if ( !empty( $options['single_excl'] ) )
-	directory_root_redirect();
+	DS_DIRECTORY::get_instance()->redirect_to_root();
 
 get_header();
 ?>
@@ -30,7 +30,7 @@ get_header();
 				while ( have_posts() ) {
 					the_post();
 
-					$categories = get_the_terms( get_the_ID(), 'dsdi_category' );
+					$categories = get_the_terms( get_the_ID(), 'ds_directory' );
 
 					if ( !empty( $categories[0]->name ) ) {
 					?>
