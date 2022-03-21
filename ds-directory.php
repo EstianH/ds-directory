@@ -91,6 +91,8 @@ class DS_DIRECTORY {
 		add_filter( 'template_include', array( $this, 'get_directory_template' ), 0, 1 );
 		add_filter( 'template_include', array( $this, 'get_directory_item_template' ), 0, 1 );
 
+		add_action( 'directories_header', array( $this, 'get_directory_header' ), 10 );
+
 		// Redirect root "/directory" to "all".
 		add_action( 'template_redirect', array( $this, 'template_root_redirect' ) );
 
@@ -302,6 +304,15 @@ class DS_DIRECTORY {
 			return $template;
 
 		return DSDI_ROOT_PATH . 'templates/dsdi_item.php';
+	}
+
+	/**
+	 * Register dsdi_item & ds_directory query vars.
+	 *
+	 * @access public
+	 */
+	public function get_directory_header() {
+		include ( DSDI_ROOT_PATH . 'templates/directories-header.php' );
 	}
 
 	/**

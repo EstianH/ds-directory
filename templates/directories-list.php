@@ -5,56 +5,11 @@ global $wp_query;
 
 $dsdi = DS_DIRECTORY::get_instance();
 
-$cat_all           = get_term_by( 'slug', 'all', 'ds_directory' );
-$current_dir_obj   = $wp_query->queried_object; // If this is empty it means the root directory is active.
 $current_permalink = esc_url( ( !empty( $current_dir_obj ) ? get_term_link( $current_dir_obj ) : home_url() . '/ds-directory' ) );
-
-$args = array(
-	'hide_empty' => false,
-	'orderby'    => 'name',
-	'order'      => 'ASC',
-	'taxonomy'   => 'ds_directory'
-);
-$directories  = get_terms( $args );
-
-$navigation_active = (
-	empty( $current_dir_obj->name ) // Root "ds-directory".
-		? 'All directory items'
-		: $current_dir_obj->name
-);
-
 $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] ) : 'ASC' );
-$sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_order : '' );
 ?>
 <div class="dsdi-directory-container">
-	<div class="dsdi-directory-header">
-		<div class="dsdi-directory-list-nav-container">
-			<button class="ds-button ds-d-flex ds-flex-align-center ds-justify-content-center" type="button">
-				<?php echo $navigation_active; ?>
-				<span class="ds-icon-arrow-down ds-ml-1"></span>
-			</button>
-			<ul class="dsdi-directory-list-nav" style="display: none;">
-				<li><a href="<?php echo esc_url( get_term_link( $cat_all ) . $sort_order_link_addon ); ?>"><?php _e( $cat_all->name, DSDI_SLUG ); ?></a></li>
-				<?php foreach ( $directories as $directory ) {
-					if ( $cat_all->term_id === $directory->term_id )
-						continue;
-
-					echo '<li><a href="' . esc_url( get_term_link( $directory ) . $sort_order_link_addon ) . '">' . $directory->name . ' <span>(' . $directory->count . ')</span></a></li>';
-				} ?>
-			</ul>
-		</div>
-		<div class="dsdi-directory-list-search-container">
-			<?php
-			if ( !empty( get_search_query() ) )
-				echo '<a href="' . $current_permalink . '">' . __( 'Clear Search', DSDI_SLUG ) . '</a>';
-			?>
-			<form class="dsdi-directory-search-form" method="get" action="<?php echo $current_permalink; ?>">
-				<input type="text" name="s" value="<?php echo get_search_query(); ?>" class="dsdi-directory-search" size="15" placeholder="<?php echo $navigation_active; ?>" />
-				<!--<input type="hidden" name="test" class="test" value="this-will-show-in-url" />-->
-				<input type="submit" value="Search" class="<?php echo ( !empty( get_search_query() ) ? ' active' : '' ); ?>" />
-			</form>
-		</div>
-	</div>
+	<?php do_action( 'directories_header' ); ?>
 	<div class="dsdi-directory-body">
 		<ul class="dsdi-directory-list">
 			<?php
@@ -80,7 +35,7 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 					the_post();
 
 					$directories = get_the_terms( get_the_ID(), 'ds_directory' );
-					   $options = get_post_meta( get_the_ID(), 'options', true );
+					   $options = get_post_meta( get_the_ID(), 'dsdi_options', true );
 
 					if ( empty( $options ) )
 						continue;
@@ -88,7 +43,7 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 					echo '<li class="dsdi-item">';
 						echo '<div class="dsdi-number">' .
 							'<span class="ds-d-lg-none">' . __( 'Number', DSDI_SLUG ) . '</span>' .
-							'<span>' . ( ( int )$options['number'] ?: '-' ) . '</span>' .
+							'<span>' . ( !empty( $options['number'] ) ? $options['number'] : '-' ) . '</span>' .
 						'</div>' .
 						'<div class="dsdi-title">' .
 							'<span class="ds-d-lg-none">' . __( 'Name', DSDI_SLUG ) . '</span>' .
@@ -113,7 +68,7 @@ $sort_order_link_addon = ( 'DESC' === $sort_order ? '?sort=name&order=' . $sort_
 
 						echo '<div class="dsdi-contact-number">' .
 							'<span class="ds-d-lg-none">' . __( 'Contact Number', DSDI_SLUG ) . '</span>' .
-							'<span>' . ( ( int )$store_options['contact_number'] ?: '-' ) . '</span>' .
+							'<span>' . ( !empty( $options['contact_number'] ) ? $options['contact_number'] : '-' ) . '</span>' .
 						'</div>';
 
 						if ( !empty( $dsdi->settings['general']['single'] ) )
