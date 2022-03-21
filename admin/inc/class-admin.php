@@ -3,19 +3,19 @@ if( !defined( 'ABSPATH' ) ) exit;
 
 
 /*
-██████  ███████ ███████ ██████       █████  ██████  ███    ███ ██ ███    ██
-██   ██ ██      ██      ██   ██     ██   ██ ██   ██ ████  ████ ██ ████   ██
-██   ██ ███████ ███████ ██   ██     ███████ ██   ██ ██ ████ ██ ██ ██ ██  ██
-██   ██      ██      ██ ██   ██     ██   ██ ██   ██ ██  ██  ██ ██ ██  ██ ██
-██████  ███████ ███████ ██████      ██   ██ ██████  ██      ██ ██ ██   ████
+██████  ███████ ██████  ██      █████  ██████  ███    ███ ██ ███    ██
+██   ██ ██      ██   ██ ██     ██   ██ ██   ██ ████  ████ ██ ████   ██
+██   ██ ███████ ██   ██ ██     ███████ ██   ██ ██ ████ ██ ██ ██ ██  ██
+██   ██      ██ ██   ██ ██     ██   ██ ██   ██ ██  ██  ██ ██ ██  ██ ██
+██████  ███████ ██████  ██     ██   ██ ██████  ██      ██ ██ ██   ████
 */
-class DS_STORE_DIRECTORY_ADMIN {
+class DS_DIRECTORY_ADMIN {
 	/**
 	 * Class instance.
 	 *
 	 * @access private
 	 * @static
-	 * @var DS_STORE_DIRECTORY_ADMIN
+	 * @var DS_DIRECTORY_ADMIN
 	 */
 	private static $instance;
 
@@ -24,11 +24,11 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 *
 	 * @access public
 	 * @static
-	 * @return DS_STORE_DIRECTORY_ADMIN $instance
+	 * @return DS_DIRECTORY_ADMIN $instance
 	 */
 	public static function get_instance() {
 		if ( NULL === self::$instance )
-			self::$instance = new DS_STORE_DIRECTORY_ADMIN();
+			self::$instance = new DS_DIRECTORY_ADMIN();
 
 		return self::$instance;
 	}
@@ -45,15 +45,15 @@ class DS_STORE_DIRECTORY_ADMIN {
 		// Register the admin settings page.
 		add_action( 'admin_menu', array( $this, 'render_admin_menu' ) );
 
-		// Handle setting fields on edit/add-new stores.
-		add_action( 'add_meta_boxes',  array( $this, 'store_edit_form_fields' ), 10 );
-		add_action( 'save_post_store', array( $this, 'store_save_form_fields' ), 10, 3 );
+		// Handle setting fields on edit/add-new directory items.
+		add_action( 'add_meta_boxes'     , array( $this, 'edit_form_fields' ), 10 );
+		add_action( 'save_post_dsdi_item', array( $this, 'save_form_fields' ), 10, 3 );
 
 		// Handle setting fields on edit/add-new categories.
-		add_action( 'store_directory_category_add_form_fields',  array( $this, 'category_add_form_fields' ),  10, 1 );
-		add_action( 'store_directory_category_edit_form_fields', array( $this, 'category_edit_form_fields' ), 10, 2 );
-		add_action( 'edited_store_directory_category', array( $this, 'category_save_form_fields' ), 10, 2 );
-		add_action( 'create_store_directory_category', array( $this, 'category_save_form_fields' ), 10, 2 );
+		add_action( 'dsdi_category_add_form_fields',  array( $this, 'category_add_form_fields' ),  10, 1 );
+		add_action( 'dsdi_category_edit_form_fields', array( $this, 'category_edit_form_fields' ), 10, 2 );
+		add_action( 'edited_dsdi_category', array( $this, 'category_save_form_fields' ), 10, 2 );
+		add_action( 'create_dsdi_category', array( $this, 'category_save_form_fields' ), 10, 2 );
 
 		// Add theme specific "Avada Fusion" options to our custom taxonomies.
 		add_filter( 'fusion_tax_meta_allowed_screens', array( $this, 'category_fusion_options' ), 0, 1 );
@@ -68,10 +68,10 @@ class DS_STORE_DIRECTORY_ADMIN {
 
 			// Return early if an irrelevant page was opened.
 			if (
-				'store_page_' . DSSD_SLUG !== $hook_suffix
+				   'dsdi_item_page_' . DSDI_SLUG !== $hook_suffix
 				&& (
-					empty( $post )
-					|| 'store' !== $post->post_type
+					   empty( $post )
+					|| 'dsdi_item' !== $post->post_type
 				)
 			)
 				return;
@@ -82,25 +82,25 @@ class DS_STORE_DIRECTORY_ADMIN {
 			wp_enqueue_style( 'wp-color-picker' ); // WP Color Picker.
 
 			// Plugin assets.
-			wp_enqueue_script( 'dssd-script', DSSD_ROOT_URL . 'admin/assets/js/script.js',  array( 'jquery-core', 'wp-color-picker-alpha' ), DSSD_VERSION );
-			 wp_enqueue_style( 'dssd-style',  DSSD_ROOT_URL . 'admin/assets/css/style.css', array(),                                         DSSD_VERSION );
+			wp_enqueue_script( 'dsdi-script', DSDI_ROOT_URL . 'admin/assets/js/script.js',  array( 'jquery-core', 'wp-color-picker-alpha' ), DSDI_VERSION );
+			 wp_enqueue_style( 'dsdi-style',  DSDI_ROOT_URL . 'admin/assets/css/style.css', array(),                                         DSDI_VERSION );
 
 			// Vendor assets.
-			wp_enqueue_script( 'dsc-script', DSSD_ROOT_URL . 'admin/assets/vendors/ds-core/js/script.js',  array( 'jquery-core' ), DSSD_VERSION );
-			 wp_enqueue_style(  'dsc-style', DSSD_ROOT_URL . 'admin/assets/vendors/ds-core/css/style.css', array(),                DSSD_VERSION );
+			wp_enqueue_script( 'dsc-script', DSDI_ROOT_URL . 'admin/assets/vendors/ds-core/js/script.js',  array( 'jquery-core' ), DSDI_VERSION );
+			 wp_enqueue_style(  'dsc-style', DSDI_ROOT_URL . 'admin/assets/vendors/ds-core/css/style.css', array(),                DSDI_VERSION );
 			wp_enqueue_script(
 				'wp-color-picker-alpha',
-				DSSD_ROOT_URL . 'admin/assets/vendors/wp-color-picker-alpha/wp-color-picker-alpha.min.js',
+				DSDI_ROOT_URL . 'admin/assets/vendors/wp-color-picker-alpha/wp-color-picker-alpha.min.js',
 				array( 'wp-color-picker' ),
-				DSSD_VERSION
+				DSDI_VERSION
 			); // Overriden/Extended WP Color Picker
 		} );
 
 		// Filters
-		add_filter( 'plugin_action_links_' . DSSD_BASENAME, array( $this, 'register_plugin_action_links' ), 10, 1 ); // Add plugin list settings link.
+		add_filter( 'plugin_action_links_' . DSDI_BASENAME, array( $this, 'register_plugin_action_links' ), 10, 1 ); // Add plugin list settings link.
 
 		// Handle plugin setting updates.
-		add_action( 'wp_ajax_dssd_settings_update', array( $this, 'dssd_settings_update' ), 10 );
+		add_action( 'wp_ajax_dsdi_settings_update', array( $this, 'settings_update' ), 10 );
 	}
 
 	/**
@@ -111,17 +111,17 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 */
 	public function render_admin_menu() {
 		// Return early if the slug already exists.
-		if ( !empty( $GLOBALS['admin_page_hooks'][DSSD_SLUG] ) )
+		if ( !empty( $GLOBALS['admin_page_hooks'][DSDI_SLUG] ) )
 			return;
 
 		add_submenu_page(
-			'edit.php?post_type=store',                 // $parent_slug
-			DSSD_TITLE,                                 // $page_title
+			'edit.php?post_type=dsdi_item',             // $parent_slug
+			DSDI_TITLE,                                 // $page_title
 			'Settings',                                 // $menu_title
 			'edit_plugins',                             // $capability
-			DSSD_SLUG,                                  // $menu_slug
+			DSDI_SLUG,                                  // $menu_slug
 			function() {                                // $function
-				include DSSD_ADMIN_PATH . 'templates/settings.php';
+				include DSDI_ADMIN_PATH . 'templates/settings.php';
 			},
 			99                                          // $position
 		);
@@ -133,9 +133,9 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 * @access public
 	 */
 	public function update_settings_maybe() {
-		if ( version_compare( get_option( 'dssd_version' ), DSSD_VERSION, '<' ) ) {
-			$dssd = DS_STORE_DIRECTORY::get_instance();
-			$dssd->activate();
+		if ( version_compare( get_option( 'dsdi_version' ), DSDI_VERSION, '<' ) ) {
+			$dsdi = DS_DIRECTORY::get_instance();
+			$dsdi->activate();
 		}
 	}
 
@@ -147,7 +147,7 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 * @return array $links Updated plugin links.
 	 */
 	public function register_plugin_action_links( $links ) {
-		$settings_link = '<a href="' . esc_url( admin_url( '/edit.php' ) ) . '?page=' . DSSD_SLUG . '&post_type=store">' . __( 'Settings', DSSD_SLUG ) . '</a>';
+		$settings_link = '<a href="' . esc_url( admin_url( '/edit.php' ) ) . '?page=' . DSDI_SLUG . '&post_type=dsdi_item">' . __( 'Settings', DSDI_SLUG ) . '</a>';
 		array_push( $links, $settings_link );
 
 		return $links;
@@ -160,7 +160,7 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 */
 	public function category_add_form_fields( $taxonomy ) {
 		// echo '<div class="form-field ds-mt-5">';
-		// 	include DSSD_ADMIN_PATH . 'templates/form-fields-category.php';
+		// 	include DSDI_ADMIN_PATH . 'templates/form-fields-category.php';
 		// echo '</div>';
 	}
 
@@ -172,7 +172,7 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 */
 	public function category_edit_form_fields( $term, $taxonomy ) {
 		// echo '<tr class="form-field"><td class="ds-pl-0 ds-pr-0" colspan="2">';
-		// 	include DSSD_ADMIN_PATH . 'templates/form-fields-category.php';
+		// 	include DSDI_ADMIN_PATH . 'templates/form-fields-category.php';
 		// echo '</td></tr>';
 	}
 
@@ -188,42 +188,42 @@ class DS_STORE_DIRECTORY_ADMIN {
 	}
 
 	/**
-	 * Add field settings to the store edit/add-new page.
+	 * Add field settings to the dsdi_item edit/add-new page.
 	 *
-	 * @uses store_edit_form_fields_template() Fetches the HTML fields.
+	 * @uses edit_form_fields_template() Fetches the HTML fields.
 	 */
-	public function store_edit_form_fields() {
+	public function edit_form_fields() {
 		add_meta_box(
-			'dssd_store_options', // Unique ID
-			'Store Options', // Box title
-			array( $this, 'store_edit_form_fields_template' ),
-			'store'          // Post type
+			'dsdi_options',           // Unique ID
+			'Directory Item Options', // Box title
+			array( $this, 'edit_form_fields_template' ),
+			'dsdi_item'                   // Post type
 		);
 	}
 
 	/**
-	 * Render store field settings HTML.
+	 * Render field settings HTML.
 	 *
 	 * @param WP_Post $post Post object.
 	 */
-	public function store_edit_form_fields_template( $post ) {
-		include DSSD_ADMIN_PATH . 'templates/form-fields-store.php';
+	public function edit_form_fields_template( $post ) {
+		include DSDI_ADMIN_PATH . 'templates/form-fields-item.php';
 	}
 
 	/**
-	 * Save store field settings.
+	 * Save item field settings.
 	 *
 	 * @param int     $post_id Post id.
 	 * @param WP_Post $post    Post object.
 	 * @param bool    $update  Whether this is an existing post being updated or not.
 	 */
-	public function store_save_form_fields( $post_id, $post, $update ) {
+	public function save_form_fields( $post_id, $post, $update ) {
 		// Return early on auto saves.
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			return;
 
-		// Return early if the post_type does not equal store.
-		if ( 'store' !== $post->post_type )
+		// Return early on irrelevant post_type.
+		if ( 'dsdi_item' !== $post->post_type )
 			return;
 
 		// Return early for unauthorized user requests.
@@ -232,20 +232,20 @@ class DS_STORE_DIRECTORY_ADMIN {
 
 		// Return early if the metabox nonce fails.
 		if (
-			empty( $_POST['store_options_save_nonce'] )
-			|| !wp_verify_nonce( $_POST['store_options_save_nonce'], 'save_post' )
+			   empty( $_POST['dsdi_options_save_nonce'] )
+			|| !wp_verify_nonce( $_POST['dsdi_options_save_nonce'], 'save_post' )
 		)
 			return;
 
-		if ( array_key_exists( 'store_options', $_POST ) ) {
-			foreach( $_POST['store_options'] as &$store_option ) {
+		if ( array_key_exists( 'dsdi_options', $_POST ) ) {
+			foreach( $_POST['dsdi_options'] as &$store_option ) {
 				$store_option = sanitize_text_field( $store_option );
 			}
 
 			update_post_meta(
 				$post_id,
-				'store_options',
-				$_POST['store_options']
+				'dsdi_options',
+				$_POST['dsdi_options']
 			);
 		}
 	}
@@ -253,35 +253,35 @@ class DS_STORE_DIRECTORY_ADMIN {
 	/**
 	 * Handle plugin setting updates.
 	 */
-	public function dssd_settings_update() {
+	public function settings_update() {
 		// Return early if no settings have been posted.
-		if ( empty( $_POST['dssd_settings'] ) )
+		if ( empty( $_POST['dsdi_settings'] ) )
 			return;
 
 		// Return early if the form nonce fails.
 		if (
-			empty( $_POST['dssd_settings_nonce'] )
-			|| !wp_verify_nonce( $_POST['dssd_settings_nonce'], 'dssd_settings_update' )
+			   empty( $_POST['dsdi_settings_nonce'] )
+			|| !wp_verify_nonce( $_POST['dsdi_settings_nonce'], 'dsdi_settings_update' )
 		)
 			return;
 
 		// Add the default CSS unit to relevant fields.
-		foreach ( $_POST['dssd_settings']['design']['padding'] as $side => &$padding )
+		foreach ( $_POST['dsdi_settings']['design']['padding'] as $side => &$padding )
 			if ( '0' === $padding )
 				$padding .= 'px';
 
 		// If this string value contains only numbers.
-		if ( ctype_digit( $_POST['dssd_settings']['design']['max_width'] ) )
-			$_POST['dssd_settings']['design']['max_width'] .= 'px';
+		if ( ctype_digit( $_POST['dsdi_settings']['design']['max_width'] ) )
+			$_POST['dsdi_settings']['design']['max_width'] .= 'px';
 
-		// If the store paginated option is selected without adding a number, save 15 as the default.
+		// If the paginated option is selected without adding a number, save 15 as the default.
 		if (
-			'all' !== $_POST['dssd_settings']['general']['store_load_condition']
-			&& empty( $_POST['dssd_settings']['general']['store_load_count'] )
+			   'all' !== $_POST['dsdi_settings']['general']['load_condition']
+			&& empty( $_POST['dsdi_settings']['general']['load_count'] )
 		)
-			$_POST['dssd_settings']['general']['store_load_count'] = 15;
+			$_POST['dsdi_settings']['general']['load_count'] = 15;
 
-		update_option( 'dssd_settings', $_POST['dssd_settings'] );
+		update_option( 'dsdi_settings', $_POST['dsdi_settings'] );
 	}
 
 
@@ -290,7 +290,7 @@ class DS_STORE_DIRECTORY_ADMIN {
 	 * Add theme specific "Avada Fusion" options to our custom taxonomies.
 	 */
 	public function category_fusion_options( $taxonomies ) {
-		$taxonomies[] = 'store_directory_category';
+		$taxonomies[] = 'dsdi_category';
 		return $taxonomies;
 	}
 }

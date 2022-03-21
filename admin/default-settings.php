@@ -1,10 +1,10 @@
 <?php
 $default_settings = array(
 	'general' => array(
-		'store_single' => 1,
-		'store_category_template' => 'grid',
-		'store_load_condition' => 'all',
-		'store_grid' => array(
+		'single' => 1,
+		'category_template' => 'grid',
+		'load_condition' => 'all',
+		'grid' => array(
 			'featured_images' => 1,
 			'columns' => 6
 		)

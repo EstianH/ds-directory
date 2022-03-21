@@ -12,13 +12,13 @@ if ( !empty( $term ) ) {
 			<div class="ds-block-title">
 				<h2>
 					<span class="dashicons dashicons-admin-generic"></span>
-					<?php _e( 'Directory Options', DSSD_SLUG ); ?>
+					<?php _e( 'Directory Options', DSDI_SLUG ); ?>
 				</h2>
 			</div>
 			<div class="ds-block-body">
 				<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
 					<div class="ds-col-12 ds-col-lg-3 ds-p-0 ds-pr-lg-2">
-						<?php _e( 'Option 1', DSSD_SLUG ); ?>:
+						<?php _e( 'Option 1', DSDI_SLUG ); ?>:
 					</div>
 					<div class="ds-col-12 ds-col-lg-9 ds-p-0">
 						<label class="ds-toggler">

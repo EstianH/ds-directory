@@ -24,7 +24,7 @@ $ds-line-height: 18px;
      ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
 ███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
 */
-#dssd-form-saved-notice {
+#dsdi-form-saved-notice {
 	transition: right 0.4s;
 	position: fixed;
 	width: 100%;
@@ -38,10 +38,10 @@ $ds-line-height: 18px;
 	}
 }
 
-#dssd-form-main {
+#dsdi-form-main {
 	position: relative;
 
-	#dssd-form-loading-panel {
+	#dsdi-form-loading-panel {
 		transition: visibility 0.4s;
 		position: absolute;
 		top: 0;
@@ -58,7 +58,7 @@ $ds-line-height: 18px;
 	}
 }
 
-.dssd-sticky-bottom {
+.dsdi-sticky-bottom {
 	position: sticky;
 	bottom: 0;
 	z-index: 8;
@@ -110,13 +110,13 @@ $ds-line-height: 18px;
 
 
 /*
-███████ ████████  ██████  ██████  ███████     ███████ ███████ ████████ ████████ ██ ███    ██  ██████  ███████
-██         ██    ██    ██ ██   ██ ██          ██      ██         ██       ██    ██ ████   ██ ██       ██
-███████    ██    ██    ██ ██████  █████       ███████ █████      ██       ██    ██ ██ ██  ██ ██   ███ ███████
-     ██    ██    ██    ██ ██   ██ ██               ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
-███████    ██     ██████  ██   ██ ███████     ███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
+███████ ███████ ████████ ████████ ██ ███    ██  ██████  ███████
+██      ██         ██       ██    ██ ████   ██ ██       ██
+███████ █████      ██       ██    ██ ██ ██  ██ ██   ███ ███████
+     ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
+███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
 */
-#dssd_store_options {
+#dsdi_options {
 	> .inside {
 		margin: 0;
 		padding: 0;

@@ -6,7 +6,7 @@
      ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
 ███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
 */
-#dssd-form-saved-notice {
+#dsdi-form-saved-notice {
   transition: right 0.4s;
   position: fixed;
   width: 100%;
@@ -14,12 +14,12 @@
   top: 50px;
   right: -310px;
   z-index: 10; }
-  #dssd-form-saved-notice.active {
+  #dsdi-form-saved-notice.active {
     right: 0px; }
 
-#dssd-form-main {
+#dsdi-form-main {
   position: relative; }
-  #dssd-form-main #dssd-form-loading-panel {
+  #dsdi-form-main #dsdi-form-loading-panel {
     transition: visibility 0.4s;
     position: absolute;
     top: 0;
@@ -29,10 +29,10 @@
     background: rgba(255, 255, 255, 0.5);
     z-index: 9;
     visibility: hidden; }
-    #dssd-form-main #dssd-form-loading-panel.active {
+    #dsdi-form-main #dsdi-form-loading-panel.active {
       visibility: visible; }
 
-.dssd-sticky-bottom {
+.dsdi-sticky-bottom {
   position: sticky;
   bottom: 0;
   z-index: 8; }
@@ -54,13 +54,13 @@
     line-height: 28px !important; }
 
 /*
-███████ ████████  ██████  ██████  ███████     ███████ ███████ ████████ ████████ ██ ███    ██  ██████  ███████
-██         ██    ██    ██ ██   ██ ██          ██      ██         ██       ██    ██ ████   ██ ██       ██
-███████    ██    ██    ██ ██████  █████       ███████ █████      ██       ██    ██ ██ ██  ██ ██   ███ ███████
-     ██    ██    ██    ██ ██   ██ ██               ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
-███████    ██     ██████  ██   ██ ███████     ███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
+███████ ███████ ████████ ████████ ██ ███    ██  ██████  ███████
+██      ██         ██       ██    ██ ████   ██ ██       ██
+███████ █████      ██       ██    ██ ██ ██  ██ ██   ███ ███████
+     ██ ██         ██       ██    ██ ██  ██ ██ ██    ██      ██
+███████ ███████    ██       ██    ██ ██   ████  ██████  ███████
 */
-#dssd_store_options > .inside {
+#dsdi_options > .inside {
   margin: 0;
   padding: 0; }
 
