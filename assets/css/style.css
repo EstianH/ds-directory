@@ -141,9 +141,9 @@ body #dsdi-wrapper {
         top: 0;
         background: #fff; }
       body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header,
-      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi,
+      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item,
       body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header,
-      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi {
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item {
         height: 100%;
         width: 100%;
         display: flex;
@@ -153,14 +153,14 @@ body #dsdi-wrapper {
         justify-content: flex-start;
         margin: 0; }
         body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:not(:first-child),
-        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi:not(:first-child),
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item:not(:first-child),
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:not(:first-child),
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi:not(:first-child) {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:not(:first-child) {
           border-top: 1px solid #f9f9f9; }
         body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div,
-        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div,
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div,
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div {
           display: flex;
           flex-wrap: wrap;
           flex-direction: column;
@@ -172,51 +172,51 @@ body #dsdi-wrapper {
           overflow: hidden;
           text-overflow: ellipsis; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-title,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-title {
             height: 100%;
             width: 100%; }
             body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title > span:last-child,
-            body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title > span:last-child,
+            body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-title > span:last-child,
             body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title > span:last-child,
-            body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title > span:last-child {
+            body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-title > span:last-child {
               font-weight: bold; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-directory,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-directory,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-directory,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-directory,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-directory {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-directory {
             height: 100%;
             width: 100%; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-number,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-number,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-number,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-number,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-number {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-number {
             height: 100%;
             width: 100%; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-contact-number,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-contact-number,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-contact-number,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-contact-number,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-contact-number {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-contact-number {
             justify-content: center;
             height: 100%;
             width: 100%; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-view-details,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-view-details,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-view-details,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-view-details,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-view-details {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-view-details {
             height: 100%;
             width: 100%; }
         body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover,
-        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi:hover,
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover,
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi:hover {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover {
           transition: all 0.2s;
           border-color: #efefef; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover + .dsdi,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi:hover + .dsdi,
+          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover + .dsdi,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover + .dsdi,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi:hover + .dsdi {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover + .dsdi {
             transition: all 0.2s;
             border-color: #efefef; }
     body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block,
