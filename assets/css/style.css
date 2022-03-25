@@ -225,15 +225,14 @@ body #dsdi-wrapper {
       border: 1px solid #f9f9f9; }
       body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image,
       body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image {
-        height: 150px;
-        width: 100%;
-        padding: 15px; }
+        height: 250px;
+        width: 100%; }
         body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image > div,
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image > div {
           height: 100%;
           width: 100%;
           background-position: center center;
-          background-size: contain;
+          background-size: cover;
           background-repeat: no-repeat; }
       body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-block-title,
       body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-block-title {

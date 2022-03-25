@@ -227,14 +227,14 @@ body {
 						border: 1px solid $ds-grey-light;
 
 						> .dsdi-featured-image {
-							@include ds-dimensions( 100%, 150px );
-							padding: 15px;
+							@include ds-dimensions( 100%, 250px );
+							// padding: 15px;
 
 							> div {
 								@include ds-dimensions( 100%, 100% );
 								// background-image: url( http://speen-beast-pc/test/wp-content/uploads/2020/02/dsdi-_0030s_0001_Absa.jpg );
 								background-position: center center;
-								background-size: contain;
+								background-size: cover;
 								background-repeat: no-repeat;
 							}
 						}
