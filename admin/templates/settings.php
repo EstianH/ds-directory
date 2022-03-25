@@ -4,6 +4,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 // echo '<pre>'; var_dump( $dsdi ); echo '</pre>';
 $tabs = array(
 	'General',
+	'Directory Items',
 	'Design'
 );
 $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'general' );
@@ -199,6 +200,56 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 						</div><!-- #tab-<?php echo sanitize_title( $tabs[0] ); ?> -->
 						<?php
 						/*
+						████████  █████  ██████         ██████  ██ ██████  ███████  ██████ ████████  ██████  ██████  ██    ██     ██ ████████ ███████ ███    ███ ███████
+						   ██    ██   ██ ██   ██ ██     ██   ██ ██ ██   ██ ██      ██         ██    ██    ██ ██   ██  ██  ██      ██    ██    ██      ████  ████ ██
+						   ██    ███████ ██████         ██   ██ ██ ██████  █████   ██         ██    ██    ██ ██████    ████       ██    ██    █████   ██ ████ ██ ███████
+						   ██    ██   ██ ██   ██ ██     ██   ██ ██ ██   ██ ██      ██         ██    ██    ██ ██   ██    ██        ██    ██    ██      ██  ██  ██      ██
+						   ██    ██   ██ ██████         ██████  ██ ██   ██ ███████  ██████    ██     ██████  ██   ██    ██        ██    ██    ███████ ██      ██ ███████
+						*/
+						?>
+						<div id="tab-<?php echo sanitize_title( $tabs[1] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[1] ) ? ' active' : '' ); ?>">
+							<div class="ds-row">
+								<div class="ds-col ds-mb-2">
+									<div class="ds-block">
+										<div class="ds-block-title">
+											<h2>
+												<span class="dashicons dashicons-networking"></span>
+												<?php _e( 'Enabled options:', DSSM_SLUG ); ?>
+											</h2>
+										</div>
+										<div class="ds-block-body">
+											<?php
+											$enabled_options = [
+												'Contact number' => !empty( $dsdi->settings['directory-items']['enabled_options']['contact_number'] ),
+												'Unit number'    => !empty( $dsdi->settings['directory-items']['enabled_options']['unit_number'] ),
+												'Address'        => !empty( $dsdi->settings['directory-items']['enabled_options']['address'] ),
+												'Price'          => !empty( $dsdi->settings['directory-items']['enabled_options']['price'] ),
+											];
+
+											foreach ( $enabled_options as $option => $enabled ) : ?>
+												<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
+													<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+														<?php _e( $option, DSDI_SLUG ); ?>:
+													</div>
+													<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+														<label class="ds-toggler">
+															<input
+																name="dsdi_settings[directory-items][enabled_options][<?php echo sanitize_title( $option ); ?>]"
+																type="checkbox"
+																value="1"
+																<?php echo ( $enabled ? ' checked="checked"' : '' ); ?> />
+																<span></span>
+														</label>
+													</div><!-- .ds-col -->
+												</div><!-- .ds-row -->
+											<?php endforeach; ?>
+										</div><!-- .ds-block-body -->
+									</div><!-- .ds-block -->
+								</div><!-- .ds-col -->
+							</div><!-- .ds-row -->
+						</div><!-- #tab-<?php echo sanitize_title( $tabs[1] ); ?> -->
+						<?php
+						/*
 						████████  █████  ██████         ██████  ███████ ███████ ██  ██████  ███    ██
 						   ██    ██   ██ ██   ██ ██     ██   ██ ██      ██      ██ ██       ████   ██
 						   ██    ███████ ██████         ██   ██ █████   ███████ ██ ██   ███ ██ ██  ██
@@ -206,7 +257,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 						   ██    ██   ██ ██████         ██████  ███████ ███████ ██  ██████  ██   ████
 						*/
 						?>
-						<div id="tab-<?php echo sanitize_title( $tabs[1] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[1] ) ? ' active' : '' ); ?>">
+						<div id="tab-<?php echo sanitize_title( $tabs[2] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[2] ) ? ' active' : '' ); ?>">
 							<div class="ds-row ds-mb-2">
 								<div class="ds-col">
 									<div class="ds-block">
@@ -362,7 +413,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 									</div><!-- .ds-block -->
 								</div><!-- .ds-col -->
 							</div><!-- .ds-row -->
-						</div><!-- #tab-<?php echo sanitize_title( $tabs[0] ); ?> -->
+						</div><!-- #tab-<?php echo sanitize_title( $tabs[2] ); ?> -->
 						<div class="ds-row dsdi-sticky-bottom">
 							<div class="ds-col">
 								<div class="ds-block">
