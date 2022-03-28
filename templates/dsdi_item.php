@@ -9,15 +9,15 @@
  * @since 1.0.0
  */
 
-$options = get_post_meta( get_the_ID(), 'dsdi_options', true );
+$item_options = get_post_meta( get_the_ID(), 'dsdi_options', true );
 
 // Redirect pages that are set to exclude single.
-if ( !empty( $options['single_excl'] ) )
+if ( !empty( $item_options['single_excl'] ) )
 	DS_DIRECTORY::get_instance()->redirect_to_root();
 
 get_header();
 ?>
-<main id="site-content" role="main">
+<main id="content" role="main" style="width: 100%;">
 	<div id="dsdi-wrapper" class="entry dsdi-single-container">
 		<div class="entry-header">
 			<div class="entry-header-inner section-inner ds-text-center">
@@ -35,23 +35,23 @@ get_header();
 					if ( !empty( $categories[0]->name ) ) {
 					?>
 						<div class="ds-container ds-mb-5">
-							<div class="ds-row ds-flex-align-center">
-								<div class="ds-col-12 ds-col-lg-6 ds-p-0 ds-pr-lg-3 ds-mb-5 ds-mb-lg-0">
-									<div class="ds-row ds-ml-auto ds-mr-auto ds-bb ds-pb-1 ds-mb-1">
-										<div class="ds-col-12 ds-p-0">
-											<span class="ds-icon-shop ds-mr-1"></span>
-											<span><?php echo ( !empty( $options['number'] ) ? $options['number'] : '-' ); ?></span>
-										</div>
-									</div>
-									<div class="ds-row ds-ml-auto ds-mr-auto">
-										<div class="ds-col-12 ds-p-0">
-											<span class="ds-icon-phone ds-mr-1"></span>
-											<span><?php echo ( !empty( $options['contact_number'] ) ? $options['contact_number'] : '-' ); ?></span>
-										</div>
-									</div>
+							<div class="ds-row">
+								<div class="ds-col-12 ds-col-lg-9 ds-p-0 ds-pr-lg-3 ds-mb-5 ds-mb-lg-0">
+									<?php
+									if ( isset( $item_options['dynamic'] ) ) :
+										foreach ( $item_options['dynamic'] as $option => $value ) : ?>
+											<div class="ds-row ds-ml-auto ds-mr-auto ds-bb ds-pb-1 ds-mb-1">
+												<div class="ds-col-12 ds-p-0">
+													<!-- <span class="ds-icon-shop ds-mr-1"></span> -->
+													<span><?php _e( ucfirst( str_replace( '_', ' ', $option ) ), DSDI_SLUG ); ?>:</span>
+													<span><?php echo ( !empty( $value ) ? $value : '-' ); ?></span>
+												</div>
+											</div>
+										<?php endforeach; ?>
+									<?php endif; ?>
 								</div>
-								<div class="ds-col-12 ds-col-lg-6 ds-p-0">
-									<a class="ds-button" href="<?php echo esc_url( get_term_link( $categories[0] ) ); ?>">
+								<div class="ds-col-12 ds-col-lg-3 ds-p-0">
+									<a class="ds-button ds-p-1" href="<?php echo esc_url( get_term_link( $categories[0] ) ); ?>">
 										<?php echo __( 'Back to', DSDI_SLUG ) . ' ' . $categories[0]->name; ?>
 									</a>
 								</div>
