@@ -69,7 +69,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 										&&  empty( $options['single_excl'] )
 											? '<div class="ds-row ds-bt ds-pt-1 ds-mt-1">
 													<div class="ds-col-12 ds-p-0">
-														<a class="ds-button" href="' . get_permalink() . '">Details</a>
+														<a class="ds-button" href="' . get_permalink() . '">' . __( 'Details', DSDI_SLUG ) . '</a>
 													</div>
 												</div>'
 											: ''
