@@ -238,15 +238,27 @@ class DS_DIRECTORY_ADMIN {
 			return;
 
 		if ( array_key_exists( 'dsdi_options', $_POST ) ) {
-			foreach ( $_POST['dsdi_options'] as &$store_option )
-				$store_option = sanitize_text_field( $store_option );
+			$sanitized_options = $this->sanitize_form_input( $_POST['dsdi_options'] );
 
 			update_post_meta(
 				$post_id,
 				'dsdi_options',
-				$_POST['dsdi_options']
+				$sanitized_options
 			);
 		}
+	}
+
+	/**
+	 * Sanitize dsdi form inputs.
+	 */
+	public function sanitize_form_input( $input ) {
+		if ( is_array( $input ) )
+			foreach ( $input as $key => $input_part )
+				$input[$key] = $this->sanitize_form_input( $input_part );
+		else
+			$input = sanitize_text_field( $input );
+
+		return $input;
 	}
 
 	/**
@@ -282,8 +294,6 @@ class DS_DIRECTORY_ADMIN {
 
 		update_option( 'dsdi_settings', $_POST['dsdi_settings'] );
 	}
-
-
 
 	/**
 	 * Add theme specific "Avada Fusion" options to our custom taxonomies.
