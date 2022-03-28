@@ -4,7 +4,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 // echo '<pre>'; var_dump( $dsdi ); echo '</pre>';
 $tabs = array(
 	'General',
-	'Directory Items',
+	'Directory',
 	'Design'
 );
 $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'general' );
@@ -175,7 +175,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											</div><!-- .ds-row -->
 											<div class="ds-row ds-flex-align-center ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-													<?php _e( 'Enable Featured Images', DSDI_SLUG ); ?>:
+													<?php _e( 'Layout column count', DSDI_SLUG ); ?>:
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<select class="ds-input-box" name="dsdi_settings[general][grid][columns]">
