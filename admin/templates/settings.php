@@ -1,7 +1,6 @@
 <?php if( !defined( 'ABSPATH' ) ) exit;
 
 $dsdi = DS_DIRECTORY::get_instance();
-// echo '<pre>'; var_dump( $dsdi ); echo '</pre>';
 $tabs = array(
 	'General',
 	'Directory',
@@ -219,22 +218,17 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 										</div>
 										<div class="ds-block-body">
 											<?php
-											$enabled_options = [
-												'Contact number' => !empty( $dsdi->settings['directory-items']['enabled_options']['contact_number'] ),
-												'Unit number'    => !empty( $dsdi->settings['directory-items']['enabled_options']['unit_number'] ),
-												'Address'        => !empty( $dsdi->settings['directory-items']['enabled_options']['address'] ),
-												'Price'          => !empty( $dsdi->settings['directory-items']['enabled_options']['price'] ),
-											];
-
-											foreach ( $enabled_options as $option => $enabled ) : ?>
+											foreach ( $dsdi->get_default_settings()['directory']['enabled_options'] as $option => $enabled ) :
+												$enabled = ( isset( $dsdi->settings['directory']['enabled_options'][$option] ) ?: false );
+											?>
 												<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
 													<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-														<?php _e( $option, DSDI_SLUG ); ?>:
+														<?php _e( ucfirst( str_replace( '_', ' ', $option ) ), DSDI_SLUG ); ?>:
 													</div>
 													<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 														<label class="ds-toggler">
 															<input
-																name="dsdi_settings[directory-items][enabled_options][<?php echo sanitize_title( $option ); ?>]"
+																name="dsdi_settings[directory][enabled_options][<?php echo $option; ?>]"
 																type="checkbox"
 																value="1"
 																<?php echo ( $enabled ? ' checked="checked"' : '' ); ?> />
