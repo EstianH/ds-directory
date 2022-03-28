@@ -346,7 +346,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<input
 														class="wp-color-picker"
-														data-alpha="true"
+														data-alpha-enabled="true"
 														name="dsdi_settings[design][text_color]"
 														type="text"
 														value="<?php echo ( !empty( $dsdi->settings['design']['text_color'] ) ? $dsdi->settings['design']['text_color'] : '#515151' ); ?>"
@@ -360,7 +360,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<input
 														class="wp-color-picker"
-														data-alpha="true"
+														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_bg]"
 														type="text"
 														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_bg'] ) ? $dsdi->settings['design']['button_color_bg'] : '#fff' ); ?>"
@@ -374,7 +374,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<input
 														class="wp-color-picker"
-														data-alpha="true"
+														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_bg_hover]"
 														type="text"
 														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_bg_hover'] ) ? $dsdi->settings['design']['button_color_bg_hover'] : '#515151' ); ?>"
@@ -388,7 +388,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<input
 														class="wp-color-picker"
-														data-alpha="true"
+														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_text]"
 														type="text"
 														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_text'] ) ? $dsdi->settings['design']['button_color_text'] : '#515151' ); ?>"
@@ -402,7 +402,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<input
 														class="wp-color-picker"
-														data-alpha="true"
+														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_text_hover]"
 														type="text"
 														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_text_hover'] ) ? $dsdi->settings['design']['button_color_text_hover'] : '#fff' ); ?>"
