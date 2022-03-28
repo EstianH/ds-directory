@@ -131,12 +131,10 @@ class DS_DIRECTORY {
 	 * @access public
 	 */
 	static public function activate() {
-		include DSDI_ADMIN_PATH . 'default-settings.php'; // Fetch $default_settings.
-
 		update_option( 'dsdi_version', DSDI_VERSION );
 
 		if ( empty( get_option( 'dsdi_settings' ) ) )
-			update_option( 'dsdi_settings', $default_settings );
+			update_option( 'dsdi_settings', get_default_settings() );
 
 		self::register_post_type();
 		self::register_post_taxonomies();
@@ -155,12 +153,21 @@ class DS_DIRECTORY {
 	}
 
 	/**
+	 * Return plugin default settings.
+	 *
+	 * @access public
+	 */
+	public function get_default_settings() {
+		return include ( DSDI_ADMIN_PATH . 'default-settings.php' );
+	}
+
+	/**
 	 * Return dynamic styles.
 	 *
 	 * @access public
 	 */
 	public function get_dynamic_styles() {
-		return include( DSDI_ROOT_PATH . 'inc/dynamic-styles.php' );
+		return include ( DSDI_ROOT_PATH . 'inc/dynamic-styles.php' );
 	}
 
 	/**
