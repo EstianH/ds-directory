@@ -279,7 +279,12 @@ class DS_DIRECTORY {
 		register_taxonomy_for_object_type( 'ds_directory', 'dsdi_item' );
 
 		if ( !term_exists( 'all', 'ds_directory' ) )
-			wp_insert_term( 'All directories', 'ds_directory', ['slug' => 'all'] );
+			$ds_directory_all = get_term( wp_insert_term( 'All', 'ds_directory', ['slug' => 'all'] )['term_id'] );
+		else
+			$ds_directory_all = get_term_by( 'slug', 'all', 'ds_directory' );
+
+		if ( empty( get_option( 'default_ds_directory' ) ) )
+			update_option( 'default_ds_directory', $ds_directory_all->term_id );
 	}
 
 	/**
