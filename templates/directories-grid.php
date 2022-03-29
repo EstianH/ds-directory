@@ -45,7 +45,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 
 							if ( !empty( $dsdi->settings['general']['grid']['featured_images'] ) )
 								if ( has_post_thumbnail() )
-									echo '<a href="' . get_permalink() . '" class="dsdi-featured-image ds-d-block"><div style="background-image: url(' . get_the_post_thumbnail_url() . ');"></div></a>';
+									echo '<a href="' . get_permalink() . '" class="dsdi-featured-image ds-d-block"><div style="background-image: url(' . get_the_post_thumbnail_url( null, 'thumbnail' ) . ');"></div></a>';
 								else
 									echo '<a href="' . get_permalink() . '" class="dsdi-featured-image ds-d-flex ds-flex-align-center ds-justify-content-center"><small>' . __( 'No preview available.', DSDI_SLUG ) . '</small></a>';
 
