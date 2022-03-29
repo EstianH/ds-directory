@@ -246,6 +246,16 @@ class DS_DIRECTORY_ADMIN {
 				$sanitized_options
 			);
 		}
+
+		$ds_directory_all = get_term_by( 'slug', 'all', 'ds_directory' ); // Set your Category here
+
+		// Automatically assign any dsdi_item to the 'All' directory.
+		wp_set_object_terms(
+			$post_id,
+			get_term_by( 'slug', 'all', 'ds_directory' )->term_id,
+			'ds_directory',
+			true
+		);
 	}
 
 	/**
