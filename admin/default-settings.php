@@ -1,12 +1,12 @@
 <?php
 return array(
 	'general' => array(
-		'single' => 1,
+		'single'             => 1,
 		'directory_template' => 'grid',
-		'load_condition' => 'all',
-		'grid' => array(
-			'featured_images' => 1,
-			'columns' => 6
+		'load_condition'     => 'all',
+		'grid'               => array(
+			'featured_images'    => 1,
+			'columns'            => 6
 		)
 	),
 	'directory' => array(
@@ -17,10 +17,10 @@ return array(
 	),
 	'design' => array(
 		'padding' => array(
-			'top' => '',
-			'right' => '',
-			'bottom' => '',
-			'left' => ''
+			'top'     => '',
+			'right'   => '',
+			'bottom'  => '',
+			'left'    => ''
 		)
 	)
 );
