@@ -10,9 +10,10 @@ return array(
 		)
 	),
 	'directory' => array(
-		'enabled_options' => array(
-			'contact_number' => 1,
-			'price'          => 1
+		'item_options' => array(
+			'labels'  => array(
+				['label' => 'Contact number', 'enabled' => 1]
+			)
 		)
 	),
 	'design' => array(
