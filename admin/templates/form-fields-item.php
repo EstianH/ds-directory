@@ -8,18 +8,20 @@ wp_nonce_field( 'dsdi_save_post', 'dsdi_options_save_nonce' );
 ?>
 <div class="ds-container ds-p-2">
 	<?php
-	if ( isset( $dsdi->settings['directory']['enabled_options'] ) ) :
-		foreach ( $dsdi->settings['directory']['enabled_options'] as $option => $enabled ) : ?>
+	if ( isset( $dsdi->settings['directory']['item_options']['labels'] ) ) :
+		foreach ( $dsdi->settings['directory']['item_options']['labels'] as $key => $label_data ) :
+			if ( !isset( $label_data['enabled'] ) )
+				continue; ?>
 			<div class="ds-row ds-flex-align-center ds-mt-1">
 				<div class="ds-col-12 ds-col-lg-3">
-					<?php _e( ucfirst( str_replace( '_', ' ', $option ) ), DSDI_SLUG ); ?>:
+					<?php echo $label_data['label']; ?>
 				</div>
 				<div class="ds-col-12 ds-col-lg-9">
 					<input
 						class="ds-input-box"
-						name="dsdi_options[dynamic][<?php echo $option; ?>]"
+						name="dsdi_options[labels][<?php echo $key; ?>]"
 						type="text"
-						value="<?php echo ( isset( $item_options['dynamic'][$option] ) ? $item_options['dynamic'][$option] : '' ); ?>" />
+						value="<?php echo ( isset( $item_options['labels'][$key] ) ? $item_options['labels'][$key] : '' ); ?>" />
 				</div><!-- .ds-col -->
 			</div><!-- .ds-row -->
 		<?php endforeach; ?>

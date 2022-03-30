@@ -31,6 +31,14 @@
     visibility: hidden; }
     #dsdi-form-main #dsdi-form-loading-panel.active {
       visibility: visible; }
+  #dsdi-form-main #dsdi-directory-options > .ds-row > [class*="ds-col"] .dashicons-dismiss {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer; }
+    #dsdi-form-main #dsdi-directory-options > .ds-row > [class*="ds-col"] .dashicons-dismiss:hover {
+      color: red; }
 
 .dsdi-sticky-bottom {
   position: sticky;

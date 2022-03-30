@@ -55,7 +55,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 								<div class="ds-col">
 									<div class="ds-block">
 										<div class="ds-block-body">
-											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-mt-1 ds-ml-auto ds-mr-auto">
+											<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<?php _e( 'Enable Single Pages', DSDI_SLUG ); ?>:
 												</div>
@@ -213,30 +213,34 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 										<div class="ds-block-title">
 											<h2>
 												<span class="dashicons dashicons-networking"></span>
-												<?php _e( 'Enabled options:', DSSM_SLUG ); ?>
+												<?php _e( 'Item options:', DSSM_SLUG ); ?>
 											</h2>
 										</div>
-										<div class="ds-block-body">
-											<?php
-											foreach ( $dsdi->get_default_settings()['directory']['enabled_options'] as $option => $enabled ) :
-												$enabled = ( isset( $dsdi->settings['directory']['enabled_options'][$option] ) ?: false );
-											?>
-												<div class="ds-row ds-flex-align-center ds-pb-1 ds-mb-1 ds-bb ds-ml-auto ds-mr-auto">
+										<div id="dsdi-directory-options" class="ds-block-body">
+											<?php foreach ( $dsdi->settings['directory']['item_options']['labels'] as $key => $label_data ) : ?>
+												<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
 													<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-														<?php _e( ucfirst( str_replace( '_', ' ', $option ) ), DSDI_SLUG ); ?>:
+														<input name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][label]" type="text" value="<?php echo $label_data['label']; ?>" />
 													</div>
 													<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 														<label class="ds-toggler">
 															<input
-																name="dsdi_settings[directory][enabled_options][<?php echo $option; ?>]"
+																name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][enabled]"
 																type="checkbox"
 																value="1"
-																<?php echo ( $enabled ? ' checked="checked"' : '' ); ?> />
-																<span></span>
+																data-label_key="<?php echo $key; ?>"
+																<?php echo ( isset( $label_data['enabled'] ) ? ' checked="checked"' : '' ); ?> />
+															<span></span>
 														</label>
+														<span class="ds-pl-2 dashicons dashicons-dismiss ds-float-right"></span>
 													</div><!-- .ds-col -->
 												</div><!-- .ds-row -->
 											<?php endforeach; ?>
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-p-0 ds-pr-lg-2">
+													<button id="dsdi-directory-add-custom-label" class="button button-secondary" type="button"><?php _e( 'Add custom label', DSDI_SLUG ); ?></button>
+												</div>
+											</div><!-- .ds-row -->
 										</div><!-- .ds-block-body -->
 									</div><!-- .ds-block -->
 								</div><!-- .ds-col -->

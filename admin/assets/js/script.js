@@ -108,3 +108,50 @@ jQuery( document ).ready( function() {
 		return false;
 	} );
 } );
+
+
+/*
+██████  ██ ██████  ███████  ██████ ████████  ██████  ██████  ██    ██      ██████  ██████  ████████ ██  ██████  ███    ██ ███████
+██   ██ ██ ██   ██ ██      ██         ██    ██    ██ ██   ██  ██  ██      ██    ██ ██   ██    ██    ██ ██    ██ ████   ██ ██
+██   ██ ██ ██████  █████   ██         ██    ██    ██ ██████    ████       ██    ██ ██████     ██    ██ ██    ██ ██ ██  ██ ███████
+██   ██ ██ ██   ██ ██      ██         ██    ██    ██ ██   ██    ██        ██    ██ ██         ██    ██ ██    ██ ██  ██ ██      ██
+██████  ██ ██   ██ ███████  ██████    ██     ██████  ██   ██    ██         ██████  ██         ██    ██  ██████  ██   ████ ███████
+*/
+jQuery( document ).ready( function() {
+	jQuery( document ).on( 'click', '#dsdi-directory-add-custom-label', function() {
+		var count = (
+			jQuery( '#dsdi-directory-options [name*="[labels]"][name*="[enabled]"]' ).length
+				? parseInt( jQuery( '#dsdi-directory-options > .ds-row.item-label:last [name*="[labels]"][name*="[enabled]"]' ).data( 'label_key' ) )
+				: 0
+		);
+
+		var $html = '<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">' +
+			'<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">' +
+				'<input ' +
+					'name="dsdi_settings[directory][item_options][labels][' + ( count + 1 ) + '][label]" ' +
+					'type="text" ' +
+					'placeholder="Option label" ' +
+					'value="" />' +
+			'</div>' +
+			'<div class="ds-col-12 ds-col-lg-8 ds-p-0">' +
+				'<label class="ds-toggler">' +
+					'<input ' +
+						'name="dsdi_settings[directory][item_options][labels][' + ( count + 1 ) + '][enabled]" ' +
+						'type="checkbox" ' +
+						'value="1" ' +
+						'data-label_key="' + ( count + 1 ) + '" />' +
+						'<span></span>' +
+				'</label>' +
+				'<span class="ds-pl-2 dashicons dashicons-dismiss ds-float-right"></span>'
+			'</div><!-- .ds-col -->' +
+		'</div><!-- .ds-row -->';
+
+		jQuery( this ).closest( '.ds-row' ).before( $html );
+	} );
+
+	jQuery( document ).on( 'click', '#dsdi-directory-options .dashicons-dismiss', function() {
+		jQuery( this ).closest( '.ds-row' ).fadeOut( 200, function() {
+			jQuery( this ).remove();
+		} );
+	} );
+} );
