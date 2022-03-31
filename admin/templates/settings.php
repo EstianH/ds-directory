@@ -217,12 +217,21 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											</h2>
 										</div>
 										<div id="dsdi-directory-options" class="ds-block-body">
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<label><?php _e( 'Labels', DSSM_SLUG ); ?></label>
+												</div>
+											</div>
 											<?php foreach ( $dsdi->settings['directory']['item_options']['labels'] as $key => $label_data ) : ?>
 												<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
 													<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-														<input name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][label]" type="text" value="<?php echo $label_data['label']; ?>" />
+														<input
+															name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][label]"
+															type="text"
+															class="ds-input-box"
+															value="<?php echo $label_data['label']; ?>" />
 													</div>
-													<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<div class="ds-col-12 ds-col-lg-8 ds-p-0 ds-d-flex ds-flex-align-center">
 														<label class="ds-toggler">
 															<input
 																name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][enabled]"
@@ -245,10 +254,26 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													</div><!-- .ds-col -->
 												</div><!-- .ds-row -->
 											<?php endforeach; ?>
-											<div class="ds-row ds-flex-align-center ds-pt-1 ds-ml-auto ds-mr-auto">
+											<div class="ds-row ds-flex-align-center ds-pt-2 ds-pb-2 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-p-0 ds-pr-lg-2">
 													<button id="dsdi-directory-add-custom-label" class="button button-secondary" type="button"><?php _e( 'Add custom label', DSDI_SLUG ); ?></button>
 												</div>
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<label><?php _e( 'Show label text', DSSM_SLUG ); ?></label>
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<label class="ds-toggler">
+														<input
+															name="dsdi_settings[directory][item_options][labels_show_text]"
+															type="checkbox"
+															value="1"
+															data-label_key="<?php echo $key; ?>"
+															<?php echo ( isset( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ? ' checked="checked"' : '' ); ?> />
+														<span></span>
+													</label>
+												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
 											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
@@ -266,6 +291,25 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															data-label_key="<?php echo $key; ?>"
 															data-ds_block_toggler="directory_load_fa"
 															<?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' checked="checked"' : '' ); ?> />
+														<span></span>
+													</label>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<label>
+														<?php _e( 'Show page title', DSSM_SLUG ); ?><br />
+														<small><?php _e( '(h1 page heading)', DSSM_SLUG ); ?></small>
+													</label>
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<label class="ds-toggler">
+														<input
+															name="dsdi_settings[directory][item_options][title_show]"
+															type="checkbox"
+															value="1"
+															data-label_key="<?php echo $key; ?>"
+															<?php echo ( isset( $dsdi->settings['directory']['item_options']['title_show'] ) ? ' checked="checked"' : '' ); ?> />
 														<span></span>
 													</label>
 												</div><!-- .ds-col -->

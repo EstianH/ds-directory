@@ -11,9 +11,13 @@ return array(
 	),
 	'directory' => array(
 		'item_options' => array(
-			'labels'  => array(
-				['label' => 'Contact number', 'enabled' => 1]
-			)
+			'labels'             => array(
+				array(
+					'label'   => 'Contact number',
+					'enabled' => 1
+				)
+			),
+			'labels_show_text' => 1
 		)
 	),
 	'design' => array(

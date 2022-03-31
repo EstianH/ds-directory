@@ -9,6 +9,7 @@
  * @since 1.0.0
  */
 
+$dsdi         = DS_DIRECTORY::get_instance();
 $item_options = get_post_meta( get_the_ID(), 'dsdi_options', true );
 
 // Redirect pages that are set to exclude single.
@@ -19,11 +20,13 @@ get_header();
 ?>
 <main id="content" role="main" style="width: 100%;">
 	<div id="dsdi-wrapper" class="entry dsdi-single-container">
-		<div class="entry-header">
-			<div class="entry-header-inner section-inner ds-text-center">
-				<h1 class="entry-title"><?php the_title(); ?></h1>
+		<?php if ( !empty( $dsdi->settings['directory']['item_options']['title_show'] ) ) : ?>
+			<div class="entry-header">
+				<div class="entry-header-inner section-inner ds-text-center">
+					<h1 class="entry-title"><?php the_title(); ?></h1>
+				</div>
 			</div>
-		</div>
+		<?php endif; ?>
 		<div class="entry-content">
 			<?php
 			if ( have_posts() ) {
@@ -41,20 +44,25 @@ get_header();
 								</div>
 								<div class="ds-col-12 ds-col-lg-6 ds-p-0 ds-pr-lg-2 ds-mb-5 ds-mb-lg-0">
 									<?php
-									if ( isset( $item_options['dynamic'] ) ) :
-										$foreach_count = 0;
-
-										foreach ( $item_options['dynamic'] as $option => $value ) : ?>
-											<div class="ds-row ds-ml-auto ds-mr-auto ds-bt ds-pt-1<?php echo ( $foreach_count++ ? ' ds-mt-1' : '' ); ?>">
+									if ( isset( $item_options['labels'] ) ) :
+										foreach ( $item_options['labels'] as $key => $value ) : ?>
+											<div class="ds-row ds-ml-auto ds-mr-auto ds-bt ds-pt-1 ds-pb-1">
 												<div class="ds-col-12 ds-p-0">
-													<!-- <span class="ds-icon-shop ds-mr-1"></span> -->
-													<span><?php _e( ucfirst( str_replace( '_', ' ', $option ) ), DSDI_SLUG ); ?>:</span>
+													<?php if (
+														   !empty( $dsdi->settings['directory']['item_options']['load_fa'] )
+														&& !empty( $dsdi->settings['directory']['item_options']['labels'][$key]['icon'] )
+													) : ?>
+															<i class="ds-mr-1 fa <?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['icon']; ?>"></i>
+													<?php endif; ?>
+													<?php if ( !empty( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ) : ?>
+														<span><?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['label']; ?>:</span>
+													<?php endif; ?>
 													<span><?php echo ( !empty( $value ) ? $value : '-' ); ?></span>
 												</div>
 											</div>
 										<?php endforeach; ?>
 										<div class="ds-col-12 ds-p-0">
-											<a class="ds-button ds-p-1 ds-mt-1" href="<?php echo esc_url( get_term_link( $categories[0] ) ); ?>">
+											<a class="ds-button ds-p-1" href="<?php echo esc_url( get_term_link( $categories[0] ) ); ?>">
 												<?php echo __( 'Back to', DSDI_SLUG ) . ' ' . $categories[0]->name; ?>
 											</a>
 										</div>
