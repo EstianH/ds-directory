@@ -5,8 +5,7 @@ body #dsdi-wrapper {
   body #dsdi-wrapper * {
     text-decoration: none;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    font-family: inherit; }
+    -webkit-font-smoothing: antialiased; }
     body #dsdi-wrapper *:focus {
       outline: none; }
   body #dsdi-wrapper > .entry-header,
