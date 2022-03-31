@@ -130,10 +130,11 @@ jQuery( document ).ready( function() {
 				'<input ' +
 					'name="dsdi_settings[directory][item_options][labels][' + ( count + 1 ) + '][label]" ' +
 					'type="text" ' +
+					'class="ds-input-box" ' +
 					'placeholder="Option label" ' +
 					'value="" />' +
 			'</div>' +
-			'<div class="ds-col-12 ds-col-lg-8 ds-p-0">' +
+			'<div class="ds-col-12 ds-col-lg-8 ds-p-0 ds-d-flex ds-flex-align-center">' +
 				'<label class="ds-toggler">' +
 					'<input ' +
 						'name="dsdi_settings[directory][item_options][labels][' + ( count + 1 ) + '][enabled]" ' +
@@ -142,7 +143,16 @@ jQuery( document ).ready( function() {
 						'data-label_key="' + ( count + 1 ) + '" />' +
 						'<span></span>' +
 				'</label>' +
-				'<span class="ds-pl-2 dashicons dashicons-dismiss ds-float-right"></span>'
+				'<div class="' + ( jQuery( '[name="dsdi_settings[directory][item_options][load_fa]"]' ).is( ':checked' ) ? ' active' : '' ) + '"' +
+					'data-ds_block_toggler_block="directory_load_fa">' +
+					'<input ' +
+						'name="dsdi_settings[directory][item_options][labels][' + ( count + 1 ) + '][icon]" ' +
+						'type="text" ' +
+						'class="ds-ml-2 ds-input-box" ' +
+						'placeholder="e.g. fa-arrow-right" ' +
+						'value="" /> ' +
+				'</div>' +
+				'<span class="ds-pl-2 ds-ml-2 dashicons dashicons-dismiss ds-float-right"></span>' +
 			'</div><!-- .ds-col -->' +
 		'</div><!-- .ds-row -->';
 

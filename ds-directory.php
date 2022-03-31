@@ -117,8 +117,12 @@ class DS_DIRECTORY {
 		   wp_enqueue_style( 'dsdi-core'  , DSDI_ADMIN_URL  . 'assets/vendors/ds-core/css/style.css', array( 'dsdi-style' ) , DSDI_VERSION );
 
 			// Setting based styles.
-	 		if ( $dynamic_styles = $this->get_dynamic_styles() )
-	 			wp_add_inline_style( 'dsdi-style', $dynamic_styles );
+			if ( $dynamic_styles = $this->get_dynamic_styles() )
+				wp_add_inline_style( 'dsdi-style', $dynamic_styles );
+
+			// Maybe load Font Awesome.
+			if ( !empty( $this->settings['directory']['item_options']['load_fa'] ) )
+				wp_enqueue_style( 'dsdi-font-awesome'  , DSDI_ASSETS_URL  . 'vendors/font-awesome/css/all.min.css', array( 'dsdi-style' ) , DSDI_VERSION );
 		} );
 
 		// Register the directory shortcode.

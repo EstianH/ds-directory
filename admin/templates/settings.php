@@ -232,7 +232,16 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																<?php echo ( isset( $label_data['enabled'] ) ? ' checked="checked"' : '' ); ?> />
 															<span></span>
 														</label>
-														<span class="ds-pl-2 dashicons dashicons-dismiss ds-float-right"></span>
+														<div class="<?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' active' : '' ); ?>"
+															data-ds_block_toggler_block="directory_load_fa">
+															<input
+																name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][icon]"
+																type="text"
+																class="ds-ml-2 ds-input-box"
+																placeholder="e.g. fa-arrow-right"
+																value="<?php echo $label_data['icon']; ?>" />
+														</div>
+														<span class="ds-pl-2 ds-ml-2 dashicons dashicons-dismiss"></span>
 													</div><!-- .ds-col -->
 												</div><!-- .ds-row -->
 											<?php endforeach; ?>
@@ -240,6 +249,26 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-col-12 ds-p-0 ds-pr-lg-2">
 													<button id="dsdi-directory-add-custom-label" class="button button-secondary" type="button"><?php _e( 'Add custom label', DSDI_SLUG ); ?></button>
 												</div>
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<label>
+														<?php _e( 'Load Font Awesome icons', DSSM_SLUG ); ?><br />
+														<small><?php _e( '(<a href="https://fontawesome.com/search?m=free" target="_blank">https://fontawesome.com/icons</a>)', DSSM_SLUG ); ?></small>
+													</label>
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<label class="ds-toggler">
+														<input
+															name="dsdi_settings[directory][item_options][load_fa]"
+															type="checkbox"
+															value="1"
+															data-label_key="<?php echo $key; ?>"
+															data-ds_block_toggler="directory_load_fa"
+															<?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' checked="checked"' : '' ); ?> />
+														<span></span>
+													</label>
+												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
 										</div><!-- .ds-block-body -->
 									</div><!-- .ds-block -->
