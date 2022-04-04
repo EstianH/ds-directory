@@ -39,6 +39,21 @@
     cursor: pointer; }
     #dsdi-form-main #dsdi-directory-options > .ds-row > [class*="ds-col"] .dashicons-dismiss:hover {
       color: red; }
+  #dsdi-form-main #dsdi-directory-options > .ds-row > [class*="ds-col"] > .dsdi-icon-input-wrapper {
+    position: relative; }
+  #dsdi-form-main #dsdi-directory-options > .ds-row > [class*="ds-col"] #dsdi-popup-icon-suggestions-wrapper {
+    position: absolute;
+    background-color: #fff;
+    top: calc(100% + 5px);
+    left: 15px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 50; }
+    #dsdi-form-main #dsdi-directory-options > .ds-row > [class*="ds-col"] #dsdi-popup-icon-suggestions-wrapper > i {
+      cursor: pointer;
+      width: 25%;
+      font-size: 16px; }
 
 .dsdi-sticky-bottom {
   position: sticky;

@@ -71,6 +71,27 @@ $ds-line-height: 18px;
 						color: red;
 					}
 				}
+
+				> .dsdi-icon-input-wrapper {
+					position: relative;
+				}
+
+				#dsdi-popup-icon-suggestions-wrapper {
+					position: absolute;
+					background-color: #fff;
+					top: calc(100% + 5px);
+					left: 15px;
+					width: 100%;
+					display: flex;
+					flex-wrap: wrap;
+					z-index: 50;
+
+					> i {
+						cursor: pointer;
+						width: 25%;
+						font-size: $ds-font-size;
+					}
+				}
 			}
 		}
 	}

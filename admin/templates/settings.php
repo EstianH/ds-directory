@@ -217,7 +217,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											</h2>
 										</div>
 										<div id="dsdi-directory-options" class="ds-block-body">
-											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<label><?php _e( 'Labels', DSSM_SLUG ); ?></label>
 												</div>
@@ -241,13 +241,13 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																<?php echo ( isset( $label_data['enabled'] ) ? ' checked="checked"' : '' ); ?> />
 															<span></span>
 														</label>
-														<div class="<?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' active' : '' ); ?>"
+														<div class="dsdi-icon-input-wrapper <?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' active' : '' ); ?>"
 															data-ds_block_toggler_block="directory_load_fa">
 															<input
 																name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][icon]"
 																type="text"
 																class="ds-ml-2 ds-input-box"
-																placeholder="e.g. fa-arrow-right"
+																placeholder="icon-name"
 																value="<?php echo $label_data['icon']; ?>" />
 														</div>
 														<span class="ds-pl-2 ds-ml-2 dashicons dashicons-dismiss"></span>
@@ -259,7 +259,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													<button id="dsdi-directory-add-custom-label" class="button button-secondary" type="button"><?php _e( 'Add custom label', DSDI_SLUG ); ?></button>
 												</div>
 											</div><!-- .ds-row -->
-											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<label><?php _e( 'Show label text', DSSM_SLUG ); ?></label>
 												</div>
@@ -275,7 +275,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													</label>
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
-											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<label>
 														<?php _e( 'Load Font Awesome icons', DSSM_SLUG ); ?><br />
@@ -295,7 +295,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													</label>
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
-											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<label>
 														<?php _e( 'Show page title', DSSM_SLUG ); ?><br />

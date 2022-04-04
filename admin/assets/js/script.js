@@ -140,6 +140,7 @@ jQuery( document ).ready( function() {
 						'name="dsdi_settings[directory][item_options][labels][' + ( count + 1 ) + '][enabled]" ' +
 						'type="checkbox" ' +
 						'value="1" ' +
+						'checked="checked" ' +
 						'data-label_key="' + ( count + 1 ) + '" />' +
 						'<span></span>' +
 				'</label>' +
@@ -164,4 +165,80 @@ jQuery( document ).ready( function() {
 			jQuery( this ).remove();
 		} );
 	} );
+} );
+
+
+/*
+██████  ███████ ██████  ██     ██  ██████  ██████  ███    ██ ███████
+██   ██ ██      ██   ██ ██     ██ ██      ██    ██ ████   ██ ██
+██   ██ ███████ ██   ██ ██     ██ ██      ██    ██ ██ ██  ██ ███████
+██   ██      ██ ██   ██ ██     ██ ██      ██    ██ ██  ██ ██      ██
+██████  ███████ ██████  ██     ██  ██████  ██████  ██   ████ ███████
+*/
+jQuery( document ).ready( function() {
+	var key_timer = 0,
+	    dsdi_icons_wrapper = 'dsdi-popup-icon-suggestions-wrapper';
+
+	jQuery( document ).on( 'focus', '[name*="labels"][name*="icon"]', function( e ) {
+		if ( '' !== jQuery( this ).val() )
+			jQuery( this ).trigger( 'keyup' );
+	} );
+
+	jQuery( document ).on( 'keyup', '[name*="labels"][name*="icon"]', function( e ) {
+		dsdi_icons_popup_close();
+
+		// Proceed only with alphanumberic keys.
+		if (
+			   90 <= e.which
+			&& 48 >= e.which
+		)
+			return;
+
+		clearTimeout( key_timer );
+
+		var $icon_input  = jQuery( this ),
+		    fa_api_url   = 'https://api.fontawesome.com',
+		    fa_api_query = '?query=query{search(version:"6.1.1",query:"' + $icon_input.val() + '",first:100){id membership{free}}}';
+
+		key_timer = setTimeout( function() {
+			jQuery.get( fa_api_url + fa_api_query, function( json, status ) {
+				dsdi_icons_popup_open( $icon_input, json.data.search );
+			} );
+		}, 300 );
+	} );
+
+	// Close & remove the dsdi icons popup.
+	jQuery( document ).on( 'click', 'body', function( e ) {
+		if ( 0 !== jQuery( e.target ).closest( '.' + dsdi_icons_wrapper ).length )
+			return false;
+
+		dsdi_icons_popup_close();
+	} );
+
+	// Close & remove the dsdi icons popup.
+	jQuery( document ).on( 'click', '.dsdi-icon-suggestion', function( e ) {
+		jQuery( this ).closest( '.dsdi-icon-input-wrapper' ).children( '.ds-input-box' ).val( jQuery( this ).data( 'icon_id' ) );
+
+		dsdi_icons_popup_close();
+	} );
+
+	function dsdi_icons_popup_open( $icon_input, icons ) {
+		var icons_html = '<div id="' + dsdi_icons_wrapper + '" class="ds-p-2 ds-b ' + dsdi_icons_wrapper + '" style="display: none;"';
+
+		jQuery.each( icons, function( index, icon ) {
+			if ( 1 <= icon.membership.free.length )
+				icons_html += '<i class="dsdi-icon-suggestion ds-text-center fa fa-' + icon.id + ' ds-p-1 ds-b" data-icon_id="' + icon.id + '"></i>';
+		} );
+
+		icons_html += '</div>';
+
+		$icon_input.after( icons_html );
+		jQuery( '.' + dsdi_icons_wrapper ).slideDown( 200 );
+	}
+
+	function dsdi_icons_popup_close() {
+		jQuery( '.' + dsdi_icons_wrapper ).slideUp( 200, function() {
+			jQuery( this ).remove();
+		} );
+	}
 } );
