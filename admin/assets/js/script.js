@@ -223,7 +223,10 @@ jQuery( document ).ready( function() {
 	} );
 
 	function dsdi_icons_popup_open( $icon_input, icons ) {
-		var icons_html = '<div id="' + dsdi_icons_wrapper + '" class="ds-p-2 ds-b ' + dsdi_icons_wrapper + '" style="display: none;"';
+		if ( 0 === icons.length )
+			return;
+
+		var icons_html = '<div id="' + dsdi_icons_wrapper + '" class="ds-p-2 ds-b ' + dsdi_icons_wrapper + '" style="display: none;">';
 
 		jQuery.each( icons, function( index, icon ) {
 			if ( 1 <= icon.membership.free.length )
