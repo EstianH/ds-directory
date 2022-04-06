@@ -39,7 +39,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 								break;
 						}
 						?>
-						<div class="<?php echo $column_classes; ?> ds-mb-2">
+						<div class="dsdi-item <?php echo $column_classes; ?> ds-mb-2">
 							<div class="ds-block" title="<?php echo get_the_title(); ?>" alt="<?php echo get_the_title(); ?>">
 								<?php if ( !empty( $dsdi->settings['general']['grid']['featured_images'] ) ) : ?>
 									<?php if ( has_post_thumbnail() ) : ?>
@@ -56,7 +56,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 									<strong><?php echo get_the_title(); ?></strong>
 								</div>
 								<div class="ds-block-body ds-p-2">
-									<div class="ds-container ds-p-0">
+									<div class="dsdi-item-labels-wrapper ds-container ds-p-0">
 										<?php
 										if ( isset( $item_options['labels'] ) ) :
 											foreach ( $item_options['labels'] as $key => $value ) : ?>
