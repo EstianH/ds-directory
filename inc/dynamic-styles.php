@@ -3,14 +3,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 
 $styles = '';
 // ================ General ================
-if ( !empty( $dsdi->settings['general']['single'] ) )
-	$styles .= '@media ( min-width: 992px ) {
-	              .dsdi-number { width: 10% !important; }
-	              .dsdi-title { width: 25% !important; }
-	              .dsdi-directory { width: 35% !important; }
-	              .dsdi-contact-number { width: 15% !important; }
-	              .dsdi-view-details{ width: 15% !important; }
-	            }';
+
 
 // ================ Design: Paddings ================
 $paddings = '';

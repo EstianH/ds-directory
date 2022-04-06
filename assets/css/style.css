@@ -187,61 +187,50 @@ body #dsdi-wrapper {
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-directory {
             height: 100%;
             width: 100%; }
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-number,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-number,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-number,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-number {
-            height: 100%;
-            width: 100%; }
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-contact-number,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-contact-number,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-contact-number,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-contact-number {
-            justify-content: center;
-            height: 100%;
-            width: 100%; }
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-view-details,
           body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-view-details,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-view-details,
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-view-details {
             height: 100%;
             width: 100%; }
-        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover,
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover, body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover + .dsdi-item,
         body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover,
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover + .dsdi-item,
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover + .dsdi-item,
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover,
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover + .dsdi-item {
           transition: all 0.2s;
           border-color: #efefef; }
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover + .dsdi,
-          body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover + .dsdi,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header:hover + .dsdi,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item:hover + .dsdi {
-            transition: all 0.2s;
-            border-color: #efefef; }
-    body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block,
-    body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block {
+    body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block,
+    body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block {
       transition: 0.4s all;
       border: 1px solid #f9f9f9; }
-      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image,
-      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image {
+      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .dsdi-featured-image,
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .dsdi-featured-image {
         height: 250px;
         width: 100%; }
-        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image > div,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .dsdi-featured-image > div {
+        body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .dsdi-featured-image > div,
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .dsdi-featured-image > div {
           height: 100%;
           width: 100%;
           background-position: center center;
           background-size: cover;
           background-repeat: no-repeat; }
-      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-block-title,
-      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block > .ds-block-title {
+      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .ds-block-title,
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .ds-block-title {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap; }
-      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .ds-block:hover,
-      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .ds-block:hover {
+      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block:hover,
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block:hover {
         background-color: #f9f9f9;
         border-color: #efefef; }
+      body #dsdi-wrapper .taxonomy-description .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .ds-block-body > .dsdi-item-labels-wrapper i,
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-grid .dsdi-item .ds-block > .ds-block-body > .dsdi-item-labels-wrapper i {
+        height: 15px;
+        width: 15px;
+        text-align: center; }
 body.admin-bar #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header {
   top: 32px; }
 
@@ -287,42 +276,38 @@ body.admin-bar #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsd
     padding: 0;
     margin: 0; }
     body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header,
-    body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi {
+    body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item {
       height: 100%;
       width: 100%;
       flex-direction: row;
       justify-content: flex-start; }
       body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div,
-      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div {
+      body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div {
         flex-direction: row;
         justify-content: flex-start;
         text-align: left;
         padding: 10px 15px;
         min-height: 58px; }
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div:first-child,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div:first-child {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div:first-child {
           padding: 10px 15px 10px 0; }
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div:last-child,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div:last-child {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div:last-child {
           padding: 10px 0 10px 15px; }
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-number,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-number {
-          height: 100%;
-          width: 15%; }
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-title {
           height: 100%;
-          width: 35%; }
+          width: 40%; }
           body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-title > span:last-child,
-          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-title > span:last-child {
+          body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-title > span:last-child {
             font-weight: normal; }
         body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-directory,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-directory {
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-directory {
           height: 100%;
-          width: 35%; }
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-contact-number,
-        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi > div.dsdi-contact-number {
+          width: 40%; }
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-directory-list-header > div.dsdi-view-details,
+        body #dsdi-wrapper .dsdi-directory-container .dsdi-directory-body .dsdi-directory-list > .dsdi-item > div.dsdi-view-details {
           height: 100%;
-          width: 15%; } }
+          width: 20%; } }
 
 /*# sourceMappingURL=style.css.map */

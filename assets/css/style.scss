@@ -194,59 +194,57 @@ body {
 								@include ds-dimensions( 100%, 100% );
 							}
 
-							&.dsdi-number {
-								@include ds-dimensions( 100%, 100% );
-							}
-
-							&.dsdi-contact-number {
-								justify-content: center;
-								@include ds-dimensions( 100%, 100% );
-							}
-
 							&.dsdi-view-details {
 								@include ds-dimensions( 100%, 100% );
 							}
 						}
 
-						&:hover {
+						&:hover,
+						&:hover + .dsdi-item {
 							transition: all 0.2s;
 							border-color: $ds-grey;
-
-							& + .dsdi {
-								transition: all 0.2s;
-								border-color: $ds-grey;
-							}
 						}
 					}
 				}
 
 				.dsdi-directory-grid {
-					.ds-block { // .dsdi
-						transition: 0.4s all;
-						border: 1px solid $ds-grey-light;
+					.dsdi-item {
+						.ds-block { // .dsdi
+							transition: 0.4s all;
+							border: 1px solid $ds-grey-light;
 
-						> .dsdi-featured-image {
-							@include ds-dimensions( 100%, 250px );
-							// padding: 15px;
+							> .dsdi-featured-image {
+								@include ds-dimensions( 100%, 250px );
+								// padding: 15px;
 
-							> div {
-								@include ds-dimensions( 100%, 100% );
-								// background-image: url( http://speen-beast-pc/test/wp-content/uploads/2020/02/dsdi-_0030s_0001_Absa.jpg );
-								background-position: center center;
-								background-size: cover;
-								background-repeat: no-repeat;
+								> div {
+									@include ds-dimensions( 100%, 100% );
+									// background-image: url( http://speen-beast-pc/test/wp-content/uploads/2020/02/dsdi-_0030s_0001_Absa.jpg );
+									background-position: center center;
+									background-size: cover;
+									background-repeat: no-repeat;
+								}
 							}
-						}
 
-						> .ds-block-title {
-							overflow: hidden;
-							text-overflow: ellipsis;
-							white-space: nowrap;
-						}
+							> .ds-block-title {
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
 
-						&:hover {
-							background-color: $ds-grey-light;
-							border-color: $ds-grey;
+							&:hover {
+								background-color: $ds-grey-light;
+								border-color: $ds-grey;
+							}
+
+							> .ds-block-body {
+								> .dsdi-item-labels-wrapper {
+									i {
+										@include ds-dimensions( 15px, 15px );
+										text-align: center;
+									}
+								}
+							}
 						}
 					}
 				}
@@ -341,7 +339,7 @@ body {
 						margin: 0;
 
 						> .dsdi-directory-list-header,
-						> .dsdi {
+						> .dsdi-item {
 							@include ds-dimensions( 100%, 100% );
 							flex-direction: row;
 							justify-content: flex-start;
@@ -361,12 +359,8 @@ body {
 									padding: 10px 0 10px 15px;
 								}
 
-								&.dsdi-number {
-									@include ds-dimensions( 15%, 100% );
-								}
-
 								&.dsdi-title {
-									@include ds-dimensions( 35%, 100% );
+									@include ds-dimensions( 40%, 100% );
 
 									> span {
 										&:last-child {
@@ -376,11 +370,11 @@ body {
 								}
 
 								&.dsdi-directory {
-									@include ds-dimensions( 35%, 100% );
+									@include ds-dimensions( 40%, 100% );
 								}
 
-								&.dsdi-contact-number {
-									@include ds-dimensions( 15%, 100% );
+								&.dsdi-view-details {
+									@include ds-dimensions( 20%, 100% );
 								}
 							}
 						}
