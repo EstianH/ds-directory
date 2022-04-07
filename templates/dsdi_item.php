@@ -42,7 +42,7 @@ get_header();
 								<div class="ds-col-12 ds-col-lg-6 ds-p-0 ds-pr-lg-3 ds-mb-5 ds-mb-lg-0">
 									<img class="dsdi-featured-image" src="<?php echo get_the_post_thumbnail_url( null, 'full-size' ); ?>" />
 								</div>
-								<div class="ds-col-12 ds-col-lg-6 ds-p-0 ds-pr-lg-2 ds-mb-5 ds-mb-lg-0">
+								<div class="dsdi-item-labels-wrapper ds-col-12 ds-col-lg-6 ds-p-0 ds-pr-lg-2 ds-mb-5 ds-mb-lg-0">
 									<?php
 									if ( isset( $item_options['labels'] ) ) :
 										foreach ( $item_options['labels'] as $key => $value ) : ?>

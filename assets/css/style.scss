@@ -194,6 +194,15 @@ body {
 								@include ds-dimensions( 100%, 100% );
 							}
 
+							&.dsdi-labels {
+								> .dsdi-item-label {
+									> i {
+										@include ds-dimensions( 15px, 15px );
+										text-align: center;
+									}
+								}
+							}
+
 							&.dsdi-view-details {
 								@include ds-dimensions( 100%, 100% );
 							}
@@ -247,6 +256,15 @@ body {
 							}
 						}
 					}
+				}
+			}
+		}
+
+		&.dsdi-single-container {
+			.dsdi-item-labels-wrapper {
+				i {
+					@include ds-dimensions( 15px, 15px );
+					text-align: center;
 				}
 			}
 		}
@@ -360,7 +378,7 @@ body {
 								}
 
 								&.dsdi-title {
-									@include ds-dimensions( 40%, 100% );
+									@include ds-dimensions( 30%, 100% );
 
 									> span {
 										&:last-child {
@@ -370,11 +388,15 @@ body {
 								}
 
 								&.dsdi-directory {
-									@include ds-dimensions( 40%, 100% );
+									@include ds-dimensions( 25%, 100% );
+								}
+
+								&.dsdi-labels {
+									@include ds-dimensions( 30%, 100% );
 								}
 
 								&.dsdi-view-details {
-									@include ds-dimensions( 20%, 100% );
+									@include ds-dimensions( 15%, 100% );
 								}
 							}
 						}

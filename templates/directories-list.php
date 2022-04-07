@@ -21,6 +21,7 @@ $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] )
 					</a>
 				</div>
 				<div class="dsdi-directory"><?php _e( 'Directory', DSDI_SLUG ); ?></div>
+				<div class="dsdi-labels"><?php // _e( 'Labels', DSDI_SLUG ); ?></div>
 				<?php if ( !empty( $dsdi->settings['general']['single'] ) ) : ?>
 					<div class="dsdi-view-details"><?php _e( 'View Details',   DSDI_SLUG ); ?></div>
 				<?php endif; ?>
@@ -31,9 +32,9 @@ $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] )
 					the_post();
 
 					$directories = get_the_terms( get_the_ID(), 'ds_directory' );
-					$options     = get_post_meta( get_the_ID(), 'dsdi_options', true );
+					$item_options     = get_post_meta( get_the_ID(), 'dsdi_options', true );
 
-					if ( empty( $options ) )
+					if ( empty( $item_options ) )
 						continue;
 			?>
 					<li class="dsdi-item">
@@ -57,8 +58,30 @@ $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] )
 								?>
 							</span>
 						</div>
+						<div class="dsdi-labels ds-d-block">
+							<?php
+							if (
+								   isset( $dsdi->settings['directory']['item_options']['labels_show_archive'] )
+								&& isset( $item_options['labels'] )
+							) :
+								foreach ( $item_options['labels'] as $key => $value ) : ?>
+									<div class="dsdi-item-label">
+										<?php if (
+												 !empty( $dsdi->settings['directory']['item_options']['load_fa'] )
+											&& !empty( $dsdi->settings['directory']['item_options']['labels'][$key]['icon'] )
+										) : ?>
+											<i class="fa fa-<?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['icon']; ?>"></i>
+										<?php endif; ?>
+										<?php if ( !empty( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ) : ?>
+											<span><?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['label']; ?>:</span>
+										<?php endif; ?>
+										<span><?php echo ( !empty( $value ) ? $value : '-' ); ?></span>
+									</div>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</div>
 						<?php if ( !empty( $dsdi->settings['general']['single'] ) ) : ?>
-							<?php if ( empty( $options['single_excl'] ) ) : ?>
+							<?php if ( empty( $item_options['single_excl'] ) ) : ?>
 								<div class="dsdi-view-details">
 									<a class="ds-button" href="<?php echo get_permalink(); ?>"><?php _e( 'Details', DSDI_SLUG ); ?></a>
 								</div>

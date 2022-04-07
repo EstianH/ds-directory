@@ -269,8 +269,22 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															name="dsdi_settings[directory][item_options][labels_show_text]"
 															type="checkbox"
 															value="1"
-															data-label_key="<?php echo $key; ?>"
 															<?php echo ( isset( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ? ' checked="checked"' : '' ); ?> />
+														<span></span>
+													</label>
+												</div><!-- .ds-col -->
+											</div><!-- .ds-row -->
+											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
+												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
+													<label><?php _e( 'Show labels on directory view', DSSM_SLUG ); ?></label>
+												</div>
+												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
+													<label class="ds-toggler">
+														<input
+															name="dsdi_settings[directory][item_options][labels_show_archive]"
+															type="checkbox"
+															value="1"
+															<?php echo ( isset( $dsdi->settings['directory']['item_options']['labels_show_archive'] ) ? ' checked="checked"' : '' ); ?> />
 														<span></span>
 													</label>
 												</div><!-- .ds-col -->
@@ -288,7 +302,6 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															name="dsdi_settings[directory][item_options][load_fa]"
 															type="checkbox"
 															value="1"
-															data-label_key="<?php echo $key; ?>"
 															data-ds_block_toggler="directory_load_fa"
 															<?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' checked="checked"' : '' ); ?> />
 														<span></span>
@@ -308,7 +321,6 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															name="dsdi_settings[directory][item_options][title_show]"
 															type="checkbox"
 															value="1"
-															data-label_key="<?php echo $key; ?>"
 															<?php echo ( isset( $dsdi->settings['directory']['item_options']['title_show'] ) ? ' checked="checked"' : '' ); ?> />
 														<span></span>
 													</label>

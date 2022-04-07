@@ -58,7 +58,10 @@ $dsdi = DS_DIRECTORY::get_instance();
 								<div class="ds-block-body ds-p-2">
 									<div class="dsdi-item-labels-wrapper ds-container ds-p-0">
 										<?php
-										if ( isset( $item_options['labels'] ) ) :
+										if (
+											   isset( $dsdi->settings['directory']['item_options']['labels_show_archive'] )
+											&& isset( $item_options['labels'] )
+										) :
 											foreach ( $item_options['labels'] as $key => $value ) : ?>
 												<div class="ds-row ds-ml-auto ds-mr-auto ds-bb ds-pt-1 ds-pb-1">
 													<div class="ds-col-12 ds-p-0">
