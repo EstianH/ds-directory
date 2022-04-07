@@ -6,7 +6,7 @@ return array(
 		'load_condition'     => 'all',
 		'grid'               => array(
 			'featured_images'    => 1,
-			'columns'            => 6
+			'columns'            => 4
 		)
 	),
 	'directory' => array(
@@ -17,7 +17,9 @@ return array(
 					'enabled' => 1
 				)
 			),
-			'labels_show_text' => 1
+			'labels_show_text'    => 1,
+			'labels_show_archive' => 1,
+			'title_show'          => 1
 		)
 	),
 	'design' => array(
@@ -26,6 +28,11 @@ return array(
 			'right'   => '',
 			'bottom'  => '',
 			'left'    => ''
-		)
+		),
+		'text_color'              => '#515151',
+		'button_color_bg'         => '#fff',
+		'button_color_bg_hover'   => '#515151',
+		'button_color_text'       => '#515151',
+		'button_color_text_hover' => '#fff'
 	)
 );
