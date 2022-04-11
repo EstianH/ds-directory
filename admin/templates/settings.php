@@ -153,7 +153,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 										<div class="ds-block-title">
 											<h2>
 												<span class="dashicons dashicons-networking"></span>
-												<?php _e( 'Grid Settings:', DSSM_SLUG ); ?>
+												<?php _e( 'Grid Settings:', DSDI_SLUG ); ?>
 											</h2>
 										</div>
 										<div class="ds-block-body">
@@ -213,13 +213,13 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 										<div class="ds-block-title">
 											<h2>
 												<span class="dashicons dashicons-networking"></span>
-												<?php _e( 'Item options:', DSSM_SLUG ); ?>
+												<?php _e( 'Item options:', DSDI_SLUG ); ?>
 											</h2>
 										</div>
 										<div id="dsdi-directory-options" class="ds-block-body">
 											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-													<label><?php _e( 'Labels', DSSM_SLUG ); ?></label>
+													<label><?php _e( 'Labels', DSDI_SLUG ); ?></label>
 												</div>
 											</div>
 											<?php foreach ( $dsdi->settings['directory']['item_options']['labels'] as $key => $label_data ) : ?>
@@ -229,7 +229,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 															name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][label]"
 															type="text"
 															class="ds-input-box"
-															value="<?php echo $label_data['label']; ?>" />
+															value="<?php echo ( isset( $label_data['label'] ) ? $label_data['label'] : '' ); ?>" />
 													</div>
 													<div class="ds-col-12 ds-col-lg-8 ds-p-0 ds-d-flex ds-flex-align-center">
 														<label class="ds-toggler">
@@ -248,7 +248,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																type="text"
 																class="ds-ml-2 ds-input-box"
 																placeholder="icon-name"
-																value="<?php echo $label_data['icon']; ?>" />
+																value="<?php echo ( isset( $label_data['icon'] ) ? $label_data['icon'] : '' ); ?>" />
 														</div>
 														<span class="ds-pl-2 ds-ml-2 dashicons dashicons-dismiss"></span>
 													</div><!-- .ds-col -->
@@ -261,7 +261,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											</div><!-- .ds-row -->
 											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-													<label><?php _e( 'Show label text', DSSM_SLUG ); ?></label>
+													<label><?php _e( 'Show label text', DSDI_SLUG ); ?></label>
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<label class="ds-toggler">
@@ -276,7 +276,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											</div><!-- .ds-row -->
 											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
-													<label><?php _e( 'Show labels on directory view', DSSM_SLUG ); ?></label>
+													<label><?php _e( 'Show labels on directory view', DSDI_SLUG ); ?></label>
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
 													<label class="ds-toggler">
@@ -292,8 +292,8 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<label>
-														<?php _e( 'Load Font Awesome icons', DSSM_SLUG ); ?><br />
-														<small><?php _e( '(<a href="https://fontawesome.com/search?m=free" target="_blank">https://fontawesome.com/icons</a>)', DSSM_SLUG ); ?></small>
+														<?php _e( 'Load Font Awesome icons', DSDI_SLUG ); ?><br />
+														<small><?php _e( '(<a href="https://fontawesome.com/search?m=free" target="_blank">https://fontawesome.com/icons</a>)', DSDI_SLUG ); ?></small>
 													</label>
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
@@ -311,8 +311,8 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 											<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto">
 												<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 													<label>
-														<?php _e( 'Show page title', DSSM_SLUG ); ?><br />
-														<small><?php _e( '(h1 page heading)', DSSM_SLUG ); ?></small>
+														<?php _e( 'Show page title', DSDI_SLUG ); ?><br />
+														<small><?php _e( '(h1 page heading)', DSDI_SLUG ); ?></small>
 													</label>
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
