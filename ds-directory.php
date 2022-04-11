@@ -134,11 +134,11 @@ class DS_DIRECTORY {
 	 *
 	 * @access public
 	 */
-	static public function activate() {
+	public function activate() {
 		update_option( 'dsdi_version', DSDI_VERSION );
 
 		if ( empty( get_option( 'dsdi_settings' ) ) )
-			update_option( 'dsdi_settings', get_default_settings() );
+			update_option( 'dsdi_settings', $this->get_default_settings() );
 
 		self::register_post_type();
 		self::register_post_taxonomies();
@@ -150,7 +150,7 @@ class DS_DIRECTORY {
 	 *
 	 * @access public
 	 */
-	static public function deactivate() {
+	public function deactivate() {
 		unregister_post_type( 'dsdi_item' );
 		 unregister_taxonomy( 'ds_directory' );
 		 flush_rewrite_rules();
@@ -453,9 +453,10 @@ if ( is_admin() ) {
 /**
  * Register plugin activation hook.
  */
-register_activation_hook( __FILE__, array( 'DS_DIRECTORY', 'activate' ) );
+$dsdi = DS_DIRECTORY::get_instance();
+register_activation_hook( __FILE__, array( $dsdi, 'activate' ) );
 
 /**
  * Register plugin deactivation hook.
  */
-register_deactivation_hook( __FILE__, array( 'DS_DIRECTORY', 'deactivate' ) );
+register_deactivation_hook( __FILE__, array( $dsdi, 'deactivate' ) );

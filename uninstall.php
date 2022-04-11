@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) exit;
 
-// Add functionality to delete all stores & store categories.
+// Add functionality to delete all settings & options.
 
 delete_metadata(
 	'dsdi_item',     // $meta_type

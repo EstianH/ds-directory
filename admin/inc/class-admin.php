@@ -95,8 +95,8 @@ class DS_DIRECTORY_ADMIN {
 				DSDI_VERSION
 			); // Overriden/Extended WP Color Picker
 
-			// Maybe load Font Awesome.
-			if ( !empty( DS_DIRECTORY::get_instance()->settings['directory']['item_options']['load_fa'] ) )
+			// Always load Font Awesome on the settings page.
+			// if ( !empty( DS_DIRECTORY::get_instance()->settings['directory']['item_options']['load_fa'] ) )
 				wp_enqueue_style( 'dsdi-font-awesome'  , DSDI_ASSETS_URL  . 'vendors/font-awesome/css/all.min.css', array( 'dsdi-style' ) , DSDI_VERSION );
 		} );
 
