@@ -19,11 +19,13 @@ DS Directory adds to your WordPress installation a clean and flexible directory 
 
 = Features =
 * Directory list view.
-* Directory grid view (coming soon).
-* Directory masonry view (coming soon).
+* Directory grid view.
 * Toggleable "Read More" pages.
-* Sortable options (coming soon).
-* Filter options.
+* Toggleable custom item labels.
+* Hide/show individual directory items.
+* Filterable directories.
+* Searchable directories.
+* Customizable layout.
 * Mobile friendly.
 
 == Installation ==
@@ -37,12 +39,14 @@ DS Directory adds to your WordPress installation a clean and flexible directory 
 * Update: Initial release.
 
 == Screenshots ==
-1. Screenshot 1
+1. Screenshot 1: Example single page.
+2. Screenshot 2: Example directory page.
+3. Screenshot 3: Settings.
+4. Screenshot 4: Settings.
+5. Screenshot 5: Settings.
 
 == Changelog ==
 = 1.0 =
 * Update: Initial release.
 
 == Frequently Asked Questions ==
-= Question 1 =
-Answer 1
