@@ -1,4 +1,4 @@
-=== DS Site Message ===
+=== DS Directory ===
 Contributors: divspot
 Plugin Name: DS Directory
 Plugin URI: https://www.divspot.co.za/ds-mobicred
