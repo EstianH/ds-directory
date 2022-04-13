@@ -306,7 +306,7 @@ class DS_DIRECTORY_ADMIN {
 		)
 			$_POST['dsdi_settings']['general']['load_count'] = 15;
 
-		update_option( 'dsdi_settings', $_POST['dsdi_settings'] );
+		update_option( 'dsdi_settings', $this->sanitize_form_input( $_POST['dsdi_settings'] ) );
 	}
 
 	/**

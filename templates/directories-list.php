@@ -31,8 +31,8 @@ $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] )
 				while( have_posts() ) :
 					the_post();
 
-					$directories = get_the_terms( get_the_ID(), 'ds_directory' );
-					$item_options     = get_post_meta( get_the_ID(), 'dsdi_options', true );
+					$directories  = get_the_terms( get_the_ID(), 'ds_directory' );
+					$item_options = get_post_meta( get_the_ID(), 'dsdi_options', true );
 
 					if ( empty( $item_options ) )
 						continue;
@@ -53,7 +53,7 @@ $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] )
 										if ( 'all' !== strtolower( $directory->name ) )
 											$directories_array[] = $directory->name;
 
-									echo implode( ', ', $directories_array );
+									echo implode( ', ', esc_html( $directories_array ) );
 								}
 								?>
 							</span>
@@ -68,14 +68,14 @@ $sort_order = ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] )
 									<div class="dsdi-item-label">
 										<?php if (
 												 !empty( $dsdi->settings['directory']['item_options']['load_fa'] )
-											&& !empty( $dsdi->settings['directory']['item_options']['labels'][$key]['icon'] )
+											&& !empty( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['icon'] )
 										) : ?>
-											<i class="fa fa-<?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['icon']; ?>"></i>
+											<i class="fa fa-<?php echo esc_html( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['icon'] ); ?>"></i>
 										<?php endif; ?>
 										<?php if ( !empty( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ) : ?>
-											<span><?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['label']; ?>:</span>
+											<span><?php echo esc_html( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['label'] ); ?>:</span>
 										<?php endif; ?>
-										<span><?php echo ( !empty( $value ) ? $value : '-' ); ?></span>
+										<span><?php echo ( !empty( $value ) ? esc_html( $value ) : '-' ); ?></span>
 									</div>
 								<?php endforeach; ?>
 							<?php endif; ?>

@@ -50,21 +50,21 @@ get_header();
 												<div class="ds-col-12 ds-p-0">
 													<?php if (
 														   !empty( $dsdi->settings['directory']['item_options']['load_fa'] )
-														&& !empty( $dsdi->settings['directory']['item_options']['labels'][$key]['icon'] )
+														&& !empty( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['icon'] )
 													) : ?>
-														<i class="ds-mr-1 fa fa-<?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['icon']; ?>"></i>
+														<i class="ds-mr-1 fa fa-<?php echo esc_html( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['icon'] ); ?>"></i>
 													<?php endif; ?>
 													<?php if ( !empty( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ) : ?>
-														<span><?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['label']; ?>:</span>
+														<span><?php echo esc_html( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['label'] ); ?>:</span>
 													<?php endif; ?>
-													<span><?php echo ( !empty( $value ) ? $value : '-' ); ?></span>
+													<span><?php echo ( !empty( $value ) ? esc_html( $value ) : '-' ); ?></span>
 												</div>
 											</div>
 										<?php endforeach; ?>
 									<?php endif; ?>
 									<div class="ds-col-12 ds-p-0">
 										<a class="ds-button ds-p-1" href="<?php echo esc_url( get_term_link( $categories[0] ) ); ?>">
-											<?php echo __( 'Back to', DSDI_SLUG ) . ' ' . $categories[0]->name; ?>
+											<?php echo __( 'Back to', DSDI_SLUG ) . ' ' . esc_html( $categories[0]->name ); ?>
 										</a>
 									</div>
 								</div>

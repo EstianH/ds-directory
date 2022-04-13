@@ -20,7 +20,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 					<div class="ds-tab-nav-wrapper ds-tab-nav-wrapper-animate">
 						<?php
 						foreach( $tabs as $tab )
-							echo '<a href="#tab-' . sanitize_title( $tab ) . '" class="ds-tab-nav' . ( $active_tab === sanitize_title( $tab ) ? ' active' : '' ) . '">' . ucfirst( $tab ) . '</a>';
+							echo '<a href="#tab-' . esc_html( sanitize_title( $tab ) ) . '" class="ds-tab-nav' . ( $active_tab === sanitize_title( $tab ) ? ' active' : '' ) . '">' . ucfirst( esc_html( $tab ) ) . '</a>';
 						?>
 					</div><!-- .ds-tab-nav-wrapper -->
 				</div><!-- .ds-col -->
@@ -50,7 +50,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 						*/
 						?>
 						<input type="hidden" name="action" value="dsdi_settings_update" />
-						<div id="tab-<?php echo sanitize_title( $tabs[0] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[0] ) ? ' active' : '' ); ?>">
+						<div id="tab-<?php echo esc_html( sanitize_title( $tabs[0] ) ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[0] ) ? ' active' : '' ); ?>">
 							<div class="ds-row ds-mb-2">
 								<div class="ds-col">
 									<div class="ds-block">
@@ -75,7 +75,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													<?php _e( 'Directory Template', DSDI_SLUG ); ?>:
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
-													<?php $directory_template = ( empty( $dsdi->settings['general']['directory_template'] ) ? 'list' : $dsdi->settings['general']['directory_template'] ); ?>
+													<?php $directory_template = ( empty( $dsdi->settings['general']['directory_template'] ) ? 'list' : esc_html( $dsdi->settings['general']['directory_template'] ) ); ?>
 													<div class="ds-row">
 														<div class="ds-col-12">
 															<label class="ds-radio">
@@ -108,7 +108,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 													<?php _e( 'Load Count', DSDI_SLUG ); ?>:
 												</div>
 												<div class="ds-col-12 ds-col-lg-8 ds-p-0">
-													<?php $load_condition = ( empty( $dsdi->settings['general']['load_condition'] ) ? 'all' : $dsdi->settings['general']['load_condition'] ); ?>
+													<?php $load_condition = ( empty( $dsdi->settings['general']['load_condition'] ) ? 'all' : esc_html( $dsdi->settings['general']['load_condition'] ) ); ?>
 													<div class="ds-row">
 														<div class="ds-col-12">
 															<label class="ds-radio">
@@ -134,7 +134,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																			class="ds-input-box"
 																			type="number"
 																			name="dsdi_settings[general][load_count]"
-																			value="<?php echo ( !empty( $dsdi->settings['general']['load_count'] ) ? $dsdi->settings['general']['load_count'] : '' ); ?>"
+																			value="<?php echo ( !empty( $dsdi->settings['general']['load_count'] ) ? ( int )$dsdi->settings['general']['load_count'] : '' ); ?>"
 																			placeholder="15" />
 																	</span>
 															</label>
@@ -183,9 +183,9 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 
 														foreach ( $columns as $column ) {
 															echo '<option
-																value="' . $column . '"' .
-																( ( int )$dsdi->settings['general']['grid']['columns'] === $column ? ' selected="selected"' : '' ) . '>' .
-																	$column . ' Column' . ( 1 !== $column ? 's' : '' ) .
+																value="' . ( int )$column . '"' .
+																( ( int )$dsdi->settings['general']['grid']['columns'] === ( int )$column ? ' selected="selected"' : '' ) . '>' .
+																	( int )$column . ' Column' . ( 1 !== ( int )$column ? 's' : '' ) .
 															'</option>';
 														}
 														?>
@@ -196,7 +196,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 									</div><!-- .ds-block -->
 								</div>
 							</div>
-						</div><!-- #tab-<?php echo sanitize_title( $tabs[0] ); ?> -->
+						</div><!-- #tab-<?php echo esc_html( sanitize_title( $tabs[0] ) ); ?> -->
 						<?php
 						/*
 						████████  █████  ██████         ██████  ██ ██████  ███████  ██████ ████████  ██████  ██████  ██    ██     ██ ████████ ███████ ███    ███ ███████
@@ -206,7 +206,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 						   ██    ██   ██ ██████         ██████  ██ ██   ██ ███████  ██████    ██     ██████  ██   ██    ██        ██    ██    ███████ ██      ██ ███████
 						*/
 						?>
-						<div id="tab-<?php echo sanitize_title( $tabs[1] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[1] ) ? ' active' : '' ); ?>">
+						<div id="tab-<?php echo esc_html( sanitize_title( $tabs[1] ) ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[1] ) ? ' active' : '' ); ?>">
 							<div class="ds-row">
 								<div class="ds-col ds-mb-2">
 									<div class="ds-block">
@@ -226,29 +226,29 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 												<div class="ds-row ds-flex-align-center ds-pt-1 ds-pb-1 ds-bb ds-ml-auto ds-mr-auto item-label">
 													<div class="ds-col-12 ds-col-lg-4 ds-p-0 ds-pr-lg-2">
 														<input
-															name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][label]"
+															name="dsdi_settings[directory][item_options][labels][<?php echo ( int )$key; ?>][label]"
 															type="text"
 															class="ds-input-box"
-															value="<?php echo ( isset( $label_data['label'] ) ? $label_data['label'] : '' ); ?>" />
+															value="<?php echo ( isset( $label_data['label'] ) ? esc_html( $label_data['label'] ) : '' ); ?>" />
 													</div>
 													<div class="ds-col-12 ds-col-lg-8 ds-p-0 ds-d-flex ds-flex-align-center">
 														<label class="ds-toggler">
 															<input
-																name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][enabled]"
+																name="dsdi_settings[directory][item_options][labels][<?php echo ( int )$key; ?>][enabled]"
 																type="checkbox"
 																value="1"
-																data-label_key="<?php echo $key; ?>"
+																data-label_key="<?php echo ( int )$key; ?>"
 																<?php echo ( isset( $label_data['enabled'] ) ? ' checked="checked"' : '' ); ?> />
 															<span></span>
 														</label>
 														<div class="dsdi-icon-input-wrapper <?php echo ( isset( $dsdi->settings['directory']['item_options']['load_fa'] ) ? ' active' : '' ); ?>"
 															data-ds_block_toggler_block="directory_load_fa">
 															<input
-																name="dsdi_settings[directory][item_options][labels][<?php echo $key; ?>][icon]"
+																name="dsdi_settings[directory][item_options][labels][<?php echo ( int )$key; ?>][icon]"
 																type="text"
 																class="ds-ml-2 ds-input-box"
 																placeholder="icon-name"
-																value="<?php echo ( isset( $label_data['icon'] ) ? $label_data['icon'] : '' ); ?>" />
+																value="<?php echo ( isset( $label_data['icon'] ) ? esc_html( $label_data['icon'] ) : '' ); ?>" />
 														</div>
 														<span class="ds-pl-2 ds-ml-2 dashicons dashicons-dismiss"></span>
 													</div><!-- .ds-col -->
@@ -330,7 +330,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 									</div><!-- .ds-block -->
 								</div><!-- .ds-col -->
 							</div><!-- .ds-row -->
-						</div><!-- #tab-<?php echo sanitize_title( $tabs[1] ); ?> -->
+						</div><!-- #tab-<?php echo esc_html( sanitize_title( $tabs[1] ) ); ?> -->
 						<?php
 						/*
 						████████  █████  ██████         ██████  ███████ ███████ ██  ██████  ███    ██
@@ -340,7 +340,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 						   ██    ██   ██ ██████         ██████  ███████ ███████ ██  ██████  ██   ████
 						*/
 						?>
-						<div id="tab-<?php echo sanitize_title( $tabs[2] ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[2] ) ? ' active' : '' ); ?>">
+						<div id="tab-<?php echo esc_html( sanitize_title( $tabs[2] ) ); ?>" class="ds-tab-content<?php echo ( $active_tab === sanitize_title( $tabs[2] ) ? ' active' : '' ); ?>">
 							<div class="ds-row ds-mb-2">
 								<div class="ds-col">
 									<div class="ds-block">
@@ -354,7 +354,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														class="ds-input-box"
 														name="dsdi_settings[design][max_width]"
 														type="text"
-														value="<?php echo ( !empty( $dsdi->settings['design']['max_width'] ) ? $dsdi->settings['design']['max_width'] : '' ); ?>"
+														value="<?php echo ( !empty( $dsdi->settings['design']['max_width'] ) ? esc_html( $dsdi->settings['design']['max_width'] ) : '' ); ?>"
 														placeholder="1260px" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
@@ -373,7 +373,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																		class="ds-input-box"
 																		name="dsdi_settings[design][padding][top]"
 																		type="text"
-																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['top'] ) ? $dsdi->settings['design']['padding']['top'] : '' ); ?>"
+																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['top'] ) ? esc_html( $dsdi->settings['design']['padding']['top'] ) : '' ); ?>"
 																		placeholder="30px" />
 																</div>
 															</div>
@@ -386,7 +386,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																		class="ds-input-box"
 																		name="dsdi_settings[design][padding][right]"
 																		type="text"
-																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['right'] ) ? $dsdi->settings['design']['padding']['right'] : '' ); ?>"
+																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['right'] ) ? esc_html( $dsdi->settings['design']['padding']['right'] ) : '' ); ?>"
 																		placeholder="30px" />
 																</div>
 															</div>
@@ -401,7 +401,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																		class="ds-input-box"
 																		name="dsdi_settings[design][padding][bottom]"
 																		type="text"
-																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['bottom'] ) ? $dsdi->settings['design']['padding']['bottom'] : '' ); ?>"
+																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['bottom'] ) ? esc_html( $dsdi->settings['design']['padding']['bottom'] ) : '' ); ?>"
 																		placeholder="30px" />
 																</div>
 															</div>
@@ -414,7 +414,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 																		class="ds-input-box"
 																		name="dsdi_settings[design][padding][left]"
 																		type="text"
-																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['left'] ) ? $dsdi->settings['design']['padding']['left'] : '' ); ?>"
+																		value="<?php echo ( !empty( $dsdi->settings['design']['padding']['left'] ) ? esc_html( $dsdi->settings['design']['padding']['left'] ) : '' ); ?>"
 																		placeholder="30px" />
 																</div>
 															</div>
@@ -432,7 +432,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														data-alpha-enabled="true"
 														name="dsdi_settings[design][text_color]"
 														type="text"
-														value="<?php echo ( !empty( $dsdi->settings['design']['text_color'] ) ? $dsdi->settings['design']['text_color'] : '#515151' ); ?>"
+														value="<?php echo ( !empty( $dsdi->settings['design']['text_color'] ) ? esc_html( $dsdi->settings['design']['text_color'] ) : '#515151' ); ?>"
 														placeholder="#515151" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
@@ -446,7 +446,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_bg]"
 														type="text"
-														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_bg'] ) ? $dsdi->settings['design']['button_color_bg'] : '#fff' ); ?>"
+														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_bg'] ) ? esc_html( $dsdi->settings['design']['button_color_bg'] ) : '#fff' ); ?>"
 														placeholder="#fff" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
@@ -460,7 +460,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_bg_hover]"
 														type="text"
-														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_bg_hover'] ) ? $dsdi->settings['design']['button_color_bg_hover'] : '#515151' ); ?>"
+														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_bg_hover'] ) ? esc_html( $dsdi->settings['design']['button_color_bg_hover'] ) : '#515151' ); ?>"
 														placeholder="#515151" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
@@ -474,7 +474,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_text]"
 														type="text"
-														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_text'] ) ? $dsdi->settings['design']['button_color_text'] : '#515151' ); ?>"
+														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_text'] ) ? esc_html( $dsdi->settings['design']['button_color_text'] ) : '#515151' ); ?>"
 														placeholder="#515151" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
@@ -488,7 +488,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 														data-alpha-enabled="true"
 														name="dsdi_settings[design][button_color_text_hover]"
 														type="text"
-														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_text_hover'] ) ? $dsdi->settings['design']['button_color_text_hover'] : '#fff' ); ?>"
+														value="<?php echo ( !empty( $dsdi->settings['design']['button_color_text_hover'] ) ? esc_html( $dsdi->settings['design']['button_color_text_hover'] ) : '#fff' ); ?>"
 														placeholder="#fff" />
 												</div><!-- .ds-col -->
 											</div><!-- .ds-row -->
@@ -496,7 +496,7 @@ $active_tab = ( !empty( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'gener
 									</div><!-- .ds-block -->
 								</div><!-- .ds-col -->
 							</div><!-- .ds-row -->
-						</div><!-- #tab-<?php echo sanitize_title( $tabs[2] ); ?> -->
+						</div><!-- #tab-<?php echo esc_html( sanitize_title( $tabs[2] ) ); ?> -->
 						<div class="ds-row dsdi-sticky-bottom">
 							<div class="ds-col">
 								<div class="ds-block">

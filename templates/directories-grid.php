@@ -39,7 +39,7 @@ $dsdi = DS_DIRECTORY::get_instance();
 								break;
 						}
 						?>
-						<div class="dsdi-item <?php echo $column_classes; ?> ds-mb-2">
+						<div class="dsdi-item <?php echo esc_html( $column_classes ); ?> ds-mb-2">
 							<div class="ds-block" title="<?php echo get_the_title(); ?>" alt="<?php echo get_the_title(); ?>">
 								<?php if ( !empty( $dsdi->settings['general']['grid']['featured_images'] ) ) : ?>
 									<?php if ( has_post_thumbnail() ) : ?>
@@ -67,14 +67,14 @@ $dsdi = DS_DIRECTORY::get_instance();
 													<div class="ds-col-12 ds-p-0">
 														<?php if (
 															   !empty( $dsdi->settings['directory']['item_options']['load_fa'] )
-															&& !empty( $dsdi->settings['directory']['item_options']['labels'][$key]['icon'] )
+															&& !empty( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['icon'] )
 														) : ?>
-															<i class="ds-mr-1 fa fa-<?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['icon']; ?>"></i>
+															<i class="ds-mr-1 fa fa-<?php echo esc_html( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['icon'] ); ?>"></i>
 														<?php endif; ?>
 														<?php if ( !empty( $dsdi->settings['directory']['item_options']['labels_show_text'] ) ) : ?>
-															<span><?php echo $dsdi->settings['directory']['item_options']['labels'][$key]['label']; ?>:</span>
+															<span><?php echo esc_html( $dsdi->settings['directory']['item_options']['labels'][( int )$key]['label'] ); ?>:</span>
 														<?php endif; ?>
-														<span><?php echo ( !empty( $value ) ? $value : '-' ); ?></span>
+														<span><?php echo ( !empty( $value ) ? esc_html( $value ) : '-' ); ?></span>
 													</div>
 												</div>
 											<?php endforeach; ?>

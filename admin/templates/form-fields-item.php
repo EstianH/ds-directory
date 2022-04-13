@@ -14,14 +14,14 @@ wp_nonce_field( 'dsdi_save_post', 'dsdi_options_save_nonce' );
 				continue; ?>
 			<div class="ds-row ds-flex-align-center ds-mt-1">
 				<div class="ds-col-12 ds-col-lg-3">
-					<?php echo $label_data['label']; ?>
+					<?php echo esc_html( $label_data['label'] ); ?>
 				</div>
 				<div class="ds-col-12 ds-col-lg-9">
 					<input
 						class="ds-input-box"
-						name="dsdi_options[labels][<?php echo $key; ?>]"
+						name="dsdi_options[labels][<?php echo ( int )$key; ?>]"
 						type="text"
-						value="<?php echo ( isset( $item_options['labels'][$key] ) ? $item_options['labels'][$key] : '' ); ?>" />
+						value="<?php echo ( isset( $item_options['labels'][( int )$key] ) ? esc_html( $item_options['labels'][( int )$key] ) : '' ); ?>" />
 				</div><!-- .ds-col -->
 			</div><!-- .ds-row -->
 		<?php endforeach; ?>

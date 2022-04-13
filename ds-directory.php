@@ -359,8 +359,8 @@ class DS_DIRECTORY {
 				   !empty( $_GET['sort'] )
 				&& 'name' === $_GET['sort']
 			) {
-				$query->set( 'orderby', $_GET['sort'] );
-				$query->set( 'order'  , ( !empty( $_GET['order'] ) ? $_GET['order'] : 'ASC' ) );
+				$query->set( 'orderby', sanitize_text_field( $_GET['sort'] ) );
+				$query->set( 'order'  , ( !empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] ) : 'ASC' ) );
 			} else {
 				$query->set( 'orderby', 'name'  );
 				$query->set( 'order'  , 'ASC' );
