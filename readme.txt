@@ -5,11 +5,11 @@ Plugin URI: https://www.divspot.co.za/ds-mobicred
 Tags: directory, store directory, services, catalog, car directory, directory list, mall directory
 Author URI: https://www.divspot.co.za
 Author: divSpot
-Requires PHP: 5.6
+Requires PHP: 7.2
 Requires at least: 5.3
-Tested up to: 5.9.2
-Stable tag: 1.0
-Version: 1.0
+Tested up to: 6.2
+Stable tag: 1.1.1
+Version: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://www.divspot.co.za
@@ -35,7 +35,10 @@ DS Directory adds to your WordPress installation a clean and flexible directory 
 4. Click on the "Activate" button for DS Directory.
 
 == Upgrade Notice ==
-= 1.0 =
+= 1.1.1 =
+* Update: Compatibility with WordPress 6.2.
+
+= 1.0.0 =
 * Update: Initial release.
 
 == Screenshots ==
@@ -46,7 +49,10 @@ DS Directory adds to your WordPress installation a clean and flexible directory 
 5. Screenshot 5: Settings.
 
 == Changelog ==
-= 1.0 =
+= 1.1.1 =
+* Update: Compatibility with WordPress 6.2.
+
+= 1.0.0 =
 * Update: Initial release.
 
 == Frequently Asked Questions ==
