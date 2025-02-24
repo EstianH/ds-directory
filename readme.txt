@@ -7,9 +7,9 @@ Author URI: https://www.divspot.co.za
 Author: divSpot
 Requires PHP: 7.2
 Requires at least: 5.3
-Tested up to: 6.2
-Stable tag: 1.1.1
-Version: 1.1.1
+Tested up to: 6.7.2
+Stable tag: 1.1.2
+Version: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://www.divspot.co.za
@@ -35,6 +35,9 @@ DS Directory adds to your WordPress installation a clean and flexible directory 
 4. Click on the "Activate" button for DS Directory.
 
 == Upgrade Notice ==
+= 1.1.2 =
+* Update: Version bump.
+
 = 1.1.1 =
 * Update: Compatibility with WordPress 6.2.
 
@@ -49,6 +52,9 @@ DS Directory adds to your WordPress installation a clean and flexible directory 
 5. Screenshot 5: Settings.
 
 == Changelog ==
+= 1.1.2 =
+* Update: Version bump.
+
 = 1.1.1 =
 * Update: Compatibility with WordPress 6.2.
 
