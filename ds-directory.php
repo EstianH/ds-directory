@@ -3,7 +3,7 @@
 Plugin Name:  DS Directory
 Plugin URI:   https://www.divspot.co.za/plugin-ds-floated-menu/
 Description:  DS Directory adds to your WordPress installation a clean and flexible directory (e.g. Shops, Services, Products, Cars).
-Version:      1.1.1
+Version:      1.1.2
 Author:       divSpot
 Author URI:   https://www.divspot.co.za
 License:      GPLv3 or later
@@ -34,7 +34,7 @@ define( 'DSDI_TEMPLATES_URL' , DSDI_ROOT_URL  . 'templates/' );          // User
 define( 'DSDI_TEMPLATES_PATH', DSDI_ROOT_PATH . 'templates/' );          // FTP Path
 define( 'DSDI_TITLE'         , 'DS Directory' );                         // DSDI Title
 define( 'DSDI_SLUG'          , sanitize_title( DSDI_TITLE ) );           // Plugin slug.
-define( 'DSDI_VERSION'       , '1.1.1' );
+define( 'DSDI_VERSION'       , '1.1.2' );
 
 
 /*
