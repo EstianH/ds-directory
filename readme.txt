@@ -2,7 +2,7 @@
 Contributors: divspot
 Plugin Name: DS Directory
 Plugin URI: https://www.divspot.co.za/ds-mobicred
-Tags: directory, store directory, services, catalog, car directory, directory list, mall directory
+Tags: directory, store directory, services, catalog, car directory
 Author URI: https://www.divspot.co.za
 Author: divSpot
 Requires PHP: 7.2
@@ -13,6 +13,8 @@ Version: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://www.divspot.co.za
+
+DS Directory adds to your WordPress installation a clean and flexible directory (e.g. Shops, Services, Products, Cars).
 
 == Description ==
 DS Directory adds to your WordPress installation a clean and flexible directory (e.g. Shops, Services, Products, Cars).
